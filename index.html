@@ -205,13 +205,13 @@ a:active {
             var J3 = document.getElementById("J2"); 
             console.log(pick);
             if (pick == 1) {
-                J1.play();
+                J1.cloneNode(true).play();
             }
             if (pick == 2) {
-                J2.play();
+                J2.cloneNode(true).play();
             }
             if (pick == 3) {
-                J3.play();
+                J3.cloneNode(true).play();
             }
         }
     </script>
