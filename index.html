@@ -162,7 +162,7 @@ a:link {
 }
 
 a:visited {
-  color: red;
+  color: yellow;
   background-color: transparent;
   text-decoration: none;
 }
@@ -182,9 +182,40 @@ a:active {
 
 
 <html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none; hight:100vh">
+    <!--JEVIL CLICKER BABBYYYYYYY-->
+    <img src="/Jevil.png" id="JEVIL" position="absolute" style="top:0;left:0;width:5%;"/>
+    
+    <audio controls id="J1">
+      <source src="jevil1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="J2">
+      <source src="Jevil2.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="J3">
+      <source src="Jevil3.mp3" type="audio/mpeg">
+    </audio>
+    
+     
+    <script>
+        var j = document.getElementById("JEVIL");
+        j.onclick = function() {
+            var pick = Math.floor(Math.random() * (3 - 1 + 1) + 1);
+            var J1 = document.getElementById("J1"); 
+            var J2 = document.getElementById("J2"); 
+            var J3 = document.getElementById("J2"); 
+            console.log(pick);
+            if (pick == 1) {
+                J1.play();
+            }
+        }
+    </script>
+    <!--JEVIL CLICKER BABBYYYYYYY-->
+    
     <p class="Text" id="title" style="margin: 2%; text-align:center">Unwavering Soul Calculator</p>
     <!--Info-->
-    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (Weapon, Event Weapon, Gamepasses, Misc,  Event Misc). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect.<br> here's a <a href="https://applesandwichman.github.io/UWSoulCalculator/chomikujdmg.png" color="yellow">link</a> to weapon dps for 1 dmg bosses</body>
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="#0">Weapon</a>, <a href="#76">Event Weapon</a> , <a href="#82">Miscellaneous</a>,  <a href="#89">Event Miscellaneous</a>, and <a href="#S1">Skills</a>). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect.<br> here's a <a href="/chomikujdmg.png" color="yellow">link</a> to weapon dps for 1 dmg bosses</body>
+    
+    
     
     <!--Stats-->
     <div class="Box" id="statChanger" style="margin-top:5%; position:sticky; top:0%; z-index:997">
@@ -204,7 +235,7 @@ a:active {
     <!--    <h1 class="text" id="Navtitle" style="border:none;">Navigation:</h1>-->
     <!--</div>-->
     <!--WeaponDPS-->
-    <div class="Box" id="WeaponDPS" style="margin: 3% 0; overflow:auto;  width:63%;"></div>
+    <div class="Box" id="WeaponDPS" style="margin: 3% 0; overflow:auto;  width:97%;"></div>
     <script>
         var WeaponDPS = document.getElementById("WeaponDPS");
         var Resets = parseInt(document.getElementById("Resets").value);
@@ -479,7 +510,9 @@ a:active {
 
     </script>
     <script src="Number_Fixing.js"></script>
-    <div class="Box" id="SkillStats" style="margin: 3% 0; overflow:auto; width:33%;"></div>
+    
+    <div class="Box" id="SkillDPS" style="margin: 3% 0; overflow:auto; width:58%; float:left"></div>
+    <div class="Box" id="SkillStats" style="margin: 3% 0; overflow:auto; width:33%; float:left; position:sticky; top:4%"></div>
     <script>
         function UpdateSliders() {
             if (DmgSlider.value >= 7) {
@@ -534,7 +567,6 @@ a:active {
         s.appendChild(divReload);
         
     </script>
-    <div class="Box" id="SkillDPS" style="margin: 3% 0; overflow:auto; width:63%;"></div>
     <script>
         var SkillDPS = document.getElementById("SkillDPS");
         SkillDPS.style.overflow = "hidden";
@@ -564,6 +596,7 @@ a:active {
             
             var img = document.createElement("img");
             img.src = "Images/Skill" + (i+1) + ".png";
+            img.setAttribute("id","S" + (i+1));
             b.appendChild(img);
             img.style.width = "15%";
             img.style.left = "-20%"; img.style.position = "relative";
