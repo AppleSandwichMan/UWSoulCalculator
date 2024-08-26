@@ -4,6 +4,9 @@ var TP = document.getElementById("TP");
 
 function clamp_ish(text, max=NaN) {
     text.value = parseInt(text.value);
+    if (text.value == NaN) {
+        text.value = 0;
+    }
     if (max != NaN) {
         if (text.value > max) {
             text.value = max;
