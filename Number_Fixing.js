@@ -3,10 +3,10 @@ var Levels = document.getElementById("Levels");
 var TP = document.getElementById("TP");
 
 function clamp_ish(text, max=NaN) {
-    text.value = parseInt(text.value);
-    if (text.value == NaN) {
+    if (text.value == "") {
         text.value = 0;
     }
+    text.value = parseInt(text.value);
     if (max != NaN) {
         if (text.value > max) {
             text.value = max;
@@ -152,7 +152,7 @@ function UpdateStuff() {
         return abbreviatedValue + s[index];
     };
     
-    for (var i = 0; i < 72; i++) {
+    for (var i = 0; i <= 80; i++) {
         document.getElementById("Item " + i).innerText = "Your DPS: " + convert(DPS[i]);
         document.getElementById(Names[i][0] + " Damage").innerText = "Your Damage: " + convert((WeaponDamage[i] + generalDamageAddition));
         document.getElementById(Names[i][0] + " DPS").innerText = "Your DPS: " + convert(DPS[i]);
@@ -244,7 +244,7 @@ function UpdateStuff() {
         document.getElementById("Ancient Pumpblade DPS").innerText = "Your DPS: " + convert((d1 + d2 + d3 + (15000+L*29+tp+250 * R + tr)) / (0.9*4));
         document.getElementById("Ancient Pumpblade Pump Bomb").innerText = "Pump Bomb DPS: " + convert((d1 + d2 + d3 + (10000 + L*19 + tp + 250*R + tr*50)) / (0.9*4));
         document.getElementById("Ancient Pumpblade Pumpment Cut").innerText = "Pumpment DPS: " + convert((d1 + d2 + d3 + (15000 + L*1.9 + tp*0.2+25 * R + tr/10)*8) / (0.9*4));
-    
+        
         document.getElementById("Item 82").innerText = "Your DPS: " + convert((225000 + (tp*0.33)+(R*2500)+(tr*22.5))*3/15);
         document.getElementById("Rift Essense Damage").innerText = "Your Damage: " + convert((225000 + (tp*0.33)+(R*2500)+(tr*22.5))*3);
         document.getElementById("Rift Essense DPS").innerText = "Your DPS: " + convert((225000 + (tp*0.33)+(R*2500)+(tr*22.5))*3/15);
@@ -259,31 +259,37 @@ function UpdateStuff() {
         document.getElementById("Kill Damage").innerText = "Your Damage: " + convert((1000000 + generalDamageAddition));
         document.getElementById("Kill DPS").innerText = "Your DPS: " + convert((1000000 + generalDamageAddition)/20);
         
-        document.getElementById("Item 85").innerText = "Your DPS: " + convert((43750+(tp*0.05)+(R*150)+(tr/2))*10/5);
+        document.getElementById("Item 85").innerText = "Your DPS: " + convert((1000000 + generalDamageAddition)/20);
+        document.getElementById("Snat Knife Damage").innerText = "Your Damage: " + convert((1000000 + generalDamageAddition));
+        document.getElementById("Snat Knife DPS").innerText = "Your DPS: " + convert((1000000 + generalDamageAddition)/20);
+        
+        document.getElementById("Item 86").innerText = "Your DPS: " + convert((43750+(tp*0.05)+(R*150)+(tr/2))*10/5);
         document.getElementById("Bike Damage").innerText = "Your Damage: " + convert((43750+(tp*0.05)+(R*150)+(tr/2))*10);
         document.getElementById("Bike DPS").innerText = "Your DPS: " + convert((43750+(tp*0.05)+(R*150)+(tr/2))*10/5);
         
-        document.getElementById("Item 86").innerText = "Your DPS: " + convert((1400000 + R * (206503/590) + tp * (137/118) + tr*9.099984746)/30);
+        document.getElementById("Item 87").innerText = "Your DPS: " + convert((1400000 + R * (206503/590) + tp * (137/118) + tr*9.099984746)/30);
         document.getElementById("Mask (v1) Damage").innerText = "Your Damage: " + convert((1400000 + R * (206503/590) + tp * (137/118) + tr*9.099984746));
         document.getElementById("Mask (v1) DPS").innerText = "Your DPS: " + convert((1400000 + R * (206503/590) + tp * (137/118) + tr*9.099984746)/30);
         
         var h1 = 700000+(tr*15)+(R*249.522 + tp*0.625477); var h2 = 740000 + (tr * 16) + (R * 19.5138034824) + (tp * 0.824236196518); var h3 = h1 * 2;
-        document.getElementById("Item 87").innerText = "Your DPS: " + convert((h1 * 5 + h2*3 + h3)/(36));
+        document.getElementById("Item 88").innerText = "Your DPS: " + convert((h1 * 5 + h2*3 + h3)/(36));
         document.getElementById("Mask (v2) Damage").innerText = "Your Damage: " + convert((h1 * 5 + h2*3 + h3));
         document.getElementById("Mask (v2) DPS").innerText = "Your DPS: " + convert((h1 * 5 + h2*3 + h3)/(36));
         
-        document.getElementById("Item 88").innerText = "Your DPS: " + convert((BossHP*0.015 + 1000000 + generalDamageAddition)/30);
+        document.getElementById("Item 89").innerText = "Your DPS: " + convert((BossHP*0.015 + 1000000 + generalDamageAddition)/30);
         document.getElementById("Banana Damage").innerText = "Your Damage: " + convert(BossHP*0.015 + 1000000 + generalDamageAddition);
         document.getElementById("Banana DPS").innerText = "Your DPS: " + convert((BossHP*0.015 + 1000000 + generalDamageAddition)/30);
         
-        document.getElementById("Item 89").innerText = "Your DPS: " + convert((7500+ tp*0.11315 + R*50+tr/2)*10/25);
+        document.getElementById("Item 90").innerText = "Your DPS: " + convert((7500+ tp*0.11315 + R*50+tr/2)*10/25);
         document.getElementById("Sans's Hat Damage").innerText = "Your Damage: " + convert((7500+ tp*0.11315 + R*50+tr/2)*10);
         document.getElementById("Sans's Hat DPS").innerText = "Your DPS: " + convert((7500+ tp*0.11315 + R*50+tr/2)*10/25);
         
         var d = (((tr*50)+(R*25000)+(L*100)+(tp*76.225)+100) * 0.9 /10) + ((tr*5)+(tp*2)+(R*650));
-        document.getElementById("Item 90").innerText = "Your DPS: " + convert(d/10);
+        document.getElementById("Item 91").innerText = "Your DPS: " + convert(d/10);
         document.getElementById("Head Throw Damage").innerText = "Your Damage: " + convert(d);
         document.getElementById("Head Throw DPS").innerText = "Your DPS: " + convert(d/10);
+        
+        
     
     }
 }
