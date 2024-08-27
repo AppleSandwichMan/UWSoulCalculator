@@ -195,7 +195,6 @@ a:active {
       <source src="Jevil3.mp3" type="audio/mpeg">
     </audio>
     
-     
     <script>
         var j = document.getElementById("JEVIL");
         j.onclick = function() {
@@ -219,9 +218,7 @@ a:active {
     
     <p class="Text" id="title" style="margin: 2%; text-align:center">Unwavering Soul Calculator</p>
     <!--Info-->
-    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="#0">Weapon</a>, <a href="#76">Event Weapon</a> , <a href="#82">Miscellaneous</a>,  <a href="#89">Event Miscellaneous</a>, and <a href="#S1">Skills</a>). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect.<br> here's a <a href="./chomikujdmg.png" color="yellow">link</a> to weapon dps for 1 dmg bosses</body>
-    
-    
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="#0">Weapon</a>, <a href="#76">Event Weapon</a> , <a href="#82">Miscellaneous</a>,  <a href="#89">Event Miscellaneous</a>, and <a href="#S1">Skills</a>). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect. As for boosts, you can just multiply the DPS by the boost and get close to what it should be. Too lazy to add DMG boost to stats<br> here's a <a href="/chomikujdmg.png" color="yellow">link</a> to weapon DPS for 1 dmg bosses</body>
     
     <!--Stats-->
     <div class="Box" id="statChanger" style="margin-top:5%; position:sticky; top:0%; z-index:997">
@@ -256,11 +253,11 @@ a:active {
         
         var srcs = ["https://codehs.com/uploads/bce3dc16ecb9c453bae9d5b2f0e45895"];
         
-        var WeaponDamage = [7,15,31,40,50,100,60,125,300,360,440,475,1000,1650,1850,2500,3600,5000,5250,5500,7500,7000,8000,7500,9000,10000,12000,15000,21500,21000,34000,54000,69000,40000,50000,42500,50000,60000,80000,85000,121000,103330,150000,155000,731250,80000,120000,70000,138330,90000,1700000,230000,2250000,240000,100000,230000,300000,300000,4500000,525000,345000, 900000, 355000, 355000, 1880000, 3750000, 435000, 465000, 650000, 350000, 425000, 750000, 60, 160, 2000, 3320000, 11000, 7000, 25000, 85000, 270000, 60000, 675000, 1500000, 1000000, 438000, 1400000, 7120000,1000000, 75000, 10];
+        var WeaponDamage = [7,15,31,40,50,100,60,125,300,360,440,475,1000,1650,1850,2500,3600,5000,5250,5500,7500,7000,8000,7500,9000,10000,12000,15000,21500,21000,34000,54000,69000,40000,50000,42500,50000,60000,80000,85000,121000,103330,150000,155000,731250,80000,120000,70000,138330,90000,1700000,230000,2250000,240000,100000,230000,300000,300000,4500000,525000,345000, 900000, 355000, 355000, 1880000, 3750000, 435000, 465000, 650000, 350000, 425000, 750000, 60, 160, 2000, 3320000, 11000, 7000, 25000, 85000, 270000, 60000, 675000, 1500000, 1000000, 1000000, 438000, 1400000, 7120000,1000000, 75000, 10];
         
-        var Cooldown = [0.9,0.8, 1.2, 0.9, 0.8, 0.8, 1, 0.85, 0.9, 1, 0.8, 1.5, 0.9, 0.9, 1.5, 0.9, 0.9, 1.5, 0.9, 1, 1.5, 0.8, 0.9, 0.8, 1.5, 1, 1, 1.5, 0.8, 0.9, 0.8, 0.9, 0.8, 1, 3, 0.9, 0.9, 0.8, 0.9, 0.8, 1, 1.6, 4, 1, 6, 1.5, 0.8, 0.25, 1.6, 1.4, 20, 0.9, 21, 0.9, 1.5, 1, 1, 0.6, 15, 5, 1, 12, 0.9, 1, 10, 18, 1, 0.9, 1.2, 1, 1, 1, 0.9, 0.9, 1.2, 15, 1.7, 0.8, 3, 0.9, 0.9, 3.6, 15, 10, 20, 5, 30, 36,30, 25, 10];
+        var Cooldown = [0.9,0.8, 1.2, 0.9, 0.8, 0.8, 1, 0.85, 0.9, 1, 0.8, 1.5, 0.9, 0.9, 1.5, 0.9, 0.9, 1.5, 0.9, 1, 1.5, 0.8, 0.9, 0.8, 1.5, 1, 1, 1.5, 0.8, 0.9, 0.8, 0.9, 0.8, 1, 3, 0.9, 0.9, 0.8, 0.9, 0.8, 1, 1.6, 4, 1, 6, 1.5, 0.8, 0.25, 1.6, 1.4, 20, 0.9, 21, 0.9, 1.5, 1, 1, 0.6, 15, 5, 1, 12, 0.9, 1, 10, 18, 1, 0.9, 1.2, 1, 1, 1, 0.9, 0.9, 1.2, 15, 1.7, 0.8, 3, 0.9, 0.9, 3.6, 15, 10, 20, 20, 5, 30, 36,30, 25, 10];
 
-        var Hits = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,9,1,7,1,1,1,1,1,15,1,1,20,1,1,1,3,1,1,1,1,1,1,1,1,1,14,1,1,1,1,1,4,1,1,1,1,1,4,1,1,1];
+        var Hits = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,9,1,7,1,1,1,1,1,15,1,1,20,1,1,1,3,1,1,1,1,1,1,1,1,1,14,1,1,1,1,1,4,1,1,1,1,1,1,4,1,1,1,1,1,1];
 
         var DPS = [];
         for (var i = 0; i < WeaponDamage.length; i++) {
@@ -357,14 +354,18 @@ a:active {
             82: ["Rift Essense","Description: Getting the right patterns will trigger events. When Resetting, your extra TP is turned into LV's.", "Explosion", 33300, "Wires",36000],
             83: ["Counter Bone","Description: For 1.5 seconds, you will ignore the damage received and create a blast that deals 500k DMG up to 3 times."],
             84: ["Kill","Description: Teleports behind nearest boss dealing 1M DMG and giving Invincibility during 3 seconds, doesn't give invincibility if you're out of range"],
-            85: ["Bike","Description: +10 Speed boost while it's equipped and extra 15 Speed boost when activated, it can hit multiple times and stun enemeies."],
-            86: ["Mask (v1)","Description: Hauriunt omnia"],
-            87: ["Mask (v2)","Description: Hauriunt omnia"],
-            88: ["Banana","Description: You place a spinning banana, after 4 seconds it explodes healing 40% of missing HP to nearby allies and dealing damage to nearby enemies\n(for percent damage, input a level. Each level is 20k HP, max 1B. Not being lazy)"],
-            89: ["Sans's Hat", "Description: The hat starts gathering a storm, which later explosion causes all nearby enemies to Freeze."],
-            90: ["Head Throw", "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3."],
+            85: ["Snat Knife", "Description: IT'S NOT A RE_SKIL TRUST."],
+            86: ["Bike","Description: +10 Speed boost while it's equipped and extra 15 Speed boost when activated, it can hit multiple times and stun enemeies."],
+            87: ["Mask (v1)","Description: Hauriunt omnia"],
+            88: ["Mask (v2)","Description: Hauriunt omnia"],
+            89: ["Banana","Description: You place a spinning banana, after 4 seconds it explodes healing 40% of missing HP to nearby allies and dealing damage to nearby enemies\n(for percent damage, input a level. Each level is 20k HP, max 1B. Not being lazy)"],
+            90: ["Sans's Hat", "Description: The hat starts gathering a storm, which later explosion causes all nearby enemies to Freeze."],
+            91: ["Head Throw", "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3."],
+            92: ["Grilled Cheese Sandwich", "Description: {grilled sandwich link} from {grilled sandwich trello link}"],
+            93: ["DEEZ BONE SWORD", "Description: {deez link} from {deez trello link}"],
+            94: ["Lancelot Gun", "Description: {lancelot link} from {lancelot trello link}"]
         }
-        
+
         let convert = (n) => {
             let s = ["", "k", "m", "b", "t"];
             let mag = Math.floor(Math.log10(n));
@@ -393,7 +394,7 @@ a:active {
         darken.style.visibility = "hidden";
         darken.style.opacity = 0.5; darken.setAttribute("id","dark background");
         
-        for (var i = 0; i < 91; i++) {
+        for (var i = 0; i < 95; i++) {
             var a = document.createElement("div");
             a.className = "DPSBox";
             a.style.position = "relative";
@@ -433,7 +434,7 @@ a:active {
             EDesc.style.top = "-78%"; EDesc.style.left = "18%"; EDesc.style.textAlign = "left";
             EDesc.innerText = Names[i][1]; EDesc.style.fontSize = "1.4vw";
             EDesc.style.width = "80%"; EDesc.style.height = "28%";
-
+            
             EBDamage = document.createElement("p"); EBDamage.style.position = "relative";
             EBDamage.style.top = "-75%"; EBDamage.style.left = "1%"; EBDamage.style.textAlign = "left";
             EBDamage.innerText = "Base Damage: " + convert(WeaponDamage[i]); EBDamage.style.fontSize = "2vw";
@@ -453,7 +454,6 @@ a:active {
             EHits = document.createElement("p"); EHits.style.position = "relative";
             EHits.style.top = "-153%"; EHits.style.left = "2%"; EHits.style.textAlign = "left";
             EHits.innerText = "Uses: " + Hits[i]; EHits.style.fontSize = "1vw";
-            
             
             e.appendChild(ETitle);
             e.appendChild(EDesc);
@@ -509,6 +509,79 @@ a:active {
             YourDmg.style.textAlign = "center";
             YourDmg.className = "DPSText";
             a.appendChild(YourDmg);
+            
+            if (EDesc.innerHTML.includes("{grilled sandwich link}")) {
+                EDesc.innerHTML = "Description: ";
+
+                var a1 = document.createElement("a");
+                a1.href = "https://www.youtube.com/watch?v=NfuGKPCPDnw";
+                a1.innerHTML = "Grilled Cheese";
+                EDesc.appendChild(a1);
+                var inbetween = document.createTextNode(" from ");
+                EDesc.appendChild(inbetween);
+                var a2 = document.createElement("a");
+                a2.href = "https://trello.com/c/IOFAclUa/217-deez-eternal-ordeal";
+                a2.innerHTML = "Grilled Cheese Trello";
+                EDesc.appendChild(a2);
+                
+                //small damage
+                Base.innerText = "Base DPS: -2.5e+238";
+                YourDmg.innerText = "Base DPS: -2.5e+238";
+                //Expand damage
+                EBDamage.innerText = "Base DPS: -2.5e+238";
+                EYDamage.innerText = "Base DPS: -2.5e+238";
+                //DPS
+                EBDPS.innerText = "Base DPS: -2.5e+238";
+                EYDPS.innerText = "Your DPS: -2.5e+238";
+            }
+            if (EDesc.innerHTML.includes("{deez link}")) {
+                EDesc.innerHTML = "Description: ";
+
+                var a1 = document.createElement("a");
+                a1.href = "https://www.youtube.com/watch?v=51_1zQg2k6s";
+                a1.innerHTML = "DEEZ BONE SWORD";
+                EDesc.appendChild(a1);
+                var inbetween = document.createTextNode(" from ");
+                EDesc.appendChild(inbetween);
+                var a2 = document.createElement("a");
+                a2.href = "https://trello.com/c/IOFAclUa/217-deez-eternal-ordeal";
+                a2.innerHTML = "DEEZ BONE SWORD Trello";
+                EDesc.appendChild(a2);
+                
+                //small damage
+                Base.innerText = "Base DPS: -2.5e+238";
+                YourDmg.innerText = "Base DPS: -2.5e+238";
+                //Expand damage
+                EBDamage.innerText = "Base DPS: -2.5e+238";
+                EYDamage.innerText = "Base DPS: -2.5e+238";
+                //DPS
+                EBDPS.innerText = "Base DPS: -2.5e+238";
+                EYDPS.innerText = "Your DPS: -2.5e+238";
+            }
+            if (EDesc.innerHTML.includes("{lancelot link}")) {
+                EDesc.innerHTML = "Description: ";
+
+                var a1 = document.createElement("a");
+                a1.href = "https://www.youtube.com/watch?v=51_1zQg2k6s";
+                a1.innerHTML = "Lancelot Gun";
+                EDesc.appendChild(a1);
+                var inbetween = document.createTextNode(" from ");
+                EDesc.appendChild(inbetween);
+                var a2 = document.createElement("a");
+                a2.href = "https://trello.com/c/JogGuFf5/199-lance-unwavering-soul";
+                a2.innerHTML = "Lancelot Gun Trello";
+                EDesc.appendChild(a2);
+                
+                //small damage
+                Base.innerText = "Base DPS: -2.5e+238";
+                YourDmg.innerText = "Base DPS: -2.5e+238";
+                //Expand damage
+                EBDamage.innerText = "Base DPS: -2.5e+238";
+                EYDamage.innerText = "Base DPS: -2.5e+238";
+                //DPS
+                EBDPS.innerText = "Base DPS: -2.5e+238";
+                EYDPS.innerText = "Your DPS: -2.5e+238";
+            }
             
             WeaponDPS.appendChild(a);
             WeaponDPS.appendChild(e);
