@@ -167,6 +167,7 @@ function UpdateStuff() {
         updateUniques("Ink Sans Eye",2500*3+generalDamageAddition*3,1.5);
         
         updateUniques("Chompy",(325000+generalDamageAddition+tr*20)*2.25,3);
+        document.getElementById("Chompy No Explosion").innerText = "No Explosion DPS: " + convert((325000+generalDamageAddition+tr*20)/3);
         
         updateUniques("Berdly's Magic",((150000+((R * 250) + tp*1.25 + tr))*9 + (50000+(R*50)+(0.14*tp)+(tr/10))*7), 20)
         document.getElementById("Berdly's Magic Only Special").innerText = "Only Special DPS: " + convert(((50000+R*50+0.14*tp+tr/10)*7)/20);
