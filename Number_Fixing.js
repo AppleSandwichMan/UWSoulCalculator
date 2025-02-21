@@ -71,7 +71,7 @@ var Names = [
     ["Bigger Blaster", 150000, 4, 1, 0, "Description: "],
     ["C.O.D.E Betty Scythe", 155000, 1, 1, 0, "Description: "],
     ["Frog Knife", 100000, 0.8, 1, 0, "Description: Croak"],
-    ["Bravery Gauntlets", 50000, 0.75, 24, 0, "Description:  Landing 10 Hits will enable Frenzy Mode: x2 Hit Speed."],
+    ["Bravery Gauntlets", 1100000, 14, 24, 0, "Description:  Landing 10 Hits will enable Frenzy Mode: x2 Hit Speed."],
     ["Chompy", 731250, 6, 2, 0, "Description: Summons Chompy. Triggers an explosion if you re-activate it while being close to it (deals 25% more Damage).", "No Explosion", 108330],
     ["Error Blaster", 80000, 1.5, 1, 0, "Description: "],
     ["UPD C.O.D.E Worn Dagger", 120000, 0.8, 1, 0, "Description: "],
@@ -92,9 +92,10 @@ var Names = [
     ["Multiverse Scythe", 345000, 1, 1, 0, "Description: Ink turned into a scythe :flushed:"],
     ["Epic Eye", 900000, 12, 20, 0, "Description: what's 10+10?\n\n(Including all bones)"],
     ["All Breaking", 3000000, 4.4, 9, 0, "Description: Damage ignores 50% + 2 of Enemy's Defense and tags them. Hitting tagged enemies will deal bonus DMG."],
-    ["Cutter", 375000, 0.25, 6, 0, "Description: Knife recharges every 1.5 seconds up to 6 times.", "Constant attacking", 250000],
+    ["Cutter", 2250000, 1.5, 6, 0, "Description: Knife recharges every 1.5 seconds up to 6 times.", "Constant attacking", 250000],
     ["SnansBlade", 355000, 0.9, 1, 0, "Description: "],
     ["UPD C.O.D.E Betty Scythe", 355000, 1, 1, 0, "Description: "],
+    ["Bravery Gauntlets (Upgraded)", 4430000, 19, 40, 0, "Description:  Landing 12 Hits will enable Frenzy Mode: x2 Hit Speed."],
     ["SnatSansMinion", 1880000, 10, 8, 0, "Description: Snatcher's Gift: A Special Minion that was planned to be used in the fight against you. attaches to an enemy and spins against it, damaging 8 times. Doesn't let the enemy use shields during the spin. You're probably lucky he spared you from it.       (all 8 hits)"],
     ["Pyrokinesis", 3750000, 18, 9, 0, "Description: Sends a Fireball that on hit, deals tick Damage 3 times(Being near the enemy instantly sets them on fire). The third use will launch a Fire Fist instead (x3 Damage total)"],
     ["Deity Block", 435000, 1, 0.9, 1, 0, "Description: "],
@@ -126,7 +127,7 @@ var Names = [
     ["Banana", 1000000, 30, 1, 0, "Description: You place a spinning banana, after 4 seconds it explodes healing 40% of missing HP to nearby allies and dealing damage to nearby enemies\n(for percent damage, input a level. Each level is 20k HP, max 1B. Not being lazy)"],
     ["Sans's Hat", 75000, 25, 10, 0, "Description: The hat starts gathering a storm, which later explosion causes all nearby enemies to Freeze."],
     ["Head Throw", 10, 10, 1, 0, "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3."],
-    ["Flaming Stallion", 1200000, 8, 12, 0, "Description: +11 Speed boost and Jump Power while it's equipped and extra 75 Speed boost and Jump Power when activated, it can hit multiple times and stun enemies."],
+    ["Flaming Stallion", 1200000, 5, 12, 0, "Description: +11 Speed boost and Jump Power while it's equipped and extra 75 Speed boost and Jump Power when activated, it can hit multiple times and stun enemies."],
     ["Santa's Bag", 120, 5, 1, 0, "Description: Sends a Gift that Damages enemies for 1 LV = 120 Damage (1.2M Max) dashing backwards and giving you Immunity for a second. If it hits a Player, they will be attached to the gift until it opens, healing them for 10% of your Max HP(Receiver gets 20% of their Max HP at most) and also gain 1 second Immunity."],
     ["Winter's Curse (LV2)", 300, 10, 1, 0, "Description: Cold.. so cold.. no one can survive, not even the light... Every 10 seconds, a hand will grip the nearest enemy."],
     ["Grilled Cheese Sandwich", 0, 0, 1, 0, "Description: {grilled sandwich link} from {grilled sandwich trello link}"],
@@ -209,11 +210,11 @@ function UpdateStuff() {
         updateUniques("String Master",(600000+generalDamageAddition) + (25000 + tr*0.5 + R*125 + tp*0.4)*2,1.2);
         document.getElementById("String Master String").innerText = "String DPS: " + convert(((35000+tr/2 + R * 125 + tp * 0.4)*2)/1.2);
         
-        updateUniques("SansBoneSword",clamp(L,0,6000)*20 + 60 + generalDamageAddition,0.9);
+        updateUniques("SansBoneSword",60 + clamp(L,0,6000)*20 + 60 + generalDamageAddition,0.9);
         
-        updateUniques("ErrorSansBoneSword",clamp(L,0,6000)*25 + 60 + generalDamageAddition,0.9);
+        updateUniques("ErrorSansBoneSword",160 + clamp(L,0,6000)*25 + 60 + generalDamageAddition,0.9);
         
-        updateUniques("SoulBlaster",clamp(L,0,6000)*42 + 60 + generalDamageAddition,1.2);
+        updateUniques("SoulBlaster",2000 + clamp(L,0,6000)*42 + 60 + generalDamageAddition,1.2);
         
         if (L <= 6000) {
             updateUniques("Doombringer",((L*50 + 200000+generalDamageAddition)*13+(L*50 + 200000+generalDamageAddition)*3.6),15);
