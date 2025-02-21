@@ -218,7 +218,7 @@ a:active {
     
     <p class="Text" id="title" style="margin: 2%; text-align:center">Unwavering Soul Calculator</p>
     <!--Info-->
-    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="#0">Weapon</a>, <a href="#78">Event Weapon</a> , <a href="#87">Miscellaneous</a>,  <a href="#95">Event Miscellaneous</a>, <a href="#99">Other</a>, and <a href="#S1">Skills</a>). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect. As for boosts, you can just multiply the DPS by the boost and get close to what it should be. Too lazy to add DMG boost to stats<br> here's a <a href="/UWSoulCalculator/chomikujdmg.jpg" color="yellow">link</a> to weapon DPS for 1 dmg bosses</body>
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="#0">Weapon</a>, <a href="#78">Event Weapon</a> , <a href="#87">Miscellaneous</a>,  <a href="#95">Event Miscellaneous</a>, <a href="#99">Other</a>, and <a href="#S1">Skills</a>). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect. Boosts are additive (meaning 2x dmg is actually + 100%)<br> here's a <a href="/chomikujdmg.jpg" color="yellow">link</a> to weapon DPS for 1 dmg bosses</body>
     
     <!--Stats-->
     <div class="Box" id="statChanger" style="margin-top:5%; position:sticky; top:0%; z-index:997">
@@ -292,12 +292,14 @@ a:active {
             ["Switch Bone", 42500, 0.9, 1, 0, "Description: "],
             ["Bob Sword.", 50000, 0.9, 1, 0, "Description: "],
             ["Hate Knife.", 60000, 0.8, 1, 0, "Description: "],
-            ["Gauntlet", 80000, 0.9, 1, 0, "Description: "],
+            ["Gauntlet", 80000, 0.9, 1, 0, "Description:"],
             ["C.O.D.E Worn Dagger", 85000, 0.8, 1, 0, "Description: "],
             ["Hardcore Game Master Block", 121000, 1, 1, 0, "Description: "],
             ["OOF Blaster", 103330, 1.6, 1, 0, "Description: Deals x3 more DMG if the target has 25% of hp or lower."],
             ["Bigger Blaster", 150000, 4, 1, 0, "Description: "],
             ["C.O.D.E Betty Scythe", 155000, 1, 1, 0, "Description: "],
+            ["Frog Knife", 100000, 0.8, 1, 0, "Description: Croak"],
+            ["Bravery Gauntlets", 50000, 0.75, 22, 0, "Description:  Landing 12 Hits will enable Frenzy Mode: x2 Hit Speed."],
             ["Chompy", 731250, 6, 2, 0, "Description: Summons Chompy. Triggers an explosion if you re-activate it while being close to it (deals 25% more Damage).", "No Explosion", 108330],
             ["Error Blaster", 80000, 1.5, 1, 0, "Description: "],
             ["UPD C.O.D.E Worn Dagger", 120000, 0.8, 1, 0, "Description: "],
@@ -306,6 +308,7 @@ a:active {
             ["OOF head eye", 90000, 1.4, 1, 0, "Description: A huge head provides a huge power (Deals x3 more DMG if EPICNESS is equipped and on use)."],
             ["Berdly's Magic", 1700000, 20, 15, 0, "Description: Sends swirls with it's axe, and fires deadly projectiles with the spear.", "Only Special", 17500],
             ["C.O.D.E Saber", 230000, 0.9, 1, 0, "Description: "],
+            ["Fortune Blade", 100000, 0.6, 1, 0, "Description: Each hit increases your Luck 1% for 10 seconds."],
             ["Pizza", 2250000, 21, 11, "Description: Weirdly enough, it doesn't seem to be for human consumption. Extra impact in hit target on Damage from any source."],
             ["King's Sword", 240000, 0.9, 1, 0, "Description: Attacking while not moving will send x3 Projectiles instead.", "Projectile", 276920],
             ["King Power", 100000, 1.5, 1, 0, "Description: King's prowess."],
@@ -317,6 +320,8 @@ a:active {
             ["Multiverse Scythe", 345000, 1, 1, 0, "Description: Ink turned into a scythe :flushed:"],
             ["Epic Eye", 900000, 12, 20, 0, "Description: what's 10+10?\n\n(Including all bones)"],
             ["All Breaking", 3000000, 4.4, 9, 0, "Description: Damage ignores 50% + 2 of Enemy's Defense and tags them. Hitting tagged enemies will deal bonus DMG."],
+            ["Cutter", 375000, 0.25, 6, 0, "Description: Knife recharges every 1.5 seconds up to 6 times.", "Constant attacking", 250000],
+            ["Bravery Gauntlets (Upgraded)", 215000, 0.75, 40, 0, "Description:  Landing 12 Hits will enable Frenzy Mode: x2 Hit Speed."],
             ["SnansBlade", 355000, 0.9, 1, 0, "Description: "],
             ["UPD C.O.D.E Betty Scythe", 355000, 1, 1, 0, "Description: "],
             ["SnatSansMinion", 1880000, 10, 8, 0, "Description: Snatcher's Gift: A Special Minion that was planned to be used in the fight against you. attaches to an enemy and spins against it, damaging 8 times. Doesn't let the enemy use shields during the spin. You're probably lucky he spared you from it.       (all 8 hits)"],
@@ -336,8 +341,8 @@ a:active {
             ["Ascentdents Stars", 25000, 3, 1, 0, "Description: "],
             ["Christmas Tree", 85000, 0.9, 1, 0, "Description: "],
             ["Christmas Sword", 270000, 0.9, 1, 0, "Description: "],
-            ["Ancient Pumpblade", 270000, 3.6, 4, 0, "Description: A blade that grows in strength with it's user. It was forged by the ancient blacksmiths of the Pump Kingdom.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
-            ["Dark Pumpblade", 270000, 3.6, 4, 0, "Description: An exact copy of the Ancient Pumpblade.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
+            ["Ancient Pumpblade", 60000, 3.6, 4, 0, "Description: A blade that grows in strength with it's user. It was forged by the ancient blacksmiths of the Pump Kingdom.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
+            ["Dark Pumpblade", 60000, 3.6, 4, 0, "Description: An exact copy of the Ancient Pumpblade.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
             ["Steel Frost", 3000, 1, 2, 0, "Description: Very Frosty. 30 extra Damage per LV(30K max) and 7500 extra Damage per Reset(300K Max). Throws a projectile that deals the same Damage as the Melee attack.", "Ranged", 1500],
             ["Chilling Blade", 3000, 2, 1, 0, "Description: Very Chill, so Chill, it gives 100 extra Damage per LV(100K Max) and 15000 extra Damage oer Reset(600K Max)", "Ranged", 3000],
             ["Rift Essence", 675000, 15, 3, 0, "Description: Getting the right patterns will trigger events. When Resetting, your extra TP is turned into LV's.", "Explosion", 33300, "Wires",36000],
