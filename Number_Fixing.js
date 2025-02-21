@@ -64,38 +64,42 @@ var Names = [
     ["Switch Bone", 42500, 0.9, 1, 0, "Description: "],
     ["Bob Sword.", 50000, 0.9, 1, 0, "Description: "],
     ["Hate Knife.", 60000, 0.8, 1, 0, "Description: "],
-    ["Gauntlet", 80000, 0.9, 1, 0, "Description: "],
+    ["Gauntlet", 80000, 0.9, 1, 0, "Description:"],
     ["C.O.D.E Worn Dagger", 85000, 0.8, 1, 0, "Description: "],
     ["Hardcore Game Master Block", 121000, 1, 1, 0, "Description: "],
     ["OOF Blaster", 103330, 1.6, 1, 0, "Description: Deals x3 more DMG if the target has 25% of hp or lower."],
     ["Bigger Blaster", 150000, 4, 1, 0, "Description: "],
     ["C.O.D.E Betty Scythe", 155000, 1, 1, 0, "Description: "],
+    ["Frog Knife", 100000, 0.8, 1, 0, "Description: Croak"],
+    ["Bravery Gauntlets", 50000, 0.75, 24, 0, "Description:  Landing 10 Hits will enable Frenzy Mode: x2 Hit Speed."],
     ["Chompy", 731250, 6, 2, 0, "Description: Summons Chompy. Triggers an explosion if you re-activate it while being close to it (deals 25% more Damage).", "No Explosion", 108330],
     ["Error Blaster", 80000, 1.5, 1, 0, "Description: "],
     ["UPD C.O.D.E Worn Dagger", 120000, 0.8, 1, 0, "Description: "],
     ["Real Real Knife", 70000, 0.25, 1, 0, "Description: real"],
     ["UPD OOF Blaster", 138330, 1.6, 1, 0, "Description: Deals x3 more DMG if the target has 25% of hp or lower."],
     ["OOF head eye", 90000, 1.4, 1, 0, "Description: A huge head provides a huge power (Deals x3 more DMG if EPICNESS is equipped and on use)."],
-    ["Berdly's Magic", 1700000, 20, 9, 0, "Description: Sends swirls with it's axe, and fires deadly projectiles with the spear.", "Only Special", 17500],
+    ["Berdly's Magic", 1700000, 20, 15, 0, "Description: Sends swirls with it's axe, and fires deadly projectiles with the spear.", "Only Special", 17500],
     ["C.O.D.E Saber", 230000, 0.9, 1, 0, "Description: "],
-    ["Pizza", 2250000, 21, 7, "Description: Weirdly enough, it doesn't seem to be for human consumption. Extra impact in hit target on Damage from any source."],
+    ["Fortune Blade", 100000, 0.6, 1, 0, "Description: Each hit increases your Luck 1% for 10 seconds."],
+    ["Pizza", 2250000, 21, 11, "Description: Weirdly enough, it doesn't seem to be for human consumption. Extra impact in hit target on Damage from any source."],
     ["King's Sword", 240000, 0.9, 1, 0, "Description: Attacking while not moving will send x3 Projectiles instead.", "Projectile", 276920],
     ["King Power", 100000, 1.5, 1, 0, "Description: King's prowess."],
     ["Killer Knife", 230000, 1, 2, 0, "Description: Perfect for it's job...", "Beam" , 115000],
     ["Devils Knife", 300000, 1, 1, 0, "Description: "],
     ["Puppet Scarf", 300000, 0.6, 1, 0, "Description: Each consecutive hit reduces Cooldown by 0.1 seconds. Stacks up to 6 times, grants 100000 bonus Damage when fully stacked. Missing or waiting 3 seconds resets the stacks.   (stats based on boost)"],
-    ["Rose", 4500000, 15, 15, 0, "Description: Creates a Zone that damages Enemies inside of it."],
+    ["Rose", 4500000, 15, 20, 0, "Description: Creates a Zone that damages Enemies inside of it."],
     ["Endo Head", 525000, 5, 1, 0, "Description: Gives speed boost and Invincibility on hit, picking up the head will shorten it's Cooldown.\n\n(based on 5 second cooldown due to cooldown decrease when picking it up)"],
     ["Multiverse Scythe", 345000, 1, 1, 0, "Description: Ink turned into a scythe :flushed:"],
     ["Epic Eye", 900000, 12, 20, 0, "Description: what's 10+10?\n\n(Including all bones)"],
-    ["All Breaking", 400000, 0.4, 773000, 0, "Description:"],
+    ["All Breaking", 3000000, 4.4, 9, 0, "Description: Damage ignores 50% + 2 of Enemy's Defense and tags them. Hitting tagged enemies will deal bonus DMG."],
+    ["Cutter", 375000, 0.25, 6, 0, "Description: Knife recharges every 1.5 seconds up to 6 times.", "Constant attacking", 250000],
     ["SnansBlade", 355000, 0.9, 1, 0, "Description: "],
     ["UPD C.O.D.E Betty Scythe", 355000, 1, 1, 0, "Description: "],
-    ["SnatSansMinion", 1880000, 10, 1, 0, "Description: Snatcher's Gift: A Special Minion that was planned to be used in the fight against you. attaches to an enemy and spins against it, damaging 8 times. Doesn't let the enemy use shields during the spin. You're probably lucky he spared you from it.       (all 8 hits)"],
-    ["Pyrokinesis", 3750000, 18, 3, 0, "Description: Sends a Fireball that on hit, deals tick Damage 3 times(Being near the enemy instantly sets them on fire). The third use will launch a Fire Fist instead (x3 Damage total)"],
+    ["SnatSansMinion", 1880000, 10, 8, 0, "Description: Snatcher's Gift: A Special Minion that was planned to be used in the fight against you. attaches to an enemy and spins against it, damaging 8 times. Doesn't let the enemy use shields during the spin. You're probably lucky he spared you from it.       (all 8 hits)"],
+    ["Pyrokinesis", 3750000, 18, 9, 0, "Description: Sends a Fireball that on hit, deals tick Damage 3 times(Being near the enemy instantly sets them on fire). The third use will launch a Fire Fist instead (x3 Damage total)"],
     ["Deity Block", 435000, 1, 0.9, 1, 0, "Description: "],
     ["EraserSaber", 465000, 0.9, 1, 0, "Description: "],
-    ["String Master", 650000, 1.2, 1, 0, "Description: Sends a string with each attack, landing them in an enemy will Damage them a little and restore 0.5% of your Max HP\n\n(Including Strings)", "String", 41660],
+    ["String Master", 650000, 1.2, 3, 0, "Description: Sends a string with each attack, landing them in an enemy will Damage them a little and restore 0.5% of your Max HP\n\n(Including Strings)", "String", 41660],
     ["LONGSTICK", 350000, 1, 1, 0, "Description: "],
     ["KONGPOWER", 425000, 1, 1, 0, "Description: KING OF CHAOS SPECIAL ATTACK!!!"],
     ["JOVILSCYTHE", 750000, 1, 1, 0, "Description: "],
@@ -109,21 +113,26 @@ var Names = [
     ["Christmas Tree", 85000, 0.9, 1, 0, "Description: "],
     ["Christmas Sword", 270000, 0.9, 1, 0, "Description: "],
     ["Ancient Pumpblade", 270000, 3.6, 4, 0, "Description: A blade that grows in strength with it's user. It was forged by the ancient blacksmiths of the Pump Kingdom.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
-    ["Dark Pumpblade", 270000, 3.6, 4, 0, "Description: "],
-    ["Rift Essence", 675000, 15, 1, 0, "Description: Getting the right patterns will trigger events. When Resetting, your extra TP is turned into LV's.", "Explosion", 33300, "Wires",36000],
+    ["Dark Pumpblade", 270000, 3.6, 4, 0, "Description: An exact copy of the Ancient Pumpblade.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
+    ["Steel Frost", 3000, 1, 2, 0, "Description: Very Frosty. 30 extra Damage per LV(30K max) and 7500 extra Damage per Reset(300K Max). Throws a projectile that deals the same Damage as the Melee attack.", "Ranged", 1500],
+    ["Chilling Blade", 3000, 2, 1, 0, "Description: Very Chill, so Chill, it gives 100 extra Damage per LV(100K Max) and 15000 extra Damage oer Reset(600K Max)", "Ranged", 3000],
+    ["Rift Essence", 675000, 15, 3, 0, "Description: Getting the right patterns will trigger events. When Resetting, your extra TP is turned into LV's.", "Explosion", 33300, "Wires",36000],
     ["Counter Bone", 1500000, 10, 3, 0, "Description: For 1.5 seconds, you will ignore the damage received and create a blast that deals 500k DMG up to 3 times."],
     ["Kill", 1000000, 20, 1, 0, "Description: Teleports behind nearest boss dealing 1M DMG and giving Invincibility during 3 seconds, doesn't give invincibility if you're out of range"],
     ["Snat Knife", 1000000, 20, 1, 0, "Description: IT'S NOT A RE_SKIL TRUST."],
     ["Bike", 438000, 5, 10, 0, "Description: +10 Speed boost while it's equipped and extra 15 Speed boost when activated, it can hit multiple times and stun enemeies."],
     ["Mask (v1)", 1400000, 30, 1, 0, "Description: Hauriunt omnia"],
-    ["Mask (v2)", 7120000, 36, 4, 0, "Description: Hauriunt omnia"],
+    ["Mask (v2)", 7120000, 36, 9, 0, "Description: Hauriunt omnia"],
     ["Banana", 1000000, 30, 1, 0, "Description: You place a spinning banana, after 4 seconds it explodes healing 40% of missing HP to nearby allies and dealing damage to nearby enemies\n(for percent damage, input a level. Each level is 20k HP, max 1B. Not being lazy)"],
-    ["Sans's Hat", 75000, 25, 5, 0, "Description: The hat starts gathering a storm, which later explosion causes all nearby enemies to Freeze."],
+    ["Sans's Hat", 75000, 25, 10, 0, "Description: The hat starts gathering a storm, which later explosion causes all nearby enemies to Freeze."],
     ["Head Throw", 10, 10, 1, 0, "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3."],
-    ["Grilled Cheese Sandwich", 0, 0, 0, 0, "Description: {grilled sandwich link} from {grilled sandwich trello link}"],
-    ["DEEZ BONE SWORD", 0, 0, 0, 0, "Description: {deez link} from {deez trello link}"],
-    ["Lancelot's Gun", 0, 0, 0, 0,"Description: {lancelot link} from {lancelot trello link}"]
-];
+    ["Flaming Stallion", 1200000, 8, 12, 0, "Description: +11 Speed boost and Jump Power while it's equipped and extra 75 Speed boost and Jump Power when activated, it can hit multiple times and stun enemies."],
+    ["Santa's Bag", 120, 5, 1, 0, "Description: Sends a Gift that Damages enemies for 1 LV = 120 Damage (1.2M Max) dashing backwards and giving you Immunity for a second. If it hits a Player, they will be attached to the gift until it opens, healing them for 10% of your Max HP(Receiver gets 20% of their Max HP at most) and also gain 1 second Immunity."],
+    ["Winter's Curse (LV2)", 300, 10, 1, 0, "Description: Cold.. so cold.. no one can survive, not even the light... Every 10 seconds, a hand will grip the nearest enemy."],
+    ["Grilled Cheese Sandwich", 0, 0, 1, 0, "Description: {grilled sandwich link} from {grilled sandwich trello link}"],
+    ["DEEZ BONE SWORD", 0, 0, 1, 0, "Description: {deez link} from {deez trello link}"],
+    ["Lancelot's Gun", 0, 0, 1, 0,"Description: {lancelot link} from {lancelot trello link}"]
+]
 
 function UpdateStuff() {
     var R = parseInt(document.getElementById("Resets").value);
@@ -163,11 +172,12 @@ function UpdateStuff() {
     }
 
     {
-        
         updateUniques("Ink Sans Eye",2500*3+generalDamageAddition*3,1.5);
         
         updateUniques("Chompy",(325000+generalDamageAddition+tr*20)*2.25,3);
         document.getElementById("Chompy No Explosion").innerText = "No Explosion DPS: " + convert((325000+generalDamageAddition+tr*20)/3);
+        
+        updateUniques("Bravery Gauntlets",(50000+ clamp(L,0,10000)*20 + tp*2 + R*500 + tr*2)*22,14);
         
         updateUniques("Berdly's Magic",((150000+((R * 250) + tp*1.25 + tr))*9 + (50000+(R*50)+(0.14*tp)+(tr/10))*7), 20)
         document.getElementById("Berdly's Magic Only Special").innerText = "Only Special DPS: " + convert(((50000+R*50+0.14*tp+tr/10)*7)/20);
@@ -186,6 +196,11 @@ function UpdateStuff() {
         updateUniques("Epic Eye",(45000+(0.3*tp)+(200*R))*20,12);
         
         updateUniques("All Breaking",(400000+generalDamageAddition)*6 + (400000+generalDamageAddition)/2*3,4.4);
+        
+        updateUniques("Cutter",(375000 + generalDamageAddition) * 6,0.25*6);
+        document.getElementById("Cutter Constant attacking").innerText = "Constant attacking DPS: " + convert((375000+generalDamageAddition)/1.5);
+        
+        updateUniques("Bravery Gauntlets (Upgraded)",(83000+ clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2)*(4/3)*40,19);
         
         updateUniques("SnatSansMinion",(225000 + generalDamageAddition) * 8,10);
         
