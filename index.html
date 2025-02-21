@@ -232,7 +232,7 @@ a:active {
         </h>
         <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Resets:</h><input id="Resets" onchange="clamp_ish(this,100000000000)" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:7.5%; display:inline-block; font-family:Determination;color:white;"></input>
         <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white; ">TP:</h><input id="TP" onchange="clamp_ish(this, 100000)" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:9%; display:inline-block; font-family:Determination;color:white;"></input>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels" onchange="clamp_ish(this, 50000)" class="numinput" type="number" value="1" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:7.5%; display:inline-block; font-family:Determination;color:white;"></input>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels" onchange="clamp_ish(this, 50000,1)" class="numinput" type="number" value="1" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:7.5%; display:inline-block; font-family:Determination;color:white;"></input>
         <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;"><br>Boosts:</h><input id="Boosts" onchange="clamp_ish(this, 300)" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:4%; display:inline-block; font-family:Determination;color:white;">%</input>
     </div>
     <!--Navigation-->
@@ -341,8 +341,8 @@ a:active {
             ["Ascentdents Stars", 25000, 3, 1, 0, "Description: "],
             ["Christmas Tree", 85000, 0.9, 1, 0, "Description: "],
             ["Christmas Sword", 270000, 0.9, 1, 0, "Description: "],
-            ["Ancient Pumpblade", 270000, 3.6, 4, 0, "Description: A blade that grows in strength with it's user. It was forged by the ancient blacksmiths of the Pump Kingdom.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
-            ["Dark Pumpblade", 270000, 3.6, 4, 0, "Description: An exact copy of the Ancient Pumpblade.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
+            ["Ancient Pumpblade", 60000, 3.6, 4, 0, "Description: A blade that grows in strength with it's user. It was forged by the ancient blacksmiths of the Pump Kingdom.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
+            ["Dark Pumpblade", 60000, 3.6, 4, 0, "Description: An exact copy of the Ancient Pumpblade.", "Pump Bomb", 15300, "Pumpment Cut", 45800],
             ["Steel Frost", 3000, 1, 2, 0, "Description: Very Frosty. 30 extra Damage per LV(30K max) and 7500 extra Damage per Reset(300K Max). Throws a projectile that deals the same Damage as the Melee attack.", "Ranged", 1500],
             ["Chilling Blade", 3000, 2, 1, 0, "Description: Very Chill, so Chill, it gives 100 extra Damage per LV(100K Max) and 15000 extra Damage oer Reset(600K Max)", "Ranged", 3000],
             ["Rift Essence", 675000, 15, 3, 0, "Description: Getting the right patterns will trigger events. When Resetting, your extra TP is turned into LV's.", "Explosion", 33300, "Wires",36000],
@@ -354,10 +354,10 @@ a:active {
             ["Mask (v2)", 7120000, 36, 9, 0, "Description: Hauriunt omnia"],
             ["Banana", 1000000, 30, 1, 0, "Description: You place a spinning banana, after 4 seconds it explodes healing 40% of missing HP to nearby allies and dealing damage to nearby enemies\n(for percent damage, input a level. Each level is 20k HP, max 1B. Not being lazy)"],
             ["Sans's Hat", 75000, 25, 10, 0, "Description: The hat starts gathering a storm, which later explosion causes all nearby enemies to Freeze."],
-            ["Head Throw", 10, 10, 1, 0, "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3."],
+            ["Head Throw", 18, 10, 1, 0, "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3."],
             ["Flaming Stallion", 1200000, 5, 12, 0, "Description: +11 Speed boost and Jump Power while it's equipped and extra 75 Speed boost and Jump Power when activated, it can hit multiple times and stun enemies."],
             ["Santa's Bag", 120, 5, 1, 0, "Description: Sends a Gift that Damages enemies for 1 LV = 120 Damage (1.2M Max) dashing backwards and giving you Immunity for a second. If it hits a Player, they will be attached to the gift until it opens, healing them for 10% of your Max HP(Receiver gets 20% of their Max HP at most) and also gain 1 second Immunity."],
-            ["Winter's Curse (LV2)", 300, 10, 1, 0, "Description: Cold.. so cold.. no one can survive, not even the light... Every 10 seconds, a hand will grip the nearest enemy."],
+            ["Winter's Curse (LV2)", 400300, 10, 1, 0, "Description: Cold.. so cold.. no one can survive, not even the light... Every 10 seconds, a hand will grip the nearest enemy."],
             ["Grilled Cheese Sandwich", 0, 0, 1, 0, "Description: {grilled sandwich link} from {grilled sandwich trello link}"],
             ["DEEZ BONE SWORD", 0, 0, 1, 0, "Description: {deez link} from {deez trello link}"],
             ["Lancelot's Gun", 0, 0, 1, 0,"Description: {lancelot link} from {lancelot trello link}"]
