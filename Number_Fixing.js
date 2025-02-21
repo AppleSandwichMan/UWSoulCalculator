@@ -2,7 +2,7 @@ var Resets = document.getElementById("Resets");
 var Levels = document.getElementById("Levels");
 var TP = document.getElementById("TP");
 
-function clamp_ish(text, max=NaN) {
+function clamp_ish(text, max=NaN,min=0) {
     if (text.value == "") {
         text.value = 0;
     }
@@ -13,6 +13,7 @@ function clamp_ish(text, max=NaN) {
         } if (text.value < 0) {
             text.value = 0;
         }
+        text.value = Math.max(min,text.value);
     }
     
     UpdateStuff();
@@ -175,7 +176,7 @@ function UpdateStuff() {
     {
         updateUniques("Ink Sans Eye",2500*3+generalDamageAddition*3,1.5);
         
-        updateUniques("Chompy",(325000+generalDamageAddition+tr*20)*2.25,3);
+        updateUniques("Chompy",(325000+generalDamageAddition-tr+tr*20)*2.25,6);
         document.getElementById("Chompy No Explosion").innerText = "No Explosion DPS: " + convert((325000+generalDamageAddition+tr*20)/3);
         
         updateUniques("Bravery Gauntlets",(50000+ clamp(L,0,10000)*20 + tp*2 + R*500 + tr*2)*22,14);
@@ -210,11 +211,11 @@ function UpdateStuff() {
         updateUniques("String Master",(600000+generalDamageAddition) + (25000 + tr*0.5 + R*125 + tp*0.4)*2,1.2);
         document.getElementById("String Master String").innerText = "String DPS: " + convert(((35000+tr/2 + R * 125 + tp * 0.4)*2)/1.2);
         
-        updateUniques("SansBoneSword",60 + clamp(L,0,6000)*20 + 60 + generalDamageAddition,0.9);
+        updateUniques("SansBoneSword",60 + clamp(L,0,6000)*20 + generalDamageAddition,0.9);
         
-        updateUniques("ErrorSansBoneSword",160 + clamp(L,0,6000)*25 + 60 + generalDamageAddition,0.9);
+        updateUniques("ErrorSansBoneSword",160 + clamp(L,0,6000)*25 + generalDamageAddition,0.9);
         
-        updateUniques("SoulBlaster",2000 + clamp(L,0,6000)*42 + 60 + generalDamageAddition,1.2);
+        updateUniques("SoulBlaster",2000 + clamp(L,0,6000)*42 + generalDamageAddition,1.2);
         
         if (L <= 6000) {
             updateUniques("Doombringer",((L*50 + 200000+generalDamageAddition)*13+(L*50 + 200000+generalDamageAddition)*3.6),15);
