@@ -137,7 +137,7 @@ a:active {
     </div>
     <script>
         var tabImg = document.querySelector('.tab');
-        var hoverSound = new Audio('https://applesandwichman.github.io/UWSoulCalculator/Sounds/snd_squeak.mp3');
+        var hoverSound = new Audio('Sounds/snd_squeak.mp3');
         
         tabImg.addEventListener('mouseenter', () => {
             var sound = hoverSound.cloneNode();
@@ -145,7 +145,7 @@ a:active {
         });
       
         function clickTab(id) {
-            new Audio("https://applesandwichman.github.io/UWSoulCalculator/Sounds/snd_select").play();
+            new Audio("Sounds/snd_select.mp3").play();
             setTimeout(() => {
               window.location.href = "https://applesandwichman.github.io/UWSoulCalculator/" + id;
             }, 250);
