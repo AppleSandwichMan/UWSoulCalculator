@@ -99,13 +99,13 @@ a:active {
             var audio;
             var pick = Math.floor(Math.random() * (3 - 1 + 1) + 1);
             if (pick == 1) {
-                audio = new Audio("https://codehs.com/uploads/e22a7a01c4e9359646fd6da4f3138c7d");
+                audio = new Audio("https://applesandwichman.github.io/UWSoulCalculator/Sounds/Jevil1.mp3");
             }
             else if (pick == 2) {
-                audio = new Audio("https://codehs.com/uploads/ad4a287046d2cf5b9cdc515811a34d1e");
+                audio = new Audio("https://applesandwichman.github.io/UWSoulCalculator/Sounds/Jevil2.mp3");
             }
             else {
-                audio = new Audio("https://codehs.com/uploads/4c5ad3469a4f45a0a8e75afae08e1379");
+                audio = new Audio("https://applesandwichman.github.io/UWSoulCalculator/Sounds/Jevil3.mp3");
             }
             
             audio.play();
@@ -137,7 +137,7 @@ a:active {
     </div>
     <script>
         var tabImg = document.querySelector('.tab');
-        var hoverSound = new Audio('https://codehs.com/uploads/5467d571145e3ff340920f5942f6c639');
+        var hoverSound = new Audio('https://applesandwichman.github.io/UWSoulCalculator/Sounds/snd_squeak.mp3');
         
         tabImg.addEventListener('mouseenter', () => {
             var sound = hoverSound.cloneNode();
@@ -145,9 +145,9 @@ a:active {
         });
       
         function clickTab(id) {
-            new Audio("https://codehs.com/uploads/74dcbf4ef59e85302235400eca8b5bc0").play();
+            new Audio("https://applesandwichman.github.io/UWSoulCalculator/Sounds/snd_select").play();
             setTimeout(() => {
-              window.location.href = "https://unwavering-soul-site-9984755.codehs.me/" + id + ".html";;
+              window.location.href = "https://applesandwichman.github.io/UWSoulCalculator/" + id;
             }, 250);
         }
     </script>
