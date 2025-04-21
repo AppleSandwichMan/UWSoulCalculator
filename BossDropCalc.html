@@ -1006,7 +1006,7 @@
         };
         
         function updateDPS() {
-            new Audio(Sounds/Switch.mp3).play();
+            new Audio("Sounds/Switch.mp3").play();
             var damage = Math.max(0,Math.min(Number.MAX_SAFE_INTEGER, DPSbox.value));
             DPSbox.value = damage;
             var seconds = Math.max(1,Math.min(Number.MAX_SAFE_INTEGER, Seconds.value));
