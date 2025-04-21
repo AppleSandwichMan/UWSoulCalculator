@@ -907,7 +907,7 @@
             a.setAttribute("id", Name);
             a.style.float = "left";
             a.addEventListener('mouseenter', () => {
-                ("Sounds/Hover.mp3").play();
+                new Audio("Sounds/Hover.mp3").play();
             });
             
             var img = document.createElement("img");
