@@ -12,7 +12,7 @@
     @font-face {
         font-family: 'Determination';
         src: url('Mono') format('woff2'),
-             url('https://codehs.com/uploads/2b3b4e504e6696b7f303d09ce96851da') format('woff');
+             url('Mono2') format('woff');
         font-weight: normal;
         font-style: normal;
     }
@@ -907,7 +907,7 @@
             a.setAttribute("id", Name);
             a.style.float = "left";
             a.addEventListener('mouseenter', () => {
-                new Audio("https://codehs.com/uploads/5467d571145e3ff340920f5942f6c639").play();
+                ("Sounds/Hover.mp3").play();
             });
             
             var img = document.createElement("img");
@@ -975,7 +975,7 @@
                     document.getElementById("Expanded " + this.id).style.visibility = "visible";
                     openBox = document.getElementById("Expanded " + this.id); expandedOpen = true;
                     darken.style.visibility = "visible";
-                    new Audio("https://codehs.com/uploads/74dcbf4ef59e85302235400eca8b5bc0").play();
+                    new Audio("Sounds/Select.mp3").play();
                 }
             }
             
@@ -1006,6 +1006,7 @@
         };
         
         function updateDPS() {
+            new Audio(Sounds/Switch.mp3).play();
             var damage = Math.max(0,Math.min(Number.MAX_SAFE_INTEGER, DPSbox.value));
             DPSbox.value = damage;
             var seconds = Math.max(1,Math.min(Number.MAX_SAFE_INTEGER, Seconds.value));
