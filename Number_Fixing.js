@@ -276,7 +276,7 @@ function UpdateStuff() {
 }
 
 function UpdateSkills() {
-    new Audio("https://codehs.com/uploads/4185869bfce22458c9e6ad1844624eb0").play();
+    new Audio("Sounds/Switch.mp3").play();
     var SkillNames = [
         ["Froggit", 450000, 25, 1, 250, "Description: Jumps and creates a shockwave on landing."],
         ["Flowey", 45000, 40, 6, 250, "Description: Creates vines around you that leech off enemies, damaging them and healing a portion of your HP."],
