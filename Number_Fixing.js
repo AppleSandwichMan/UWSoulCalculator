@@ -274,7 +274,7 @@ function UpdateStuff() {
         updateUniques("Winter's Curse (LV2)",(200000 + clamp(L*150,0,999900) + tp/2)*2,10);
     }
 }
-
+// Update Skills (obviously)
 function UpdateSkills() {
     new Audio("Sounds/Switch.mp3").play();
     var SkillNames = [
