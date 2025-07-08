@@ -346,16 +346,13 @@ function UpdateSkills() {
         document.getElementById(skillName + " DPS").innerText = "Your DPS: " + convert(d*(Boost/100 + 1)/r);
     }
     d = (SkillNames[10][1]*(1 + Damage/10) + 125*R + tr + tp*0.01)*10; 
-    r = (SkillNames[10][2]-(SkillNames[10][2]*0.05*Reload));
-    UpdateSkill("SNoelle",d,r);
+    UpdateSkill("SNoelle",d,Reload);
     
     //asgore
     d = (SkillNames[5][1]*(1 + Damage/10) + generalDamageAddition + R*250);
     d += d*1.9;
-    r = (SkillNames[5][2]-(SkillNames[5][2]*0.05*Reload))
-    UpdateSkill("Asgore",d,r);
+    UpdateSkill("Asgore",d,Reload);
     //betty
     d = (SkillNames[9][1]*(1 + Damage/10) + (R*7500+tp+tr+BossHP*0.05));
-    r = (SkillNames[9][2]-(SkillNames[9][2]*0.05*Reload));
-    UpdateSkill("Betty",d,r);
+    UpdateSkill("Betty",d,Reload);
 }
