@@ -322,7 +322,7 @@ function UpdateSkills() {
     
     for (var skill of SkillNames) {
         var d = (skill[1]*(1 + Damage/10) + generalDamageAddition + skill[4]*R)*skill[3]*(Boost/100 + 1);
-        var r = (skill[3]-Reload);
+        var r = (skill[2]-Reload);
         
         var skill1 = document.getElementById(skill[0]);
         if (skill1 != null) {
