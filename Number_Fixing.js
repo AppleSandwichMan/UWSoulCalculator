@@ -322,7 +322,7 @@ function UpdateSkills() {
     
     for (var skill of SkillNames) {
         var d = (skill[1]*(1 + Damage/10) + generalDamageAddition + skill[4]*R)*skill[3]*(Boost/100 + 1);
-        var r = (skill[2]-Reload);
+        var r = (skill[3]-Reload);
         
         var skill1 = document.getElementById(skill[0]);
         if (skill1 != null) {
@@ -345,14 +345,17 @@ function UpdateSkills() {
         document.getElementById(skillName + " Damage").innerText = "Your Damage: " + convert(d*(Boost/100 + 1));
         document.getElementById(skillName + " DPS").innerText = "Your DPS: " + convert(d*(Boost/100 + 1)/r);
     }
-    d = (SkillNames[10][1]*(1 + Damage/10) + 125*R + tr + tp*0.01)*10; 
-    UpdateSkill("SNoelle",d,SkillNames[10][2]-Reload);
+    d = (SkillNames[10][1]*(1 + Damage/10) + 125*R + tr + tp*0.01)*10;
+    r = SkillNames[10][2] - Reload;
+    UpdateSkill("SNoelle",d,r);
     
     //asgore
     d = (SkillNames[5][1]*(1 + Damage/10) + generalDamageAddition + R*250);
     d += d*1.9;
-    UpdateSkill("Asgore",d,SkillNames[5][2]-Reload);
+    r = SkillNames[5][2] - Reload;
+    UpdateSkill("Asgore",d,r);
     //betty
     d = (SkillNames[9][1]*(1 + Damage/10) + (R*7500+tp+tr+BossHP*0.05));
-    UpdateSkill("Betty",d,SkillNames[9][2]-Reload);
+    r = SkillNames[9][2] - Reload;
+    UpdateSkill("Betty",d,r);
 }
