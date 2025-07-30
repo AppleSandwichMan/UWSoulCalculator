@@ -251,7 +251,7 @@
         }
         
         function UpdateAmalgamate() {
-            new Audio("https://codehs.com/uploads/4185869bfce22458c9e6ad1844624eb0").play();
+            new Audio("Sounds/Switch.mp3").play();
             var Name1 = document.getElementById("Primary").getAttribute("name");
             var Name2 = document.getElementById("Secondary").getAttribute("name");
             var Stats1 = {"damage":document.getElementById("DmgSlider1").value,"reload":document.getElementById("ReloadSlider1").value}
@@ -293,7 +293,7 @@
             var img = document.createElement("img");
             img.src = "/Images/" + Name + ".png";
             img.addEventListener('mouseenter', () => {
-                new Audio("https://codehs.com/uploads/5467d571145e3ff340920f5942f6c639").play();
+                new Audio("Sounds/Select.mp3").play();
             });
             img.style.position = "relative";
             img.style.margin = "1%";
