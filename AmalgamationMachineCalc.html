@@ -127,6 +127,7 @@
 </style>
 
 <html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none; hight:100vh">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> <!--Sortable for mobile devices-->
     <p class="Text" id="title" style="margin: 2%; text-align:center">Amalgamation Machine Calculator</p>
     <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>
     This calculator is quite straight-forward, you pick the primary skill, pick the secondary skill, and it'll tell you what you will get. Then it'll tell you what you get if you cleanse it.<br>The only thing you cannot do is add 2 of the same skill.
@@ -136,14 +137,14 @@
     
 
     <div style="display: flex; overflow:auto; width:75%; margin:3% auto; 0">
-        <div class="Box" id="Primary" style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;" ondrop="handleDrop(event)" ondragover="event.preventDefault();">
+        <div class="Box" id="Primary" style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
             <img class="skillOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 5;"></img>
             <p class="Text" style="margin-top:30%; text-align:center; font-size:90%; ">Primary Skill:</p>
         </div>
         <div style="aspect-ratio:1; overflow:hidden; height:20.5%; width:20.5%; float: left; margin-right:2%;">
             <p class="Text" style="text-align:center; font-size:1000%; line-height:0; margin-top:55%; ">+</p>
         </div>
-        <div class="Box" id="Secondary" style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;" ondrop="handleDrop(event)" ondragover="event.preventDefault();">
+        <div class="Box" id="Secondary" style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
             <img class="skillOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 5;"></img>
             <p class="Text" style="margin-top:30%; text-align:center; font-size:90%; ">Secondary Skill:</p>
         </div>
@@ -203,23 +204,41 @@
             UpdateAmalgamate();
         }
         
-        function handleDrag(event) {
-            event.dataTransfer.setData("SkillID", event.target.id);
+        function setupSortable() {
+            const skillsList = document.getElementById('skills');
+            new Sortable(skillsList, {
+                group: {
+                    name: 'skills',
+                    pull: 'clone',
+                    put: false
+                },
+                animation: 150,
+                sort: false
+            });
+                
+            const dropHandlerConfig = {
+                group: 'skills',
+                animation: 150,
+                sort: false,
+                onAdd: function (evt) {
+                    const droppedEl = evt.item;
+                    const dropTarget = evt.to;
+                    
+                    const overlayImg = dropTarget.querySelector(".skillOverlay");
+                    overlayImg.src = droppedEl.src + "?v=" + Date.now();
+                    overlayImg.style.display = "block";
+                    
+                    dropTarget.setAttribute("name", droppedEl.id);
+                    
+                    droppedEl.remove();
+                
+                    UpdateAmalgamate();
+                }
+            };
+
+            new Sortable(document.getElementById('Primary'), dropHandlerConfig);
+            new Sortable(document.getElementById('Secondary'), dropHandlerConfig);
         }
-        function handleDrop(event) {
-            event.preventDefault();
-            const skillId = event.dataTransfer.getData("SkillID");
-            const draggedImg = document.getElementById(skillId);
-            const targetBox = event.currentTarget;
-        
-            const overlayImg = targetBox.querySelector(".skillOverlay");
-            overlayImg.src = draggedImg.src + "?v=" + Date.now();
-            overlayImg.style.display = "block";
-        
-            targetBox.setAttribute("name", skillId);
-            UpdateAmalgamate();
-        }
-        
         function fuseNames(name1, name2) {
             const prefixLength = Math.floor(name1.length / 2);
             const suffixLength = Math.ceil(name2.length / 2);
@@ -300,13 +319,12 @@
             img.style.float = "left";
             img.style.width = "10%";
             img.style.cursor = "grab";
-            img.setAttribute('draggable', 'true');
             img.style.left = "0%";
             img.style.userDrag = "none";
             img.setAttribute("id", Name);
-            img.addEventListener('dragstart', handleDrag);
-            
+
             skills.appendChild(img);
         }
+        setupSortable();
     </script>
 </html>
