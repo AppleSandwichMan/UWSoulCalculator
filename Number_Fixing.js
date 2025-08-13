@@ -199,6 +199,22 @@ function UpdateStuff() {
             2,
             (damage+ (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
         );
+
+        UpdateSpecialItem("DarkPumpblade",
+            (damage)/3,
+            0,
+            (damage+ (15000+ 29*L + tp + 250*R + tr) )/4
+        );
+        UpdateSpecialItem("DarkPumpblade",
+            null,
+            1,
+            (damage+ (10000 + 19*L + tp + 250*R + 50*tr) )/4
+        );
+        UpdateSpecialItem("DarkPumpblade",
+            null,
+            2,
+            (damage+ (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
+        );
         
         
         UpdateSpecialItem("SteelFrost",
