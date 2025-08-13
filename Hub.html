@@ -143,17 +143,18 @@ a:active {
         <img src="./HubImages/Credits.png" style="width:100%">
     </div>
     <script>
-        var tabImg = document.querySelector('.tab');
-        var hoverSound = new Audio('./Sounds/Hover.mp3');
-        var SelectSound = new Audio('./Sounds/Select.mp3');
+        const hoverSound = new Audio('./Sounds/Hover.mp3');
+        const selectSound = new Audio('./Sounds/Select.mp3');
         hoverSound.preload = 'auto';
-        SelectSound.preload = 'auto';
-        tabImg.addEventListener('mouseenter', () => {
-            hoverSound.cloneNode().play();
+        selectSound.preload = 'auto';
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('mouseenter', () => {
+                hoverSound.cloneNode().play();
+            });
         });
       
         function clickTab(id) {
-            SelectSound.cloneNode().play();
+            selectSound.cloneNode().play();
             setTimeout(() => {
               window.location.href = "./" + id + ".html";
             }, 250);
