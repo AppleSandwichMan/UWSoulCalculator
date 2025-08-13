@@ -1,0 +1,113 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+    
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw;
+      position:relative;
+      margin: 5% 0 5% 16.5%;
+      cursor: pointer;
+      border:solid white;
+      border-width:1vw;
+      text-align:center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    
+    .tab:hover {
+      transform: scale(1.08);
+      border-color:#fcf403;
+      border-width:1vw;
+    }
+    .TabText {
+        color:white;
+        position:absolute;
+        z-index:2;
+        font-size:4vw;
+        text-shadow:
+            -1px -1px 0 black,
+             1px -1px 0 black,
+            -1px  1px 0 black,
+             1px  1px 0 black,
+             0px -1px 0 black,
+             0px  1px 0 black,
+            -1px  0px 0 black,
+             1px  0px 0 black;
+    }
+    .tab:hover .TabText {
+        color:#fcf403;
+    }
+</style>
+
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+
+<html class="Box">
+    <p class="Text" id="title" style="margin: 5%; text-align:center;">Credits</p>
+    
+    <body class="Text" style="text-align: center; font-size:2vw;">
+        Programmer: AppleSWMan
+        <br>
+        <br>
+        Ideas:<br>
+        RyderTheSansEnjoyer: Future XP calculator features<br>
+        blockvinclam: Early DPS Formatting tips<br>
+        Denisdom10arthur: Search Feature & Rounding Precision<br>
+        pikachutrollman: Add admin weapons
+        <br>
+        <br>
+        Math Experts (found equations for items):<br>
+        AppleSWMan
+        <br>
+        <br>
+        Item Testers:<br>
+        AppleSWMan<br>
+        wattsop<br>
+        RyderTheSansEnjoyer<br>
+    </body>
+
+</html>
