@@ -268,17 +268,18 @@ function UpdateStuff() {
         //check all hits of pocket core
         {
             var d = 0;
+            var b = Math.floor(366667+tp+375*R) + 100*Attack
             if (tr == 10000) {
                 for (var i = 1; i <= 119; i++) {
-                    if (i < 0) {
-                        d += Math.floor(366667+tp+375*R) * (Math.min(i,100)/100) + 100*Attack;
+                    if (i < 100) {
+                        d +=  b * (Math.min(i, 100)/100);
                     } else {
-                        d += Math.floor(366667+tp+375*R)*1.25 + 100*Attack;
+                        d += b*1.25;
                     }
                 }
             } else {
                 for (var i = 1; i <= 119; i++) {
-                    d += Math.floor(366667+tp+375*R) * (Math.min(i,100)/100) + 100*Attack;
+                    d += b * (Math.min(i,100)/100);
                 }
             }
             UpdateSpecialItem("PocketCore",
