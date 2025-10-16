@@ -389,7 +389,7 @@ function UpdateSkills() {
         }
     }
     //betty
-    Skills.Betty.New.base.damage = (300000*(1 + Damage/10) + (R*7500+tp+tr+BossHP*0.05) + 100*Attack)*(Boost/100 + 1);
+    Skills.Betty.New.base.damage = (300000*(1 + Damage/10) + (R*250+tp+tr+BossHP*0.05) + 100*Attack)*(Boost/100 + 1);
     updateSkill(Skills.Betty);
     
     //gaster
