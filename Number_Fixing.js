@@ -383,9 +383,9 @@ function UpdateSkills() {
 
     if (BossHP > 80000000) {
         if (tr > 0) {
-            BossHP = 80000000;
-        } else {
             BossHP = 40000000;
+        } else {
+            BossHP = 20000000;
         }
     }
     //betty
