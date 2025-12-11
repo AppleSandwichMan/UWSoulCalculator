@@ -163,6 +163,8 @@ a:active {
         }
         console.log(configs);
         function Volume() {
+            var a = new Audio("./Sounds/Switch.mp3");
+            a.volume = configs.Volume/100;
             var Val = document.getElementById("Volume").value;
             var Txt = document.getElementById("VolumeText");
             configs.Volume = Val;
@@ -171,6 +173,8 @@ a:active {
         }
 
         function Clicker() {
+            var a = new Audio("./Sounds/Switch.mp3");
+            a.volume = configs.Volume/100;
             var Val = document.getElementById("Clicker").value;
             var Txt = document.getElementById("ClickerText");
             configs.Clicker = labels[Val - 1] ?? "Jevil";
