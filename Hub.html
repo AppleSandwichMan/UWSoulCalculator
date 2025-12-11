@@ -91,7 +91,11 @@ a:active {
     <img src="./Clickers/Jevil.png" id="ClickerElm" position="absolute" style="top:0;left:0;width:6%;"/>
     
     <script>
-        var configs = JSON.parse(localStorage.getItem("Config"));
+        var configs = {
+            "Volume":100,
+            "Clicker":"Jevil",
+        }
+        configs = JSON.parse(localStorage.getItem("Config"));
         var sounds = {
             "Jevil":3,
             "Spamton":2,
