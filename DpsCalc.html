@@ -239,6 +239,12 @@ a:active {
     <!--WeaponDPS-->
     <div class="Box" id="WeaponDPS" style="margin: 3% 0; overflow:auto;  width:97%;"></div>
     <script>
+        var configs = {
+            "Volume":100,
+            "Clicker":"Jevil",
+        }
+        configs = JSON.parse(localStorage.getItem("Config"));
+
         var WeaponDPS = document.getElementById("WeaponDPS");
         var Resets = parseInt(document.getElementById("Resets").value);
         var Levels = parseInt(document.getElementById("Levels").value);
@@ -1394,7 +1400,9 @@ a:active {
             
             // Add Sound
             a.addEventListener('mouseenter', () => {
-                new Audio("./Sounds/Hover.mp3").play();
+                var a = new Audio("./Sounds/Hover.mp3");
+                a.volume = configs.Volume/100;
+                a.play();
             });
             
             var img = document.createElement("img");
@@ -1555,7 +1563,9 @@ a:active {
                     document.getElementById("Expanded " + this.id).style.visibility = "visible";
                     openBox = document.getElementById("Expanded " + this.id); expandedOpen = true;
                     darken.style.visibility = "visible";
-                    new Audio("./Sounds/Select.mp3").play();
+                    var a = new Audio("./Sounds/Select.mp3");
+                    a.volume = configs.Volume/100;
+                    a.play();
                     
                     var box = document.getElementById("Expanded " + this.id);
                     
@@ -1890,7 +1900,9 @@ a:active {
             b.style.height = "auto"; b.style.position = "relative"; b.style.left = "-15%";
             
             b.addEventListener('mouseenter', () => {
-                new Audio("Sounds/Hover.mp3").play();
+                var a = new Audio("Sounds/Hover.mp3");
+                a.volume = configs.Volume/100;
+                a.play();
             });
             
             var img = document.createElement("img");
@@ -2024,7 +2036,9 @@ a:active {
                     document.getElementById("Expanded " + this.id).style.visibility = "visible";
                     openBox = document.getElementById("Expanded " + this.id); expandedOpen = true;
                     darken.style.visibility = "visible";
-                    new Audio("Sounds/Select.mp3").play();
+                    var a = new Audio("Sounds/Select.mp3");
+                    a.volume = configs.Volume/100;
+                    a.play();
                     
                     var box = document.getElementById("Expanded " + this.id);
                     
