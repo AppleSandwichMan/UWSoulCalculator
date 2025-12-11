@@ -2,6 +2,12 @@ var Resets = document.getElementById("Resets");
 var Levels = document.getElementById("Levels");
 var TP = document.getElementById("TP");
 
+var configs = {
+    "Volume":100,
+    "Clicker":"Jevil",
+}
+configs = JSON.parse(localStorage.getItem("Config"));
+
 function clamp_ish(text, max=NaN,min=0) {
     if (text.value == "") {
         text.value = 0;
@@ -343,7 +349,9 @@ function UpdateStuff() {
 }
 
 function UpdateSkills() {
-    new Audio("./Sounds/Switch.mp3").play();
+    var a = new Audio("./Sounds/Switch.mp3");
+    a.volume = configs.Volume;
+    a.play();
 
     var Damage = parseInt(document.getElementById("DmgSlider").value);
     var Reload = parseInt(document.getElementById("ReloadSlider").value);
