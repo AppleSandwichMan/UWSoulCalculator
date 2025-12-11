@@ -87,28 +87,33 @@ a:active {
 </style>
 
 <html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none;">
-    <!--JEVIL CLICKER-->
-    <!--fix this-->
-    <img src="./Jevil.png" id="JEVIL" position="absolute" style="top:0;left:0;width:5%;"/>
+    <!--CLICKER-->
+    <img src="./Clickers/Jevil.png" id="ClickerElm" position="absolute" style="top:0;left:0;width:6%;"/>
     
     <script>
-        document.getElementById("JEVIL").onclick = function() {
+        var configs = JSON.parse(localStorage.getItem("Config"));
+        var sounds = {
+            "Jevil":3,
+            "Spamton":2,
+            "Eram":3,
+            "Gerson":2,
+            "King":2,
+            "Queen":7,
+            "Tenna":8,
+            "Titan":2,
+            "Roaring Knight":4,
+        }
+        document.getElementById("ClickerElm").src = "./Clickers/" + configs.Clicker + ".png";
+        document.getElementById("ClickerElm").onclick = function() {
             var audio;
-            var pick = Math.floor(Math.random() * (3 - 1 + 1) + 1);
-            if (pick == 1) {
-                audio = new Audio("./Sounds/Jevil1.mp3");
-            }
-            else if (pick == 2) {
-                audio = new Audio("./Sounds/Jevil2.mp3");
-            }
-            else {
-                audio = new Audio("./Sounds/Jevil3.mp3");
-            }
-            
+            var pick = Math.floor(Math.random() * sounds[configs.Clicker] + 1);
+            console.log("./Sounds/" + (configs.Clicker) + (pick) + ".mp3");
+            audio = new Audio("./Sounds/" + (configs.Clicker) + (pick) + ".mp3");
+            audio.volume = configs.Volume/100;
             audio.play();
         }
     </script>
-    <!--JEVIL CLICKER-->
+    <!--CLICKER-->
     <p class="Text" id="title" style="margin: 2%; text-align:center">AppleSW's Unwavering Soul Calculators</p>
     <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>This site contains calculators I've made for Unwavering Soul, below are the calculators I've finished. Plan to make a full loadout damage in x seconds, and possibly other things if I think of them.</body>
     <div style ="height:5%"></div>
@@ -134,12 +139,16 @@ a:active {
     </div>-->
     <!--Boss Drop Calculator-->
     <div class="tab" onclick="clickTab('BossDropCalc')">
-        <p class="TabText" >Boss Drop Calculator</p>
+        <p class="TabText" >Boss Drop Calculator (old)</p>
         <img src="./HubImages/BossDropCalc.png" style="width:100%">
     </div>
     <!--Credits-->
     <div class="tab" onclick="clickTab('Credits')">
         <p class="TabText" >Credits</p>
+        <img src="./HubImages/Credits.png" style="width:100%">
+    </div>
+    <div class="tab" onclick="clickTab('Settings')">
+        <p class="TabText" >Settings</p>
         <img src="./HubImages/Credits.png" style="width:100%">
     </div>
     <script>
@@ -149,12 +158,16 @@ a:active {
         selectSound.preload = 'auto';
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('mouseenter', () => {
-                hoverSound.cloneNode().play();
+                const s = hoverSound.cloneNode();
+                s.volume = configs.Volume / 100;
+                s.play();
             });
         });
       
         function clickTab(id) {
-            selectSound.cloneNode().play();
+            const s = selectSound.cloneNode();
+            s.volume = configs.Volume / 100;
+            s.play();
             setTimeout(() => {
               window.location.href = "./" + id + ".html";
             }, 250);
