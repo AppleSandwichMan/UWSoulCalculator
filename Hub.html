@@ -19,323 +19,161 @@
         font-size:calc(5vw - 10%);
         font-family: Determination;
         position:relative;
-        text-shadow:
-            -2px -2px 0 black,
-             2px -2px 0 black,
-            -2px  2px 0 black,
-             2px  2px 0 black,
-            -2px  0px 0 black,
-             2px  0px 0 black,
-             0px -2px 0 black,
-             0px  2px 0 black;
     }
-</style>
-
-<style>
-    .slider {
-      appearance: none;
-      width: 80%;
-      height: 2%;
-      background: #ffffff;
-      outline: none;
-    }
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 13%;
-      height: 175%;
-      background: #ffffff;
+    
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw;
+      position:relative;
+      margin: 5% 0 5% 16.5%;
       cursor: pointer;
+      border:solid white;
+      border-width:1vw;
+      text-align:center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
     }
-
-</style>
-
-<style>
-    .BossBox {
-        background-color:#000000;
-        border:solid white;
-        border-width: 0.5625vh 0.5625vh;
-        color:#ffffff;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-        width:15vw;
-        height:15vw;
+    
+    .tab:hover {
+      transform: scale(1.08);
+      border-color:#fcf403;
+      border-width:1vw;
     }
-    .EBossBox {
-        background-color:#000000;
-        border:solid white;
-        border-width: 0.5625vh 0.5625vh;
-        color:#ffffff;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-        margin: 2vw;
-        width:85vw;
-        height:25vw;
-    }
-    .EBossText {
-        color:#ffffff;
-        font-size:0.973684211vw;
-        width:9vw;
-        height:2.5vw;
-        max-height: 80%;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-    }
-</style>
-
-<style>
-    .slider {
-      appearance: none;
-      width: 80%;
-      height: 6%;
-      background: #ffffff;
-      outline: none;
-      margin: 0 10% 2% 10%;
-    }
-    .slider::-webkit-slider-thumb {
-      appearance: none;
-      appearance: none;
-      width: 13%;
-      height: 175%;
-      background: #ffffff;
-      cursor: pointer;
-    }
-    .dpsInput {
-        font-size:calc(2vw - 2%);
-        border:solid white 0px;
-        background-color:black;
-        position:relative;
-        width:10%;
-        display:inline-block;
-        font-family:Determination;
+    .TabText {
         color:white;
+        position:absolute;
+        z-index:2;
+        font-size:4vw;
+        text-shadow:
+            -1px -1px 0 black,
+             1px -1px 0 black,
+            -1px  1px 0 black,
+             1px  1px 0 black,
+             0px -1px 0 black,
+             0px  1px 0 black,
+            -1px  0px 0 black,
+             1px  0px 0 black;
     }
-    .dpsInput::-webkit-outer-spin-button,
-    .dpsInput::-webkit-inner-spin-button {
-        appearance: none;
-        margin: 0;
-        input[type=number] {
-            appearance: textfield;
-        }
+    .tab:hover .TabText {
+        color:#fcf403;
     }
+</style>
 
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
 </style>
 
 <html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none;">
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> <!--Sortable for mobile devices-->
-    <p class="Text" id="title" style="margin: 2%; text-align:center">Amalgamation Machine Calculator</p>
-    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>
-    This calculator is quite straight-forward, you pick the primary skill, pick the secondary skill, and it'll tell you what you will get. Then it'll tell you what you get if you cleanse it.<br>The only thing you cannot do is add 2 of the same skill.
-    <p style="margin:2.5% 0 5% 0;"/>
-    <p style="margin-top:5%"></p>
-    <!--input class="dpsInput" onInput="filterDPS()" id="Search" placeholder="Search"></input-->
-    
-
-    <div style="display: flex; overflow:auto; width:75%; margin:3% auto;">
-        <div class="Box" id="Primary" style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
-            <img class="skillOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 5;"></img>
-            <p class="Text" style="margin-top:30%; text-align:center; font-size:90%; ">Primary Skill:</p>
-        </div>
-        <div style="aspect-ratio:1; overflow:hidden; height:20.5%; width:20.5%; float: left; margin-right:2%;">
-            <p class="Text" style="text-align:center; font-size:1000%; line-height:0; margin-top:55%; ">+</p>
-        </div>
-        <div class="Box" id="Secondary" style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
-            <img class="skillOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 5;"></img>
-            <p class="Text" style="margin-top:30%; text-align:center; font-size:90%; ">Secondary Skill:</p>
-        </div>
-        <div style="aspect-ratio:1; overflow:hidden; height:20.5%; width:20.5%; float: left; margin-right:2%;">
-            <p class="Text" style="text-align:center; font-size:1000%; line-height:0; margin-top:55%; ">=</p>
-        </div>
-        <div class="Box" style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
-            <img src="Amalgamate.png" style="position: absolute; top: 0; left: 0;  width: 100%; height: 100%;">
-            <p class="Text" id="Amalgamate" style="margin-top:30%; text-align:center; font-size:82%; ">Skill:      </p>
-        </div>
-    </div>
-    <div style="display: flex; overflow:auto; width:75%; margin:1% auto;">
-        <div style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
-            <p class="Text" id="PrimaryDamage" style="margin-top:10%; text-align:center; font-size:90%;">Damage: 1</p>
-            <input type="range" id="DmgSlider1" class="slider"; min="1" max="6" value="1" onchange="UpdateSkillSliders()">
-            <p class="Text" id = "PrimaryReload" style="margin-top:10%; text-align:center; font-size:90%; ">Reload: 1</p>
-            <input type="range" id="ReloadSlider1" class="slider"; min="1" max="6" value="1" onchange="UpdateSkillSliders()">
-        </div>
-        <div style="aspect-ratio:1; height:16.5%; width:16.5%; float: left; margin-right:2%"></div>
-        <div  style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
-            <p class="Text" id="SecondaryDamage" style="margin-top:10%; text-align:center; font-size:90%;">Damage: 1</p>
-            <input type="range" id="DmgSlider2" class="slider"; min="1" max="6" value="1" onchange="UpdateSkillSliders()">
-            <p class="Text" id = "SecondaryReload" style="margin-top:10%; text-align:center; font-size:90%; ">Reload: 1</p>
-            <input type="range" id="ReloadSlider2" class="slider"; min="1" max="6" value="1" onchange="UpdateSkillSliders()">
-        </div>
-        <div style="aspect-ratio:1; height:16.5%; width:16.5%; float: left; margin-right:2%"></div>
-        <div style="aspect-ratio:1; height:20.5%; width:20.5%; float: left;">
-            <p class="Text" id="AmalDamage" style="margin-top:10%; text-align:center; font-size:90%;">Damage: 1</p>
-            <p class="Text" id = "AmalReload" style="margin-top:10%; text-align:center; font-size:90%; ">Reload: 1</p>
-        </div>
-    </div>
-    <div class="box" id="skills" style="overflow:auto; width:97%; margin: 3% 0"></div>
-    
-    <div class="box" style="overflow:auto; width:47%; margin: 0 3%; float:left;">
-        <p id="Passives">Passives: </p>
-    </div>
-    <div class="box" style="overflow:auto; width:33%; margin: 3% 0">
-        <p>Cleanses Into: </p>
-        <img id="Cleanse" style="width:50%">
-        <p id="CleanseDmg"> Damage: 1</p>
-        <p id="CleanseReload"> Reload: 1</p>
-    </div>
+    <!--CLICKER-->
+    <img src="./Clickers/Jevil.png" id="ClickerElm" position="absolute" style="top:0;left:0;width:6%;"/>
     
     <script>
         configs = (JSON.parse(localStorage.getItem("Config")) ? JSON.parse(localStorage.getItem("Config")) : {
             "Volume":100,
             "Clicker":"Jevil",
         });
-
-        var Dmg1 = document.getElementById("PrimaryDamage");
-        var Reload1 = document.getElementById("PrimaryReload");
-        var Dmg2 = document.getElementById("SecondaryDamage");
-        var Reload2 = document.getElementById("SecondaryReload");
-        function UpdateSkillSliders() {
-            var Slider1 = {"damage":document.getElementById("DmgSlider1").value,"reload":document.getElementById("ReloadSlider1").value}
-            Dmg1.innerText = "Damage: " + Slider1.damage;
-            Reload1.innerText = "Reload: " + Slider1.reload;
-            
-            var Slider2 = {"damage":document.getElementById("DmgSlider2").value,"reload":document.getElementById("ReloadSlider2").value}
-            Dmg2.innerText = "Damage: " + Slider2.damage;
-            Reload2.innerText = "Reload: " + Slider2.reload;
-            UpdateAmalgamate();
+        var sounds = {
+            "Jevil":3,
+            "Spamton":2,
+            "Eram":3,
+            "Gerson":2,
+            "King":2,
+            "Queen":7,
+            "Tenna":8,
+            "Titan":2,
+            "Roaring Knight":4,
         }
-        
-        function setupSortable() {
-            const skillsList = document.getElementById('skills');
-            new Sortable(skillsList, {
-                group: { name: 'skills', pull: 'clone', put: false },
-                animation: 150,
-                sort: false
-            });
-
-            const dropHandlerConfig = {
-                group: 'skills',
-                animation: 150,
-                sort: false,
-                onAdd: function (evt) {
-                    const droppedEl = evt.item;
-                    const skillName = droppedEl.dataset.skill || droppedEl.id;
-                    const dropTarget = evt.to;
-
-                    const overlayImg = dropTarget.querySelector(".skillOverlay");
-                    const baseSrc = (droppedEl.getAttribute('src') || '').split('?')[0];
-                    overlayImg.src = `${baseSrc}?v=${Date.now()}`;
-                    overlayImg.style.display = "block";
-
-                    dropTarget.setAttribute("name", skillName);
-
-                    setTimeout(() => {
-                        if (droppedEl && droppedEl.parentNode) {
-                            droppedEl.parentNode.removeChild(droppedEl);
-                        }
-                    }, 0);
-
-                    UpdateAmalgamate();
-                }
-            };
-
-            new Sortable(document.getElementById('Primary'), dropHandlerConfig);
-            new Sortable(document.getElementById('Secondary'), dropHandlerConfig);
+        document.getElementById("ClickerElm").src = "./Clickers/" + configs.Clicker + ".png";
+        document.getElementById("ClickerElm").onclick = function() {
+            var audio;
+            var pick = Math.floor(Math.random() * sounds[configs.Clicker] + 1);
+            audio = new Audio("./Sounds/" + (configs.Clicker) + (pick) + ".mp3");
+            audio.volume = configs.Volume/100;
+            audio.play();
         }
-
-        function fuseNames(name1, name2) {
-            const prefixLength = Math.floor(name1.length / 2);
-            const suffixLength = Math.ceil(name2.length / 2);
-            const prefix = name1.slice(0, prefixLength);
-            const suffix = name2.slice(-suffixLength);
-            return prefix + suffix;
-        }
-        
-        var Skills = {
-            "Froggit": 0.7,
-            "Flowey": 0.7,
-            "Papyrus": 0.2,
-            "Undyne": 0.2,
-            "Mettaton": 0.08,
-            "Noelle": 0.08,
-            "SNoelle": 0.08,
-            "Asgore": 0.08,
-            "Sans": 0.02,
-            "Chara": 0.02,
-            "Betty": 0.02,
-            "Gaster":0.02,
-            "Roaring Knight":1,
-        }
-        
-        var Passives = {
-            "Froggit":"Increased Jump Power",
-            "Undyne":"Determination:<br>Grants full heal upon death, skill deals 2x damage, additional x0.12x damage boost and x0.25 speed boost. 1.25% HP drain while on 2nd life.",
-            "Asgore":"Hope You can Run Fast:<br>The slower the enemy moves, the more damage you deal",
-            "Betty":"Inevitable Death:<br>When the enemy is low, pink sparkles will show and reset your cooldown. Killing the enemy with betty grants 25% more XP.",
-        }
-        
-        function UpdateAmalgamate() {
-            var a = new Audio("Sounds/Switch.mp3");
-            a.volume = configs.Volume;
-            a.play();
-            var Name1 = document.getElementById("Primary").getAttribute("name");
-            var Name2 = document.getElementById("Secondary").getAttribute("name");
-            var Stats1 = {"damage":document.getElementById("DmgSlider1").value,"reload":document.getElementById("ReloadSlider1").value}
-            var Stats2 = {"damage":document.getElementById("DmgSlider2").value,"reload":document.getElementById("ReloadSlider2").value}
-
-            var SkillName = document.getElementById("Amalgamate");
-            var AmalDamage = document.getElementById("AmalDamage");
-            var AmalReload = document.getElementById("AmalReload");
-            if (Name1 && Name2) {
-                if (Name1 != Name2) {
-                    var AmalgamateName = fuseNames(Name1, Name2);
-                    SkillName.innerHTML = "Skill: " + AmalgamateName;
-                    if (Skills[Name1] < Skills[Name2]) {
-                        AmalDamage.innerHTML = "Damage: " + Stats1.damage;
-                        AmalReload.innerHTML = "Reload: " + Stats1.reload;
-                    } else if (Skills[Name1] == Skills[Name2]) {
-                        AmalDamage.innerHTML = "Damage: " + Math.max(Stats1.damage,Stats2.damage);
-                        AmalReload.innerHTML = "Reload: " + Math.max(Stats1.reload,Stats2.reload);
-                    } else {
-                        AmalDamage.innerHTML = "Damage: " + Stats2.damage;
-                        AmalReload.innerHTML = "Reload: " + Stats2.reload;
-                    }
-                    
-                    document.getElementById("Cleanse").src = document.getElementById("Primary").querySelector(".skillOverlay").src;
-                    if (Passives[Name1]) {
-                        document.getElementById("Passives").innerHTML = "Passives:<br>" + Passives[Name1];
-                    }
-                }
-            }
-            
-            document.getElementById("CleanseDmg").innerHTML = AmalDamage.innerHTML;
-            document.getElementById("CleanseReload").innerHTML = AmalReload.innerHTML;
-        }
-        
-        var skills = document.getElementById("skills");
-        
-        //UI
-        for (var Name of Object.keys(Skills)) {
-            var img = document.createElement("img");
-            img.src = "Images/" + Name + ".png";
-            img.dataset.skill = Name;
-            img.id = Name;
-            img.addEventListener('mouseenter', () => {
-                var a = new Audio("Sounds/Hover.mp3");
-                a.volume = configs.Volume;
-                a.play();
-            });
-            img.style.position = "relative";
-            img.style.margin = "1%";
-            img.style.float = "left";
-            img.style.width = "10%";
-            img.style.cursor = "grab";
-            img.style.left = "0%";
-            img.style.userDrag = "none";
-            skills.appendChild(img);
-        }
-        setupSortable();
     </script>
+    <!--CLICKER-->
+    <p class="Text" id="title" style="margin: 2%; text-align:center">AppleSW's Unwavering Soul Calculators</p>
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>This site contains calculators I've made for Unwavering Soul, below are the calculators I've finished. Plan to make a full loadout damage in x seconds, and possibly other things if I think of them.</body>
+    <div style ="height:5%"></div>
+    <!--DPS Calculator-->
+    <div class="tab" onclick="clickTab('DpsCalc')">
+        <p class="TabText" >DPS Calculator</p>
+        <img src="./HubImages/DPSCalc.png" style="width:100%">
+    </div>
+    <!--XP Calculator-->
+    <div class="tab" onclick="clickTab('expCalc')">
+        <p class="TabText" >XP Calculator</p>
+        <img src="./HubImages/expCalc.png" style="width:100%">
+    </div>
+    <!--Amalgamate Calculator-->
+    <div class="tab" onclick="clickTab('AmalgamationMachineCalc')">
+        <p class="TabText" >Amalgamation Calculator</p>
+        <img src="./HubImages/AmalgamateCalc.png" style="width:100%">
+    </div>
+    <!--Loadout Calculator-->
+    <!--<div class="tab" onclick="clickTab('LoadoutCalc')">
+        <p class="TabText" >Loadout Calculator</p>
+        <img src="./HubImages/expCalc.png" style="width:100%">
+    </div>-->
+    <!--Boss Drop Calculator-->
+    <div class="tab" onclick="clickTab('BossDropCalc')">
+        <p class="TabText" >Boss Drop Calculator (old)</p>
+        <img src="./HubImages/BossDropCalc.png" style="width:100%">
+    </div>
+    <!--Credits-->
+    <div class="tab" onclick="clickTab('Credits')">
+        <p class="TabText" >Credits</p>
+        <img src="./HubImages/Credits.png" style="width:100%">
+    </div>
+    <div class="tab" onclick="clickTab('Settings')">
+        <p class="TabText" >Settings</p>
+        <img src="./HubImages/Credits.png" style="width:100%">
+    </div>
+    <script>
+        const hoverSound = new Audio('./Sounds/Hover.mp3');
+        const selectSound = new Audio('./Sounds/Select.mp3');
+        hoverSound.preload = 'auto';
+        selectSound.preload = 'auto';
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('mouseenter', () => {
+                const s = hoverSound.cloneNode();
+                s.volume = configs.Volume / 100;
+                s.play();
+            });
+        });
+      
+        function clickTab(id) {
+            const s = selectSound.cloneNode();
+            s.volume = configs.Volume / 100;
+            s.play();
+            setTimeout(() => {
+              window.location.href = "./" + id + ".html";
+            }, 250);
+        }
+    </script>
+
 </html>
