@@ -96,6 +96,12 @@ function UpdateStuff() {
             0,
             115000+generalDamageAddition,
         );
+
+        UpdateSpecialItem("CODEKillerKnife",
+            180000+generalDamageAddition,
+            0,
+            180000+generalDamageAddition,
+        );
         
         UpdateSpecialItem("LegionHammer",
             150000+generalDamageAddition,
@@ -108,9 +114,17 @@ function UpdateStuff() {
             0,
             225000+generalDamageAddition,
         );
+        UpdateSpecialItem("CODERose",
+            390000+generalDamageAddition,
+            0,
+            390000+generalDamageAddition,
+        );
         
         UpdateSpecialItem("EndoHead",
             525000 + (tp + tr*2.5 + 250*R) + 100*Attack,
+        );
+        UpdateSpecialItem("BlackShard", null,
+            0, (300000+generalDamageAddition) * (tr == 0? (5 + 1/3) : (10 + 1/3))
         );
         
         UpdateSpecialItem("EpicEye",
@@ -126,7 +140,13 @@ function UpdateStuff() {
             0,
             83000 + clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2 + 100*Attack,
         );
-        
+
+        UpdateSpecialItem("HorrorAxe",
+            null,
+            0,
+            25000 + tp*0.05 + R*12.5 + tr/20 + 100*Attack
+        );
+
         UpdateSpecialItem("Pyrokinesis",
             250000+generalDamageAddition,
             0,
@@ -248,6 +268,9 @@ function UpdateStuff() {
         UpdateSpecialItem("Bike",
             43750 + tp*0.05 + R*150 + tr/2 + 100*Attack,
         );
+        UpdateSpecialItem("BearTrap",
+            250000 + tp*0.5 + R*50 + tr*10 + 100*Attack,
+        );
         
         UpdateSpecialItem("Maskv1",
             1400000 + R * (206503/590) + tp * (137/118) + tr*9.099984746 + 100*Attack,
@@ -310,6 +333,9 @@ function UpdateStuff() {
         
         UpdateSpecialItem("WintersCurse",
             (200000 + clamp(L*150,0,999900) + tp/2)*2 + 100*Attack,
+        );
+        UpdateSpecialItem("ShockBand",
+            500000 + tp*1.5 + R*250 + tr*50 + 100*Attack,
         );
     }
     
@@ -383,9 +409,9 @@ function UpdateSkills() {
 
     if (BossHP > 80000000) {
         if (tr > 0) {
-            BossHP = 40000000;
+            BossHP = 80000000;
         } else {
-            BossHP = 20000000;
+            BossHP = 40000000;
         }
     }
     //betty
@@ -396,4 +422,10 @@ function UpdateSkills() {
     Skills.Gaster.New.base.damage = (100000 * (1 + Damage/10) + generalDamageAddition)*(Boost/100 + 1);
     Skills.Gaster.New.specials[0].damage = Skills.Gaster.New.base.damage*2;
     updateSkill(Skills.Gaster);
+
+    //Roaring Knight
+    var RKDmg = (250000*(1 + Damage/10) + 375*R + tp/10 + tr + 100 * Attack) * (Boost/100 + 1)
+    Skills.RoaringKnight.New.base.damage = RKDmg ;
+    Skills.RoaringKnight.New.specials[0].damage = RKDmg * 0.85;
+    updateSkill(Skills.RoaringKnight);
 }
