@@ -187,11 +187,10 @@
     </div>
     
     <script>
-        var configs = {
+        configs = (JSON.parse(localStorage.getItem("Config")) ? JSON.parse(localStorage.getItem("Config")) : {
             "Volume":100,
             "Clicker":"Jevil",
-        }
-        configs = JSON.parse(localStorage.getItem("Config"));
+        });
 
         var Dmg1 = document.getElementById("PrimaryDamage");
         var Reload1 = document.getElementById("PrimaryReload");
@@ -275,6 +274,7 @@
             "Undyne":"Determination:<br>Grants full heal upon death, skill deals 2x damage, additional x0.12x damage boost and x0.25 speed boost. 1.25% HP drain while on 2nd life.",
             "Asgore":"Hope You can Run Fast:<br>The slower the enemy moves, the more damage you deal",
             "Betty":"Inevitable Death:<br>When the enemy is low, pink sparkles will show and reset your cooldown. Killing the enemy with betty grants 25% more XP.",
+            "Roaring Knight": "Passive:Roaring Armor:<br>5% Damage Reduction & Aura behind player<br>Tempest’s Heal<br>You automatically heal 50% of your Max HP when you’re below 50% of your Max HP. 3 Minutes Cooldown",
         }
         
         function UpdateAmalgamate() {
