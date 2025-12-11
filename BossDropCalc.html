@@ -120,6 +120,12 @@
     <div class="Box" id="bosses" style="overflow:auto; width:97%; margin: 3% 0;"></div>
     
     <script>
+        var configs = {
+            "Volume":100,
+            "Clicker":"Jevil",
+        }
+        configs = JSON.parse(localStorage.getItem("Config"));
+
         var DPSbox = document.getElementById("DPS");
         var Seconds = document.getElementById("Seconds");
         //Boss: [health,[XP,gold,TP,Kromer],otherPhasesTimes],
@@ -904,7 +910,9 @@
             a.setAttribute("id", Name);
             a.style.float = "left";
             a.addEventListener('mouseenter', () => {
-                new Audio("./Sounds/Hover.mp3").play();
+                var a = new Audio("./Sounds/Hover.mp3");
+                a.volume = configs.Volume;
+                a.play();
             });
             
             var img = document.createElement("img");
@@ -972,7 +980,9 @@
                     document.getElementById("Expanded " + this.id).style.visibility = "visible";
                     openBox = document.getElementById("Expanded " + this.id); expandedOpen = true;
                     darken.style.visibility = "visible";
-                    new Audio("./Sounds/Select.mp3").play();
+                    var a = new Audio("./Sounds/Select.mp3");
+                    a.volume = configs.Volume;
+                    a.play();
                 }
             }
             
