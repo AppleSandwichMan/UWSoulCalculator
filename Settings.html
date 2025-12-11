@@ -1,0 +1,181 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+    
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw;
+      position:relative;
+      margin: 5% 0 5% 16.5%;
+      cursor: pointer;
+      border:solid white;
+      border-width:1vw;
+      text-align:center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    
+    .tab:hover {
+      transform: scale(1.08);
+      border-color:#fcf403;
+      border-width:1vw;
+    }
+    .TabText {
+        color:white;
+        position:absolute;
+        z-index:2;
+        font-size:4vw;
+        text-shadow:
+            -1px -1px 0 black,
+             1px -1px 0 black,
+            -1px  1px 0 black,
+             1px  1px 0 black,
+             0px -1px 0 black,
+             0px  1px 0 black,
+            -1px  0px 0 black,
+             1px  0px 0 black;
+    }
+    .tab:hover .TabText {
+        color:#fcf403;
+    }
+</style>
+
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+    .slider {
+      appearance: none;
+      width: 80%;
+      height: 2%;
+      background: #ffffff;
+      outline: none;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 13%;
+      height: 175%;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .dpsInput {
+        font-size:calc(2vw - 2%);
+        border:solid white 0px;
+        background-color:black;
+        position:relative;
+        width:10%;
+        display:inline-block;
+        font-family:Determination;
+        color:white;
+    }
+    .dpsInput::-webkit-outer-spin-button,
+    .dpsInput::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        input[type=number] {
+            appearance: textfield;
+        }
+    }
+</style>
+
+<html class="Box">
+    <p class="Text" id="title" style="margin: 5%; text-align:center;">Settings</p>
+    <div class="Box" style="position:relative; top:5%">
+        <div style="display:flex; align-items:center; gap:1rem; margin: 1%">
+            <p class="Text" style="font-size:200%; margin:0;">Volume: </p>
+            <p id="VolumeText" class="Text" style="font-size:200%; margin:0;">50</p>
+            <input style="height:1.5em; width:15%;" id="Volume" type="range" class="slider" min="0" value="100" max="100" onchange="Volume()">
+        </div>
+        <div style="display:flex; align-items:center; gap:1rem; margin: 1%">
+            <p class="Text" style="font-size:200%; margin:0;">Clicker: </p>
+            <p id="ClickerText" class="Text" style="font-size:200%; margin:0;"> Jevil</p>
+            <input style="height:1.5em; width:15%;" id="Clicker" type="range" class="slider" min="1" value="1" max="9" onchange="Clicker()">
+        </div>
+    </div>
+
+    <script>
+        var configs = {
+            "Volume":100,
+            "Clicker":"Jevil",
+        }
+        var labels = [
+            "Jevil",
+            "Spamton",
+            "Eram",
+            "Gerson",
+            "King",
+            "Queen",
+            "Tenna",
+            "Titan",
+            "Roaring Knight",
+        ];
+        
+        if (localStorage.getItem("Config")) {
+            configs = JSON.parse(localStorage.getItem("Config"));
+            document.getElementById("VolumeText").innerHTML = configs.Volume;
+            document.getElementById("ClickerText").innerHTML = configs.Clicker;
+            document.getElementById("Volume").value = configs.Volume;
+            document.getElementById("Clicker").value = labels.indexOf(configs.Clicker)+1;
+        }
+        console.log(configs);
+        function Volume() {
+            var Val = document.getElementById("Volume").value;
+            var Txt = document.getElementById("VolumeText");
+            configs.Volume = Val;
+            Txt.innerHTML = Val;
+            localStorage.setItem('Config', JSON.stringify(configs));
+        }
+
+        function Clicker() {
+            var Val = document.getElementById("Clicker").value;
+            var Txt = document.getElementById("ClickerText");
+            configs.Clicker = labels[Val - 1] ?? "Jevil";
+            Txt.innerHTML = labels[Val - 1] ?? "Jevil";
+            localStorage.setItem('Config', JSON.stringify(configs));
+        }
+    </script>
+</html>
