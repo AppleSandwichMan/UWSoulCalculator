@@ -207,10 +207,14 @@ a:active {
     <!--Settings-->
     <div class="Box" style="margin: 3% 0; overflow:auto; width:max-content; height:max-content; max-height:100%; max-width:100%; position:relative; top:10%">
         <p style="position: relative; left: 0%; text-align: left; font-size: 2.5vw; margin-top: 1%; margin-bottom: 4%;">Settings:</p>
-        <div style="display:flex; flex-direction: column; margin:2% 0 2% 0">
+        <div style="display:flex; float: right;flex-direction: column; margin:2% 10 2% 0">
             <p id="PrecisionText" style="text-align: left; font-size: 1.5vw; margin:2% 0 2% 0">Precision: 3</p>
-            <input style="height:0.75em; width:50%" id="Precision" type="range" class="slider" min="1" value="3" max="10" onchange="changeSettings()">
+            <input style="height:0.75em; width:50%" id="Precision" type="range" class="slider" min="1" value="3" max="10" onchange="changePrecision()">
         </div>
+        <!--div style="display:flex; float: right;flex-direction: column; margin:2% 10 2% 0">
+            <p id="SortText" style="text-align: left; font-size: 1.5vw; margin:2% 0 2% 0">Sort: Least DPS</p>
+            <input style="height:0.75em; width:50%" id="Sort" type="range" class="slider" min="1" value="1" max="5" onchange="changeSort()">
+        </div-->
     </div>
     
     <!--Stats-->
@@ -264,7 +268,6 @@ a:active {
                     showBase:options.showBase ?? true,
                 };
         
-                // Calculated stats (no duplicate of original values)
                 this.stats = {
                     totalDamage: 0,
                     totalHits: 0,
@@ -311,12 +314,13 @@ a:active {
                 }
                 const baseHits = base.hits * base.uses;
                 const baseDamage = base.damage * (this.options.addHits ? baseHits : 1);
-        
+                
                 const specialDamage = firstSpecial ? firstSpecial.damage * firstSpecial.hits : 0;
                 const specialHits = firstSpecial ? firstSpecial.hits : 0;
                 this.stats.totalHits = baseHits;
                 this.stats.totalDamage = baseDamage;
                 this.stats.uses = base.uses;
+                
                 if (this.options.AddSpecial && firstSpecial != null) {
                     this.stats.totalDamage += specialDamage;
                     this.stats.totalHits += specialHits;
@@ -751,6 +755,20 @@ a:active {
                     }
                 ]
             ),
+            "CODEKillerKnife": new Item(
+                "C.O.D.E Killer Knife",
+                "Description: Perfect for it's job...",
+                {"damage": 180000, "cooldown": 1, "uses": 1, "hits": 1},
+                [
+                    {
+                        name: "Laser",
+                        damage: 180000,
+                        hits: 1,
+                        uses: 0,
+                        cooldown: 1
+                    }
+                ]
+            ),
           "LegionHammer": new Item(
                 "Legion Hammer",
                 "Description: Summon a Hammer Zone (10 seconds CD)",
@@ -792,6 +810,21 @@ a:active {
                 ],
                 {hideSpecial:false}
             ),
+            "CODERose": new Item(
+                "C.O.D.E Rose",
+                "Description: Creates a Zone that damages Enemies inside of it.",
+                {"damage": 390000, "cooldown": 1, "uses": 15, "hits": 1},
+                [
+                    {
+                        name: "Special",
+                        damage: 390000,
+                        hits: 5,
+                        uses: 1,
+                        cooldown: 15
+                    }    
+                ],
+                {hideSpecial:false}
+            ),
           "EndoHead": new Item(
                 "Endo Head",
                 "Description: Gives speed boost and Invincibility on hit, picking up the head will shorten it's Cooldown.\n(based on 5 second cooldown due to cooldown decrease when picking it up)",
@@ -799,26 +832,40 @@ a:active {
                 [],
                 {addHits:false}
             ),
-          "MultiverseScythe": new Item(
+            "MultiverseScythe": new Item(
                 "Multiverse Scythe",
                 "Description: Ink turned into a scythe :flushed:",
                 {"damage": 345000, "cooldown": 1, "uses": 1, "hits": 1},
                 []
             ),
-          "EpicEye": new Item(
+            "BlackShard": new Item(
+                "Black Shard",
+                "Description: It shapes into a Weapon. You charge a swing, making your next attack have 2.5x(3.5x True Reset) range and 5.33(10.33x True Reset) AoE Damage (20 second CD).",
+                {"damage": 300000, "cooldown":0.9,"uses":22,"hits":1},
+                [
+                    {
+                        name:"Swoon",
+                        damage:300000*(5 + 1/3),
+                        hits:1,
+                        uses:1,
+                        cooldown:20,
+                    }
+                ]
+            ),
+            "EpicEye": new Item(
                 "Epic Eye",
                 "Description: what's 10+10?",
                 {"damage": 45000, "cooldown": 12, "uses": 1, "hits": 20},
                 []
             ),
-          "AllBreaking": new Item(
+            "AllBreaking": new Item(
                 "All Breaking",
                 "Description: Damage ignores 50% + 2 of Enemy's Defense and tags them. Hitting tagged enemies will deal bonus DMG.",
                 {"damage": 3000000, "cooldown": 4.4, "uses": 6, "hits": 1.5},
                 [],
                 {hideDamage:true,addHits:false}
             ),
-          "Cutter": new Item(
+            "Cutter": new Item(
                 "Cutter",
                 "Description: Knife recharges every 1.5 seconds up to 6 times.",
                 {"damage": 375000, "cooldown": 10.75, "uses": 7, "hits": 2},
@@ -856,6 +903,20 @@ a:active {
                 "Description: Snatcher's Gift: A Special Minion that was planned to be used in the fight against you. attaches to an enemy and spins against it, damaging 8 times. Doesn't let the enemy use shields during the spin. You're probably lucky he spared you from it.       (all 8 hits)",
                 {"damage": 235000, "cooldown": 10, "uses": 1, "hits": 8},
                 []
+            ),
+            "HorrorAxe": new Item(
+                "Horror Axe",
+                "Description: ",
+                {"damage":400000, "cooldown":1, "uses":12,"hits":1},
+                [
+                    {
+                        name: "barrage",
+                        damage: 25000,
+                        hits: 10,
+                        uses: 0,
+                        cooldown: 12
+                    }
+                ]
             ),
           "Pyrokinesis": new Item(
                 "Pyrokinesis",
@@ -1126,111 +1187,123 @@ a:active {
                 {"damage": 1000000, "cooldown": 20, "uses": 1, "hits": 1},
                 []
             ),
-          "SnatKnife": new Item(
+            "BearTrap": new Item(
+                "Bear Trap",
+                "Description: Place a trap for 11 seconds if it gets an Enemy the CD Resets to 2. You can undo it before it hits anything.",
+                {"damage":250000,"cooldown":2,"uses":1,"hits":1},
+                []
+            ),
+            "SnatKnife": new Item(
                 "Snat Knife",
                 "Description: IT'S NOT A RE_SKIL TRUST.",
                 {"damage": 1000000, "cooldown": 20, "uses": 1, "hits": 1},
                 []
             ),
-          "Bike": new Item(
+            "Bike": new Item(
                 "Bike",
                 "Description: +10 Speed boost while it's equipped and extra 15 Speed boost when activated, it can hit multiple times and stun enemeies.",
                 {"damage": 43750, "cooldown": 5, "uses": 1, "hits": 10},
                 []
             ),
-          "CounterBoneupgraded": new Item(
+            "CounterBoneupgraded": new Item(
                 "Counter Bone (upgraded)",
                 "Description: For 1.5 seconds, you will ignore the damage received and create a blast that deals 500k DMG up to 3 times.",
                 {"damage": 750000, "cooldown": 10, "uses": 1, "hits": 4},
                 []
             ),
-          "Maskv1": new Item(
+            "Maskv1": new Item(
                 "Mask (v1)",
                 "Description: Hauriunt omnia",
                 {"damage": 1400000, "cooldown": 30, "uses": 1, "hits": 1},
                 []
             ),
-          "Maskv2": new Item(
+            "Maskv2": new Item(
                 "Mask (v2)",
                 "Description: Hauriunt omnia",
                 {"damage": 7105000/9, "cooldown": 36, "uses": 4, "hits": 9/4},
                 [],
                 {hideDamage:true}
             ),
-          "Banana": new Item(
+            "Banana": new Item(
                 "Banana",
                 "Description: You place a spinning banana, after 4 seconds it explodes healing 40% of missing HP to nearby allies and dealing damage to nearby enemies",
                 {"damage": 1000000, "cooldown": 30, "uses": 1, "hits": 1},
                 []
             ),
-          "CoolSkull": new Item(
+            "CoolSkull": new Item(
                 "Cool Skull",
                 "You summon your Cool Friend, chomping Enemies on his path, increasing your Luck by 10%, and Attack by 2000 while it's active(Hitting at least one Enemy will increase the duration from 5 to 6.5)",
                 {"damage": 300000, "cooldown": 42, "uses": 1, "hits": 6},
                 []
             ),
-          "PocketCore": new Item(
+            "PocketCore": new Item(
                 "Pocket Core",
                 "Place a CORE Sentry, Damaging one target at a time with increasing Damage. True Reset will greatly increase Damage after 50 seconds. Taking damage will also wear down the Sewntry and getting out of it's range will destroy it as well.",
                 {"damage": 25483356.5/119, "cooldown": 59.5, "uses": 1, "hits": 119},
                 [],
                 {hideDamage:true}
             ),
-          "HackingPhone": new Item(
+            "HackingPhone": new Item(
                 "Hacking Phone",
                 "Description: You gain Immunity for 3 seconds and slowly elevate, damaging Enemies in range.",
                 {"damage": 366666, "cooldown": 20, "uses": 1, "hits": 6},
                 []
             ),
-          "SanssHat": new Item(
+            "SanssHat": new Item(
                 "Sans's Hat",
                 "Description: The hat starts gathering a storm, which later explosion causes all nearby enemies to Freeze.",
                 {"damage": 75000, "cooldown": 25, "uses": 1, "hits": 10},
                 []
             ),
-          "HeadThrow": new Item(
+            "HeadThrow": new Item(
                 "Head Throw",
                 "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3.",
                 {"damage": 18, "cooldown": 10, "uses": 1, "hits": 1},
                 []
             ),
-          "FlamingStallion": new Item(
+            "FlamingStallion": new Item(
                 "Flaming Stallion",
                 "Description: +11 Speed boost and Jump Power while it's equipped and extra 75 Speed boost and Jump Power when activated, it can hit multiple times and stun enemies.",
                 {"damage": 100000, "cooldown": 5, "uses": 1, "hits": 12},
                 []
             ),
-          "FOOLSCONTENT": new Item(
+            "FOOLSCONTENT": new Item(
                 "FOOL'S CONTENT",
                 "Description: Gain 100 WalkSpeed and after 5 seconds, you explod dealing Damage to nearby enemies and get back to your original position with your HP prior activation(If the position is too far away, you won't get tped back unless out of combat)",
                 {"damage": 1000000, "cooldown": 30, "uses": 1, "hits": 1},
                 []
             ),
-          "SantasBag": new Item(
+            "SantasBag": new Item(
                 "Santa's Bag",
                 "Description: Sends a Gift that Damages enemies for 1 LV = 120 Damage (1.2M Max) dashing backwards and giving you Immunity for a second. If it hits a Player, they will be attached to the gift until it opens, healing them for 10% of your Max HP(Receiver gets 20% of their Max HP at most) and also gain 1 second Immunity.",
                 {"damage": 120, "cooldown": 5, "uses": 1, "hits": 1},
                 []
             ),
-          "WintersCurse": new Item(
+            "WintersCurse": new Item(
                 "Winter's Curse",
                 "Description: Cold.. so cold.. no one can survive, not even the light... Every 10 seconds, a hand will grip the nearest enemy.",
                 {"damage": 400300, "cooldown": 10, "uses": 1, "hits": 1},
                 []
             ),
-          "GrilledCheeseSandwich": new Item(
+            "ShockBand": new Item(
+                "Shock Band",
+                "Description: Enemies in a 20 radius range will be shocked. (20s CD)",
+                {"damage": 500000, "cooldown": 10, "uses": 1, "hits": 1},
+                []
+            ),
+            "GrilledCheeseSandwich": new Item(
                 "Grilled Cheese Sandwich",
                 "Description: {grilled sandwich link} from {grilled sandwich trello link}",
                 {"damage": jokeDMG, "cooldown": 1, "uses": 1, "hits": 1},
                 []
             ),
-          "DEEZBONESWORD": new Item(
+            "DEEZBONESWORD": new Item(
                 "DEEZ BONE SWORD",
                 "Description: {deez link} from {deez trello link}",
                 {"damage": jokeDMG, "cooldown": 1, "uses": 1, "hits": 1},
                 []
             ),
-          "LancelotsGun": new Item(
+            "LancelotsGun": new Item(
                 "Lancelot's Gun",
                 "Description: {lancelot link} from {lancelot trello link}",
                 {"damage": jokeDMG, "cooldown": 1, "uses": 1, "hits": 1},
@@ -1240,18 +1313,35 @@ a:active {
         
         //settings
         var precision = 3;
-        function changeSettings() {
-            var precisionVal = document.getElementById("Precision");
-            var precisionTxt = document.getElementById("PrecisionText");
-            precisionTxt.value = "Precision: Max";
-            precision = precisionVal.value;
-            precisionTxt.innerHTML = "Precision: " + precision;
-            if (precision == 10) {
-                precisionTxt.innerHTML = "Precision: Max";
+        function changePrecision() {
+            var Val = document.getElementById("Precision").value;
+            var Txt = document.getElementById("PrecisionText");
+            Txt.value = "Precision: Max";
+            precision = Val;
+            Txt.innerHTML = "Precision: " + Val;
+            if (Val == 10) {
+                Txt.innerHTML = "Precision: Max";
             }
             UpdateStuff();
         }
         
+        var Sort = 1;
+        function changeSort() {
+            var Val = document.getElementById("Sort").value;
+            var Txt = document.getElementById("SortText");
+            Sort = Val;
+            var labels = [
+                "Sort: Least DPS",
+                "Sort: Most DPS",
+                "Sort: Least HPS",
+                "Sort: Most HPS",
+                "Sort: Total Damage"
+            ];
+            Txt.innerHTML = labels[Val - 1] ?? "Sort: Least DPS";
+            UpdateStuff();
+        }
+        
+
         function convert(n) {
             if (n === -2.5e238 || precision === 10) return n;
             
@@ -1733,13 +1823,33 @@ a:active {
                 ],
                 {hideSpecial:true}
             ),
+            RoaringKnight: new Item(
+                "Roaring Knight",
+                "Description: ",
+                {
+                    damage: 250000,
+                    cooldown:40,
+                    hits:11,
+                    uses:1
+                },
+                [
+                    {
+                        name:"Aerial",
+                        damage:212500,
+                        cooldown:40,
+                        hits:10,
+                        uses:1,
+                    }
+                ],
+                {AddSpecial:false}
+            ),
             FallenOne: new Item(
                 "Fallen One",
                 "Description: You rise above all and make the sky fall.",
                 {
-                    damage: 510000,
+                    damage: 500000,
                     cooldown:42,
-                    hits:15,
+                    hits:14,
                     uses:1
                 }
             ),
@@ -1855,7 +1965,9 @@ a:active {
                     addText("Base Damage: " + convert(item.original.base.damage*multiplier), DamageDiv);
                 }
                 var totaldmg = item.original.base.damage*multiplier*item.original.base.hits;
-                
+                if (item.name == "Roaring Knight") {
+                    console.log(multiplier);
+                }
                 addText("Hit Damage: " + item.stats.totalHits, DamageDiv);
                 addText("Total Damage: " + convert(totaldmg), DamageDiv);
                 addText("Base DPS: " + convert(totaldmg/(item.original.base.cooldown-subtract)), DPSDiv, item.name);
@@ -1863,9 +1975,9 @@ a:active {
             }
             if (!item.options.hideSpecial) {
                 for (var special of item.original.specials) {
-                    addText(special.name + " Total Damage: " + convert(special.damage*special.hits), DamageDiv);
+                    addText(special.name + " Total Damage: " + convert(special.damage*multiplier*special.hits), DamageDiv);
                     addText(special.name + " Hit Damage: " + special.hits, DamageDiv);
-                    addText(special.name + " DPS: " + convert(special.damage*special.hits/special.cooldown), DPSDiv);
+                    addText(special.name + " DPS: " + convert(special.damage*multiplier*special.hits/special.cooldown), DPSDiv);
                     addText(special.name + " Hit DPS: " + convert(special.hits/special.cooldown), DPSDiv);
                 }
             }
