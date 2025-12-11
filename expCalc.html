@@ -176,6 +176,11 @@ a:active {
     </div>
 
     <script>
+        var configs = {
+            "Volume":100,
+            "Clicker":"Jevil",
+        }
+        configs = JSON.parse(localStorage.getItem("Config"));
         var stats = {
             "tr":false,
             "R":document.getElementById("Resets_old").value,
@@ -224,7 +229,9 @@ a:active {
         }
        
         function UpdateXP() {
-            new Audio("./Sounds/Switch.mp3").play();
+            var a = new Audio("./Sounds/Switch.mp3");
+            a.volume = configs.Volume/100;
+            a.play();
             //update stats
             updateResets(document.getElementById("Resets_old"),"old");
             updateTR("old");
