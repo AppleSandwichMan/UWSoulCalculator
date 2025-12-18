@@ -350,7 +350,7 @@ function UpdateStuff() {
 
 function UpdateSkills() {
     var a = new Audio("./Sounds/Switch.mp3");
-    a.volume = configs.Volume;
+    a.volume = configs.Volume/100;
     a.play();
 
     var Damage = parseInt(document.getElementById("DmgSlider").value);
