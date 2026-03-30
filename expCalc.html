@@ -1,0 +1,388 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+   
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw; /* or whatever fits your layout */
+      cursor: pointer;
+      image-rendering: pixelated; /* makes pixel art stay crisp */
+    }
+   
+    .tab:hover {
+      transform: scale(1.08);
+    }
+    .dpsInput::-webkit-outer-spin-button,
+    .dpsInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    }
+</style>
+
+<style>
+    .slider {
+      appearance: none;
+      width: 80%;
+      height: 2%;
+      background: #ffffff;
+      outline: none;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 13%;
+      height: 175%;
+      background: #ffffff;
+      cursor: pointer;
+    }
+
+</style>
+
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+/* The container */
+.container {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: relative;
+  display: inline-block;
+  vertical-align:middle;
+  width: 2vw;
+  height: 2vw;
+  border: solid white;
+  border-width: 0.5625vh;
+  background-color: black;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #292929;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: white;
+}
+
+</style>
+
+<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none;">
+
+    <script src="./Data/SiteFunctions.js"></script>
+    <p class="Text" style=" font-size:100%; position: absolute; top:-2%;" onclick="window.goBack()">Go Back</p>
+
+    <p class="Text" id="title" style="margin: 2%; text-align:center">XP Calculators</p>
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info:
+        <br>This page holds XP Calculators for XP until reaching __ Stats, how much XP with __ Stats,
+        and with __ XP, what stats would we get.
+        This calculator only considers up to level 6000 per reset.
+    </body>
+    <div style ="height:1%"></div>
+   
+    <p class="Text" style=" font-size:3vw;">Your Stats</p>
+    <div class="Box" id="statChanger" style="margin-top:-3%; position:sticky; top:0%; z-index:997">
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">True Reset:
+            <label class="container">
+                <input type="checkbox" onchange="UpdateXP()" id="TR_old">
+                <span class="checkmark"></span>
+            </label>
+        </h>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Resets:</h><input id="Resets_old" onchange="UpdateXP()" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels_old" onchange="UpdateXP()" class="numinput" type="number" value="1" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
+    </div>
+   
+    <p class="Text" style=" font-size:3vw;">New Stats</p>
+    <div class="Box" id="statChanger" style="margin-top:-3%; position:sticky; top:0%; z-index:997">
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">True Reset:
+            <label class="container">
+                <input type="checkbox" onchange="UpdateXP()" id="TR_new">
+                <span class="checkmark"></span>
+            </label>
+        </h>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Resets:</h><input id="Resets_new" onchange="UpdateXP()" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels_new" onchange="UpdateXP()" class="numinput" type="number" value="1" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
+    </div>
+    <!--exp stuff-->
+    <div class="Box" style="margin-top:5%">
+        <p id="XPNew">XP until Level 1, Reset 0: 0 xp</p>
+        <p id="CurrentXP">Current XP: 0 xp</p>
+    </div>
+
+    <p class="Text" style=" font-size:3vw;">XP to Resets:</p>
+    <div class="Box" id="statChanger" style="margin-top:-3%; position:sticky; top:0%; z-index:997">
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">XP:</h><input id="XP_current" onchange="updateXPtoResets()" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:50%; display:inline-block; font-family:Determination;color:white;"></input>
+    </div>
+
+    <div class="Box" style="margin-top:5%">
+        <p id="NewStats">With 0 XP, a player would have:<br>0 Resets and 1 Level. Without True Reset </p>
+    </div>
+
+    <script src="./Data/Settings.js"></script>
+
+    <script>
+        var config= window.Settings;
+
+        var stats = {
+            "tr":false,
+            "R":document.getElementById("Resets_old").value,
+            "Lv":document.getElementById("Levels_old").value,
+        }
+        var stats_new = {
+            "tr":false,
+            "R":document.getElementById("Resets_new").value,
+            "Lv":document.getElementById("Levels_new").value,
+        }
+        var yourexp = 0, newexp = 0;
+        var XPAt6k = 0;
+        function updateResets(text,version) {
+            var max, min;
+            if (document.getElementById("TR_" + version).checked) {
+                max=Number.MAX_SAFE_INTEGER;
+                min=30;
+            } else {
+                max=30;
+                min=0;
+            }
+            text.value = Math.max(min,Math.min(text.value,max));
+        }
+        function updateTR(version) {
+            var max, min;
+            var R = document.getElementById("Resets_" + version);
+            if (document.getElementById("TR_" + version).checked) {
+                if (R.value < 30) {
+                    R.value = 30;
+                }
+            } else {
+                if (R.value > 30) {
+                    R.value = 30;
+                }
+            }
+        }
+        function updateLevels(text,version) {
+            var max = 6000;
+            var R = document.getElementById("Resets_" + version);
+            if (document.getElementById("TR_" + version).checked) {
+                max=50000;
+            } else {
+                max=6000 + R.value * 50;
+            }
+            text.value = Math.max(1,Math.min(text.value,max));
+        }
+       
+        function UpdateXP() {
+            var a = new Audio("./Sounds/Switch.mp3");
+            a.volume = config.get("volume")/100;
+            a.play();
+            //update stats
+            updateResets(document.getElementById("Resets_old"),"old");
+            updateTR("old");
+            updateLevels(document.getElementById("Levels_old"),"old");
+           
+            updateResets(document.getElementById("Resets_new"),"new");
+            updateTR("new");
+            updateLevels(document.getElementById("Levels_new"),"new");
+            //update exp
+            UpdateStats();
+            UpdateStats_new();
+        }
+       
+        function clamp(val, min, max) {
+            if (val < min) {return min};
+            if (val > max) {return max};
+            return val;
+        }
+        function UpdateStats() {
+            stats = {
+                "tr":document.getElementById("TR_old").checked,
+                "R":document.getElementById("Resets_old").value,
+                "Lv":document.getElementById("Levels_old").value,
+            }
+            //calculate exp
+            yourexp = 0;
+            XPAt6k = 0;
+            if (!stats.tr) {
+                for (var r = 0; r <= stats.R; r++) {
+                    var Lvl = 6000;
+                    if (r == stats.R) Lvl = stats.Lv;
+                    for (var l = 1; l < Lvl; l++) {
+                        yourexp += 25 * l;
+                        if (l < 6000) {
+                            XPAt6k+= 25 * l;
+                        }
+                       
+                    }
+                }
+            } else {
+                yourexp = 13947675000;
+                XPAt6k = 13947675000;
+                for (var r = 0; r <= stats.R-30; r++) {
+                    var Lvl = 6000;
+                    if (r == stats.R-30) Lvl = stats.Lv;
+                    for (var l = 1; l < Lvl; l++) {
+                        yourexp += (50+r)*l;
+                        if (l < 6000) {
+                            XPAt6k += (50+r) * l;
+                        }
+                       
+                    }
+                }
+            }
+           
+            var xp = document.getElementById("CurrentXP")
+            xp.innerHTML = "Current XP: " + window.convert(yourexp) + " xp";
+        }
+        function UpdateStats_new() {
+            stats_new = {
+                "tr":document.getElementById("TR_new").checked,
+                "R":document.getElementById("Resets_new").value,
+                "Lv":document.getElementById("Levels_new").value,
+            }
+            newexp = 0;
+            //calculate exp
+            if (!stats_new.tr) {
+                for (var r = 0; r <= stats_new.R; r++) {
+                    var Lvl = 6000;
+                    if (r == stats_new.R) Lvl = stats_new.Lv;
+                    for (var l = 1; l < Lvl; l++) {
+                        newexp += 25 * l;
+                    }
+                }
+            } else {
+                newexp = 13947675000;
+                for (var r = 0; r <= stats_new.R-30; r++) {
+                    var Lvl = 6000;
+                    if (r == stats_new.R-30) Lvl = stats_new.Lv;
+                    for (var l = 1; l < Lvl; l++) {
+                        newexp += (50+r)*l;
+                    }
+                }
+            }
+           
+            var newXP = 0;
+            if (stats.Lv > 6000 && stats_new.R > stats.R) {
+                newXP = newexp - XPAt6k;
+            } else {
+                newXP = newexp - yourexp;
+            }
+
+            var xp2 = document.getElementById("XPNew");
+            xp2.innerHTML = "XP until Level " + stats_new.Lv +", Reset "+ stats_new.R  + ": " + window.convert(Math.max(0,newXP)) +" xp";
+        }
+        function CalculateStatsFromXP(xpInput) {
+            let xp = parseFloat(xpInput);
+            let stats = {
+                tr: false,
+                R: 0,
+                Lv: 0
+            };
+
+            let totalXP = 0;
+            if (xp == 13947675000) {
+                return {R:30, Lv:1, tr:true};
+            }
+
+            // Phase 1: Normal XP up to 30 resets
+            for (let r = 0; r <= 30; r++) {
+                for (let l = 1; l < 6000; l++) {  // use < 6000 to match original XP calculation
+                    totalXP += 25 * l;
+                    if (totalXP > xp) {
+                        stats.tr = false;
+                        stats.R = r;
+                        stats.Lv = l;
+                        return stats;
+                    }
+                }
+            }
+
+            // Fixed XP from the first 30 resets (each to 6000 levels, stopping before 6000)
+            totalXP = 13947675000;
+            stats.tr = true;
+            
+            for (let r = 0; ; r++) {
+                let R_actual = r + 30;
+                for (let l = 1; l < 6000; l++) {  // again, < 6000 to match the XP calc
+                    totalXP += (50 + r) * l;
+                    if (totalXP > xp) {
+                        stats.R = R_actual;
+                        stats.Lv = l;
+                        return stats;
+                    }
+                }
+            }
+        }
+
+        function updateXPtoResets() {
+            var input = document.getElementById("XP_current");
+            var output = document.getElementById("NewStats");
+
+            var xp = CalculateStatsFromXP(input.value);
+            output.innerHTML = "With " + window.convert(input.value) + " xp, a player would have:<br>" + xp.R + (xp.R == 1 ? " Reset and" : " Resets and ") + xp.Lv + (xp.Lv == 1 ? " Level." : " Levels. ") + (xp.tr ? " With True Reset" : " Without True Reset");
+            
+            var a = new Audio("./Sounds/Switch.mp3");
+            a.volume = config.get("volume")/100;
+            a.play();
+        }
+    </script>
+</html>

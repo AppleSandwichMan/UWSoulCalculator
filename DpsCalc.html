@@ -1,0 +1,1258 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: hidden;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+    .numinput::-webkit-outer-spin-button,
+    .numinput::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        input[type=number] {
+            appearance: textfield;
+        }
+    }
+</style>
+
+<style>
+.container {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  display: inline-block;
+  vertical-align:middle;
+  width: 2vw;
+  height: 2vw;
+  border: solid white;
+  border-width: 0.5625vh;
+  background-color: black;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #292929;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: white;
+}
+
+</style>
+
+<!--WeaponDPS styles-->
+<style>
+    .DPSBox {
+        background-color:#000000;
+        border:solid white;
+        border-width: 0.5625vh 0.5625vh;
+        color:#ffffff;
+        overflow: none;
+        font-family: Determination;
+        position:relative;
+        width:9vw;
+        height:15vw;
+    }
+    .DPSText {
+        color:#ffffff;
+        font-size:0.973684211vw;
+        width:9vw;
+        height:2.5vw;
+        max-height: 80%;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+</style>
+
+<!--Expanded WeaponDPS styles-->
+<style>
+    .EDPSBox {
+        background-color:#000000;
+        border:solid white;
+        border-width: 0.5625vh 0.5625vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+        margin: 2vw;
+        width:85vw;
+    }
+    .EDPSText {
+        color:#ffffff;
+        font-size:0.973684211vw;
+        width:9vw;
+        height:2.5vw;
+        max-height: 80%;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    .EDivs {
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+        margin: 2vw;
+        width:40%;
+    }
+    .ETitle {
+        background-color:#000000;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+        margin: 2vw;
+        width:95%;
+    }
+</style>
+
+<style>
+    .slider {
+      appearance: none;
+      width: 80%;
+      height: 2%;
+      background: #ffffff;
+      outline: none;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 13%;
+      height: 175%;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .dpsInput {
+        font-size:calc(2vw - 2%);
+        border:solid white 0px;
+        background-color:black;
+        position:relative;
+        width:10%;
+        display:inline-block;
+        font-family:Determination;
+        color:white;
+    }
+    .dpsInput::-webkit-outer-spin-button,
+    .dpsInput::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        input[type=number] {
+            appearance: textfield;
+        }
+    }
+</style>
+
+<!--Links-->
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+
+<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none;">
+    <script src="./Data/WeaponData.js"></script>
+    <script src="./Data/Settings.js"></script>
+    <script src="./Data/SiteFunctions.js"></script>
+    
+    <p class="Text" style=" font-size:100%; position: absolute; top:-0.2%" onclick="window.goBack()">Go Back</p>
+    <p class="Text" id="title" style="margin: 2%; text-align:center">Unwavering Soul Calculator</p>
+    <!--Info-->
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="" id="Weapons">Weapon</a>, <a href="" id="EventWeapons">Event Weapon</a> , <a href="" id="Misc">Miscellaneous</a>,  <a href="" id="EventMisc">Event Miscellaneous</a>, <a href="#" id="Other">Other</a>, and <a href="#" id="skillsLink">Skills</a>). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect. Boosts are additive (meaning 2x dmg is actually + 100%)<br></body>
+    
+    <script>
+        //Scroll Feature
+        function giveScroll(id,t) {
+            document.getElementById(id).addEventListener("click", function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: t,
+                    behavior: "smooth"
+                });
+            });
+        }
+        giveScroll("Weapons",600);
+        giveScroll("EventWeapons",5000);
+        giveScroll("Misc",5700);
+        giveScroll("EventMisc",6450);
+        giveScroll("Other",6600);
+        giveScroll("skillsLink",7250);
+        //search feature
+        function filterDPS() {
+            const search = document.getElementById("Search").value.toLowerCase();
+            const boxes = document.querySelectorAll(".DPSBox");
+        
+            boxes.forEach(box => {
+                const img = box.querySelector("img");
+                const secondText = box.querySelectorAll("p")[1]; // 2nd <p> element
+        
+                // Extract image name from src
+                let imgName = "";
+                if (img && img.src) {
+                    const srcParts = img.src.split("/");
+                    imgName = srcParts[srcParts.length - 1].replace(".png", "").toLowerCase();
+                }
+        
+                // Get ID from second <p>
+                let idName = secondText?.id?.toLowerCase() || "";
+        
+                // Check if either matches the search
+                const matches = imgName.includes(search) || idName.includes(search);
+        
+                box.style.display = matches ? "block" : "none";
+            });
+        }
+    </script>
+    
+    <!--Stats-->
+    <div class="Box" id="statChanger" style="margin-top:2%; position:sticky; top:0%; z-index:997">
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white; ">Boss HP:</h><input id="BossHp" onchange="clamp_ish(this, 5000000000)" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:14%; display:inline-block; font-family:Determination;color:white;"></input>
+        <!--<h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Boss Defense:</h><input id="BossDefense" onchange="clamp_ish(this,100)" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:7.5%; display:inline-block; font-family:Determination;color:white;"></input>--><br>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">True Reset:
+            <label class="container">
+                <input type="checkbox" onchange="UpdateStuff()" id="TR">
+                <span class="checkmark"></span>
+            </label>
+        </h>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Resets:</h><input id="Resets" onchange="clamp_ish(this,1000000)" class="dpsInput" type="number" value="0"></input>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white; ">TP:</h><input id="TP" onchange="clamp_ish(this, 100000)" class="dpsInput" type="number" value="0"></input>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels" onchange="clamp_ish(this, 50000,1)" class="dpsInput" type="number" value="1"></input>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;"><br>Attack:</h><input id="Attack" onchange="clamp_ish(this, 50000)" class="dpsInput" type="number" value="0"></input>
+        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Boosts:</h><input id="Boosts" onchange="clamp_ish(this, 300)" class="dpsInput" type="number" value="0">%</input>
+    </div>
+    
+    <p style="margin-top:5%">
+    <input class="dpsInput" id="Search" oninput="filterDPS()" placeholder="Search" style="border:solid white 0.5vw; width:22%;"></input>
+
+    <!--WeaponDPS-->
+    <div class="Box" id="WeaponDPS" style="margin: 3% 0; overflow:auto;  width:97%;"></div>
+    <script>
+        var WeaponDPS = document.getElementById("WeaponDPS");
+        var Resets = parseInt(document.getElementById("Resets").value);
+        var Levels = parseInt(document.getElementById("Levels").value);
+        var TP = parseInt(document.getElementById("TP").value);
+        var tr = 0;
+        if (document.getElementById("TR").checked) {
+            tr = 10000;
+        }
+        
+        var generalDamageAddition = (Resets * 250) + TP + tr;
+        var jokeDMG = -2.5e+238;
+        
+        //settings
+        var precision = config.get("precision");
+        
+        var Sort = 1;
+        function changeSort() {
+            var Val = document.getElementById("Sort").value;
+            var Txt = document.getElementById("SortText");
+            Sort = Val;
+            var labels = [
+                "Sort: Least DPS",
+                "Sort: Most DPS",
+                "Sort: Least HPS",
+                "Sort: Most HPS",
+                "Sort: Total Damage"
+            ];
+            Txt.innerHTML = labels[Val - 1] ?? "Sort: Least DPS";
+            UpdateStuff();
+        }
+        
+        var expandedOpen = false;
+        var openBox;
+        window.onload = function() {
+            document.onclick = function(e){
+                if (e.target.id == "dark background" && openBox.style.visibility == "visible") {
+                    openBox.style.visibility = "hidden";
+                    expandedOpen = false;
+                    darken.style.visibility = "hidden";
+                }
+            }
+        }
+        
+        var darken = document.createElement("div");
+        darken.style.position = "fixed";
+        darken.style.top = "0vh"; darken.style.left = "0vw";
+        darken.style.zIndex = 998; darken.style.backgroundColor = "#000000";
+        darken.style.width = "100vw"; darken.style.height = "100vh";
+        darken.style.visibility = "hidden";
+        darken.style.opacity = 0.5; darken.setAttribute("id","dark background");
+        
+        for (const [key, item] of Object.entries(Items)) {
+            var a = document.createElement("div");
+            a.className = "DPSBox";
+            a.style.position = "relative";
+            a.style.margin = "2%";
+            a.setAttribute("id", item.name);
+            a.style.float = "left";
+            
+            // Add Sound
+            a.addEventListener('mouseenter', () => {
+                var a = new Audio("./Sounds/Hover.mp3");
+                a.volume = config.get("volume")/100;
+                a.play();
+            });
+            
+            var img = document.createElement("img");
+            img.src = "Images/" + item.name.replace(/\s/g, '') + ".png";
+            a.appendChild(img);
+            img.style.width = "80%";
+            img.style.margin = "0 auto";
+            
+            //expanded view
+            var e = document.createElement("div");
+            e.className = "EDPSBox";
+            e.style.position = "fixed";
+            e.style.float = "left";
+            e.style.visibility = "hidden";
+            e.style.zIndex = 999;
+            e.style.top = "15vh";
+            e.setAttribute("id", "Expanded " + item.name);
+            
+            var eTopBar = document.createElement("div");
+            eTopBar.className = "ETitle";
+            eTopBar.style.float = "left";
+            e.appendChild(eTopBar);
+            
+            var eimg = document.createElement("img");
+            eimg.src = "Images/" + item.name.replace(/\s/g, '') + ".png";
+            eimg.style.width = "15%";
+            eimg.style.position = "relative";
+            eimg.style.marginRight = "1%"
+            eimg.style.float = "left";
+            eTopBar.appendChild(eimg);
+            
+            ETitle = document.createElement("p"); ETitle.style.position = "relative";
+            ETitle.style.textAlign = "left";
+            ETitle.style.margin = "0 0 0 0";
+            ETitle.innerText = item.name; ETitle.style.fontSize = "3vw";
+            
+            EDesc = document.createElement("p"); EDesc.style.position = "relative";
+            EDesc.style.textAlign = "left"; EDesc.style.margin = "0 0 0 0";
+            EDesc.innerText = item.description; EDesc.style.fontSize = "1.4vw";
+            
+            TimesUsed = document.createElement("p"); TimesUsed.style.position = "relative";
+            TimesUsed.style.width = "14%";
+            TimesUsed.innerText = (item.stats.uses == 1) ? "Used 1 time": ("Used " + item.stats.uses + " Times"); 
+            TimesUsed.style.fontSize = "1.4vw"; TimesUsed.style.margin = "0 0 0 0";
+            
+            DamageDiv = document.createElement("div"); DamageDiv.style.float = "left";
+            DamageDiv.className = "EDivs";
+            
+            DPSDiv = document.createElement("div");
+            DPSDiv.className = "EDivs"; DPSDiv.style.float = "left";
+            function addText(txt, Push, ID) {
+                Text = document.createElement("p"); Text.style.position = "relative";
+                Text.style.textAlign = "left";
+                Text.innerText = txt; Text.style.fontSize = "2vw";
+                if (ID != undefined) {
+                    Text.setAttribute("id", ID)
+                }
+                Push.appendChild(Text);
+            }
+            if (item.original.base.damage != undefined && item.options.showBase) {
+                if (!item.options.hideDamage) {
+                    addText("Base Damage: " + window.convert(item.original.base.damage), DamageDiv);
+                }
+                addText("Hit Damage: " + item.stats.totalHits, DamageDiv);
+                addText("Total Damage: " + window.convert(item.stats.totalDamage), DamageDiv);
+                addText("Base DPS: " + window.convert(item.stats.DPS), DPSDiv, item.name);
+                addText("Hit DPS: " + window.convert(item.stats.hitDPS), DPSDiv);
+            }
+            if (!item.options.hideSpecial) {
+                for (var special of item.original.specials) {
+                    if (item.options.hideFirstSpecial) {
+                        if (special == item.original.specials[0]) continue; 
+                    }
+                    addText(special.name + " Total Damage: " + window.convert(special.damage*special.hits), DamageDiv);
+                    addText(special.name + " Hit Damage: " + special.hits, DamageDiv);
+                    addText(special.name + " DPS: " + window.convert(special.damage*special.hits/special.cooldown), DPSDiv);
+                    addText(special.name + " Hit DPS: " + window.convert(special.hits/special.cooldown), DPSDiv);
+                }
+            }
+            //divider
+            div = document.createElement("div"); div.style.float = "left";
+            div.style.margin = "2vw";
+            div.style.width = "94%"; div.style.border = "solid white";
+            
+            //Your Stats
+            DamageDiv2 = document.createElement("div"); DamageDiv2.style.float = "left";
+            DamageDiv2.className = "EDivs";
+            
+            DPSDiv2 = document.createElement("div");
+            DPSDiv2.className = "EDivs"; DPSDiv2.style.float = "left";
+            if (item.original.base.damage != undefined) {
+                if (!item.options.hideDamage) {
+                    addText("Your Damage: " + window.convert(item.original.base.damage), DamageDiv2, item.name + " Damage");
+                }
+                addText("Total Damage: " + window.convert(item.stats.totalDamage), DamageDiv2, item.name + " Total Damage");
+                addText("Your DPS: " + window.convert(item.stats.DPS), DPSDiv2, item.name + " DPS");
+            }
+            if (!item.options.hideSpecial) {
+                for (var special of item.original.specials) {
+                    if (item.options.hideFirstSpecial) {
+                        if (special == item.original.specials[0]) continue; 
+                    }
+                    addText(special.name + " Total Damage: " + window.convert(special.damage*special.hits), DamageDiv2, item.name + " " + special.name + " Damage");
+                    addText(special.name + " DPS: " + window.convert(special.damage*special.hits/special.cooldown), DPSDiv2, item.name + " " + special.name + " DPS");
+                }
+            }
+            
+            //elements
+            eTopBar.appendChild(ETitle);
+            eTopBar.appendChild(EDesc);
+            eTopBar.appendChild(TimesUsed);
+            e.appendChild(DamageDiv);
+            e.appendChild(DPSDiv);
+            e.appendChild(div);
+            e.appendChild(DamageDiv2);
+            e.appendChild(DPSDiv2);
+            
+            if (item.name == "Grilled Cheese Sandwich") {
+                EDesc.innerHTML = "Description: ";
+
+                var a1 = document.createElement("a");
+                a1.href = "https://www.youtube.com/watch?v=NfuGKPCPDnw";
+                a1.innerHTML = "Grilled Cheese";
+                EDesc.appendChild(a1);
+                var inbetween = document.createTextNode(" from ");
+                EDesc.appendChild(inbetween);
+                var a2 = document.createElement("a");
+                a2.href = "https://trello.com/c/IOFAclUa/217-deez-eternal-ordeal";
+                a2.innerHTML = "Grilled Cheese Trello";
+                EDesc.appendChild(a2);
+            }
+            if (item.name == "DEEZ BONE SWORD") {
+                EDesc.innerHTML = "Description: ";
+
+                var a1 = document.createElement("a");
+                a1.href = "https://www.youtube.com/watch?v=51_1zQg2k6s";
+                a1.innerHTML = "DEEZ BONE SWORD";
+                EDesc.appendChild(a1);
+                var inbetween = document.createTextNode(" from ");
+                EDesc.appendChild(inbetween);
+                var a2 = document.createElement("a");
+                a2.href = "https://trello.com/c/IOFAclUa/217-deez-eternal-ordeal";
+                a2.innerHTML = "DEEZ BONE SWORD Trello";
+                EDesc.appendChild(a2);
+            }
+            if (item.name == "Lancelot's Gun") {
+                EDesc.innerHTML = "Description: ";
+
+                var a1 = document.createElement("a");
+                a1.href = "https://www.youtube.com/watch?v=51_1zQg2k6s";
+                a1.innerHTML = "Lancelot Gun";
+                EDesc.appendChild(a1);
+                var inbetween = document.createTextNode(" from ");
+                EDesc.appendChild(inbetween);
+                var a2 = document.createElement("a");
+                a2.href = "https://trello.com/c/JogGuFf5/199-lance-unwavering-soul";
+                a2.innerHTML = "Lancelot Gun Trello";
+                EDesc.appendChild(a2);
+            }
+            
+            document.getElementById("HTML").appendChild(darken);
+            a.onclick = function() {
+                if (!expandedOpen) {
+                    document.getElementById("Expanded " + this.id).style.visibility = "visible";
+                    openBox = document.getElementById("Expanded " + this.id); expandedOpen = true;
+                    darken.style.visibility = "visible";
+                    var a = new Audio("./Sounds/Select.mp3");
+                    a.volume = config.get("volume")/100;
+                    a.play();
+                    
+                    var box = document.getElementById("Expanded " + this.id);
+                    
+                    const boxWidth = box.offsetWidth;
+                    const boxHeight = box.offsetHeight;
+                    const scaleX = (window.innerWidth * 0.8) / boxWidth;
+                    const scaleY = (window.innerHeight * 0.8) / boxHeight;
+                    const scale = Math.min(scaleX, scaleY, 1);
+                    box.style.transformOrigin = "top center";
+                    box.style.transform = `scale(${scale})`;
+                    box.style.top = "5%";
+                }
+            }
+            var Base = document.createElement("p");
+            if (item.original.base.damage != undefined) {
+                Base.innerText = "Base DPS: " + window.convert(item.stats.DPS);
+            } else {
+                Base.innerText = "Base DPS: 111.11B";
+            }
+            Base.style.textAlign = "center";
+            Base.className = "DPSText";
+            a.appendChild(Base);
+            
+            var YourDmg = document.createElement("p");
+            YourDmg.setAttribute('id', item.name + " MiniDPS");
+            if (item.original.base.damage != undefined) {
+                YourDmg.innerText = "Your DPS: " + window.convert(item.stats.DPS);
+            } else {
+                YourDmg.innerText = "Your DPS: 111.11B";
+            }
+            YourDmg.style.textAlign = "center";
+            YourDmg.className = "DPSText";
+            a.appendChild(YourDmg);
+            
+            WeaponDPS.appendChild(a);
+            WeaponDPS.appendChild(e);
+        }
+    </script>
+
+    <!--Update Damage-->
+    <script>
+        var Resets = document.getElementById("Resets");
+        var Levels = document.getElementById("Levels");
+        var TP = document.getElementById("TP");
+
+        function clamp_ish(text, max=NaN,min=0) {
+            if (text.value == "") {
+                text.value = 0;
+            }
+            text.value = parseInt(text.value);
+            if (max != NaN) {
+                if (text.value > max) {
+                    text.value = max;
+                } if (text.value < 0) {
+                    text.value = 0;
+                }
+                text.value = Math.max(min,text.value);
+            }
+            
+            UpdateStuff();
+        }
+
+        function clamp(val, min, max) {
+            if (val < min) {return min};
+            if (val > max) {return max};
+            return val;
+        }
+
+        function UpdateStuff() {
+            var R = parseInt(document.getElementById("Resets").value);
+            var L = parseInt(document.getElementById("Levels").value);
+            var tp = parseInt(document.getElementById("TP").value);
+            var tr = 0;
+            var BossHP = parseInt(document.getElementById("BossHp").value);
+            var Boost = parseInt(document.getElementById("Boosts").value);
+            var Attack = parseInt(document.getElementById("Attack").value);
+            if (document.getElementById("TR").checked) {
+                tr = 10000;
+            }
+            var generalDamageAddition = (R * 250) + tp + tr + 100*Attack;
+            for (var itemID in window.Items) {
+                var item = window.Items[itemID]
+
+                item.New.base.damage = (item.original.base.damage + generalDamageAddition)*(Boost/100 + 1);
+                
+                if (item.name != "Grilled Cheese Sandwich" && item.name != "DEEZ BONE SWORD" && item.name != "Lancelot's Gun") {
+                    item.calculateStats();
+                    item.updateElements();
+                }
+            }
+            //Update specific stuff that has slightly different buffs or is just completely unique
+            
+            function UpdateSpecialItem(Name, Damage, Special, SDamage) {
+                if (Damage != null) {
+                    window.Items[Name].New.base.damage = Damage*(Boost/100 + 1);
+                }
+                if (Special != null) {
+                    window.Items[Name].New.specials[Special].damage = SDamage*(Boost/100 + 1);
+                }
+                window.Items[Name].calculateStats();
+                window.Items[Name].updateElements();
+            }
+            {
+                UpdateSpecialItem("BraveryGauntlets",
+                    50000 + clamp(L,0,10000)*20 + tp*2 + R*500 + tr*2 + 100*Attack,
+                    0,
+                    50000+ clamp(L,0,10000)*20 + tp*2 + R*500 + tr*2 + 100*Attack,
+                );
+                
+                UpdateSpecialItem("Chompy",
+                    (325000+generalDamageAddition+tr*19)*1.125,
+                    0,
+                    (325000+generalDamageAddition+tr*19),
+                );
+                
+                UpdateSpecialItem("BerdlysMagic",
+                    150000+((R * 250) + tp*1.25 + tr) + 100*Attack,
+                    0,
+                    50000+(R*50)+(0.14*tp)+(tr/10) + 100*Attack
+                );
+                
+                UpdateSpecialItem("KingsSword",
+                    240000 + generalDamageAddition,
+                    0,
+                    240000 + generalDamageAddition
+                );
+                
+                UpdateSpecialItem("Pizza",
+                    225000+generalDamageAddition,
+                    0,
+                    180000+generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("KillerKnife",
+                    115000+generalDamageAddition,
+                    0,
+                    115000+generalDamageAddition,
+                );
+
+                UpdateSpecialItem("CODEKillerKnife",
+                    180000+generalDamageAddition,
+                    0,
+                    180000+generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("LegionHammer",
+                    150000+generalDamageAddition,
+                    0,
+                    150000+generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("Rose",
+                    225000+generalDamageAddition,
+                    0,
+                    225000+generalDamageAddition,
+                );
+                UpdateSpecialItem("CODERose",
+                    390000+generalDamageAddition,
+                    0,
+                    390000+generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("EndoHead",
+                    525000 + (tp + tr*2.5 + 250*R) + 100*Attack,
+                );
+                UpdateSpecialItem("BlackShard", null,
+                    0, (300000+generalDamageAddition) * (tr == 0? (5 + 1/3) : (10 + 1/3))
+                );
+                
+                UpdateSpecialItem("EpicEye",
+                    45000+(0.3*tp)+(200*R) + 100*Attack,
+                );
+                
+                UpdateSpecialItem("AllBreaking",
+                    15*(400000+generalDamageAddition)/2
+                );
+                
+                var d1 = 350000 + tp*2 + R*500 + tr + (tr > 0 ? Math.min(0.01*BossHP,350000) : 0) + 100*Attack;
+                var d2 = 175000 + tp*2 + R*500 + tr + (tr > 0 ? Math.min(0.01*BossHP,175000) : 0) + 100*Attack;
+                UpdateSpecialItem("JusticeHammer", null,
+                    0,
+                    (d1 + d2*3 ) / 4
+                );
+                UpdateSpecialItem("JusticeHammer", null,
+                    1,
+                    700000+tp*2+R*500+tr+(tr>0 ? Math.min(0.01*BossHP,700000) : 0)
+                );
+                
+                UpdateSpecialItem("BraveryGauntletsUpgraded",
+                    83000 + clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2 + 100*Attack,
+                    0,
+                    83000 + clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2 + 100*Attack,
+                );
+
+                UpdateSpecialItem("HorrorAxe",
+                    null,
+                    0,
+                    25000 + tp*0.05 + R*12.5 + tr/20 + 100*Attack
+                );
+
+                UpdateSpecialItem("Pyrokinesis",
+                    250000+generalDamageAddition,
+                    0,
+                    750000+generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("StringMaster",
+                    600000+generalDamageAddition,
+                    0,
+                    25000 + tr*0.5 + R*125 + tp*0.4 + 100*Attack,
+                );
+                
+                UpdateSpecialItem("TheVoid",
+                    766666 + generalDamageAddition,
+                    0,
+                    766666 + 375*R + tp + 100*Attack,
+                );
+                
+                UpdateSpecialItem("SansBoneSword",
+                    60 + clamp(L,0,6000)*20 + generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("ErrorSansBoneSword",
+                    160 + clamp(L,0,6000)*25 + generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("SoulBlaster",
+                    2000 + clamp(L,0,6000)*42 + generalDamageAddition,
+                );
+                
+                if (L <= 6000) {
+                    var baseDamage = L*50 + 200000+generalDamageAddition;
+                    UpdateSpecialItem("Doombringer",
+                        baseDamage,
+                        0,
+                        baseDamage*1.2,
+                    );
+                    UpdateSpecialItem("Doombringer",
+                        null,
+                        1,
+                        baseDamage*12.9/18,
+                    );
+                } else {
+                    var baseDamage = (L-6000)*50/4.5 + 500000+generalDamageAddition;
+                    UpdateSpecialItem("Doombringer",
+                        baseDamage,
+                        0,
+                        baseDamage*1.2,
+                    );
+                    UpdateSpecialItem("Doombringer",
+                        null,
+                        1,
+                        baseDamage*12.9/18,
+                    );
+                }
+                
+                var damage = 15000+250*R+tp+L*14+tr  +  15000+250*R+tp*1.3+L*12.5+tr  +  15000+250*R+tp+L*12.5+tr*10 + 300*Attack;
+                UpdateSpecialItem("AncientPumpblade",
+                    (damage)/3,
+                    0,
+                    (damage+ (15000+ 29*L + tp + 250*R + tr) )/4
+                );
+                UpdateSpecialItem("AncientPumpblade",
+                    null,
+                    1,
+                    (damage+ (10000 + 19*L + tp + 250*R + 50*tr) )/4
+                );
+                UpdateSpecialItem("AncientPumpblade",
+                    null,
+                    2,
+                    (damage+ (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
+                );
+
+                UpdateSpecialItem("DarkPumpblade",
+                    (damage)/3,
+                    0,
+                    (damage+ (15000+ 29*L + tp + 250*R + tr) )/4
+                );
+                UpdateSpecialItem("DarkPumpblade",
+                    null,
+                    1,
+                    (damage+ (10000 + 19*L + tp + 250*R + 50*tr) )/4
+                );
+                UpdateSpecialItem("DarkPumpblade",
+                    null,
+                    2,
+                    (damage+ (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
+                );
+                
+                
+                UpdateSpecialItem("SteelFrost",
+                    (1500 + clamp(30*L,0,30000) + clamp(7500*R,0,300000) + tp/2 + tr/(50/9)) + 100*Attack,
+                    0,
+                    (1500 + clamp(30*L,0,30000) + clamp(7500*R,0,300000) + tp/2 + tr/(50/9)) + 100*Attack,
+                );
+                
+                UpdateSpecialItem("ChillingBlade",
+                    3000 + clamp(100*L,0,100000) + clamp(15000*R,0,600000) + tp/2 + tr/(100/33) + 100*Attack,
+                    0,
+                    3000 + clamp(100*L,0,100000) + clamp(15000*R,0,600000) + tp/2 + tr/(100/33) + 100*Attack,
+                );
+                UpdateSpecialItem("MokeySword",
+                    null, 0,
+                    350000 + 0.0125*BossHP + 1.2*tp + 300*R + 50*tr
+                );
+
+                UpdateSpecialItem("RiftEssence",
+                    225000 + tp*0.33 + R*2500 + tr*22.5 + 100*Attack,
+                    0,
+                    225000 + tp*0.33 + R*2500 + tr*22.5 + 100*Attack
+                );
+                UpdateSpecialItem("RiftEssence",
+                    null,
+                    1,
+                    500000 + R*250 + tp + tr*50 + 100*Attack
+                );
+                UpdateSpecialItem("RiftEssence",
+                    null,
+                    2,
+                    90000 + tr*9 + R * 1500 + tp * 0.25 + 100*Attack
+                );
+                
+                UpdateSpecialItem("Bike",
+                    43750 + tp*0.05 + R*150 + tr/2 + 100*Attack,
+                );
+                UpdateSpecialItem("Bubble",
+                    4000000 + tr*300 + R*5000 + tp*5 + 100*Attack,
+                );
+                UpdateSpecialItem("BearTrap",
+                    250000 + tp*0.5 + R*50 + tr*10 + 100*Attack,
+                );
+                
+                UpdateSpecialItem("Maskv1",
+                    1400000 + R * (206503/590) + tp * (137/118) + tr*9.099984746 + 100*Attack,
+                );
+                
+                UpdateSpecialItem("Maskv2",
+                    (700000+(tr*15)+(R*250 + tp*0.625) + 100*Attack) * 10.15/9,
+                );
+                
+                UpdateSpecialItem("Banana",
+                    1000000+generalDamageAddition + Math.min(2000000,BossHP*0.015),
+                );
+            
+                UpdateSpecialItem("CoolSkull",
+                    300000 + tr*20 + R*125 + tp*0.5 + 100*Attack,
+                );
+                
+                //check all hits of pocket core
+                {
+                    var d = 0;
+                    var b = Math.floor(366667+tp+375*R) + 100*Attack
+                    if (tr == 10000) {
+                        for (var i = 1; i <= 119; i++) {
+                            if (i < 100) {
+                                d +=  b * (Math.min(i, 100)/100);
+                            } else {
+                                d += b*1.25;
+                            }
+                        }
+                    } else {
+                        for (var i = 1; i <= 119; i++) {
+                            d += b * (Math.min(i,100)/100);
+                        }
+                    }
+                    UpdateSpecialItem("PocketCore",
+                        d/119,
+                    );
+                }
+                
+                UpdateSpecialItem("HackingPhone",
+                    366666+R*375+tp + 100*Attack,
+                );
+                UpdateSpecialItem("DeathBeam",
+                    125000+6.25*tr+tp+250*R + 100*Attack,
+                );
+                
+                UpdateSpecialItem("SanssHat",
+                    7500+ tp*0.11315 + R*50+tr/2 + 100*Attack,
+                );
+                
+                // FIX THIS, IT IS WRONG DAMAGE
+                UpdateSpecialItem("HeadThrow",
+                    ((tr*50 + R*25000 + L*100 + tp*76.225 + 100)/10 * 3) + generalDamageAddition,
+                );
+                
+                UpdateSpecialItem("FlamingStallion",
+                    100000 + tp*0.125 + R*175 + tr*4/3 + 100*Attack,
+                );
+                
+                UpdateSpecialItem("SantasBag",
+                    clamp(120*L,0,1200000) + tp*0.5 + clamp(R*1500,0,15000) + 100*Attack,
+                );
+                
+                UpdateSpecialItem("Reindeer",
+                    50000 + tp*0.1 + R*200 + tr*3.75 + 100*Attack,
+                );
+
+                UpdateSpecialItem("Firecracker",
+                    25000+0.9*tp+500*R+50*tr,
+                    0,
+                    25000+0.18*tp+250*R+10*tr,
+                );
+                
+                UpdateSpecialItem("WintersCurse",
+                    (200000 + clamp(L*150,0,999900) + tp/2)*2 + 100*Attack,
+                );
+                UpdateSpecialItem("ShockBand",
+                    500000 + tp*1.5 + R*250 + tr*50 + 100*Attack,
+                );
+            }
+            
+            UpdateSkills();
+        }
+
+        function UpdateSkills() {
+            var a = new Audio("./Sounds/Switch.mp3");
+            a.volume = config.get("volume")/100;
+            a.play();
+
+            var Damage = parseInt(document.getElementById("DmgSlider").value);
+            var Reload = parseInt(document.getElementById("ReloadSlider").value);
+            var R = parseInt(document.getElementById("Resets").value);
+            var L = parseInt(document.getElementById("Levels").value);
+            var tp = parseInt(document.getElementById("TP").value);
+            var tr = 0;
+            var Boost = parseInt(document.getElementById("Boosts").value);
+            var BossHP = parseInt(document.getElementById("BossHp").value);
+            var Attack = parseInt(document.getElementById("Attack").value);
+            if (document.getElementById("TR").checked) {
+                tr = 10000;
+            }
+            
+            var generalDamageAddition = tp + tr + 250*R + 100*Attack;
+            
+            //fix some stuff
+            if (Damage == 7) {
+                Damage = 11;
+            }
+            
+            function updateSkill(skill) {
+                skill.calculateStats();
+                skill.updateElements();
+            }
+            
+            for (var skillID in Skills) {
+                var skill = Skills[skillID];
+                skill.New.base.damage = ((skill.original.base.damage)*(1 + Damage/10) + generalDamageAddition)*(Boost/100 + 1);
+                skill.New.base.cooldown = (skill.original.base.cooldown-Reload);
+                for (var idx = 0; idx < skill.New.specials.length; idx++) {
+                    skill.New.specials[idx].damage = (skill.original.specials[idx].damage * (1 + Damage/10))*(Boost/100 + 1);
+                    skill.New.specials[idx].cooldown = (skill.original.specials[idx].cooldown-Reload);
+                }                    
+                updateSkill(skill);
+            }
+            
+            //manual calculations
+            //gerson
+            Skills.Gerson.New.base.damage = ( ( 250000 + ( (tr > 0) ? Math.min(BossHP*0.01,250000) : 0) ) * (1+Damage/10) + 500*R + 2*tp + tr + 100*Attack) * (Boost/100 + 1);
+            Skills.Gerson.New.specials[0].damage = Skills.Gerson.New.base.damage + 125000 * (1+Damage/10) + (42 * 6250 * (1+Damage/10))/2;
+            Skills.Gerson.New.specials[1].damage = (( 700000 + ( (tr > 0) ? Math.min(BossHP*0.01,700000) : 0) ) * (1+Damage/10) + 500*R + 2*tp + tr + 100*Attack) * (Boost/100 + 1);
+            updateSkill(Skills.Gerson);
+
+            //asgore
+            Skills.Asgore.New.specials[0].damage = ((100000 * (1 + Damage/10) + 0.2*tp + 50*R + tr/5 + 100*Attack))*(Boost/100 + 1);
+            Skills.Asgore.New.specials[1].damage = (((100000 * (1 + Damage/10) + 0.2*tp + 50*R + tr/5 + 100*Attack) * 1.9)*(Boost/100 + 1))*6;
+            console.log(Skills.Asgore.New.specials[1].damage);
+            Skills.Asgore.New.specials[1].damage += (500000 * (1 + Damage/10) + tp + tr + 250*R) * (Boost/100 + 1); Skills.Asgore.New.specials[1].damage /= 6;
+            updateSkill(Skills.Asgore);
+            
+            //fallen one
+            Skills.FallenOne.New.base.damage = (500000 + 375*R + Math.min(0.33 * BossHP,500000) + tp + 100*Attack)*(Boost/100 + 1);
+            updateSkill(Skills.FallenOne);
+
+            if (BossHP > 80000000) {
+                if (tr > 0) {
+                    BossHP = 80000000;
+                } else {
+                    BossHP = 40000000;
+                }
+            }
+            //betty
+            Skills.Betty.New.base.damage = (300000*(1 + Damage/10) + (R*250+tp+tr+BossHP*0.05) + 100*Attack)*(Boost/100 + 1);
+            updateSkill(Skills.Betty);
+            
+            //gaster
+            Skills.Gaster.New.base.damage = (100000 * (1 + Damage/10) + generalDamageAddition)*(Boost/100 + 1);
+            Skills.Gaster.New.specials[0].damage = Skills.Gaster.New.base.damage*2;
+            updateSkill(Skills.Gaster);
+
+            //Roaring Knight
+            var RKDmg = (250000*(1 + Damage/10) + 375*R + tp/10 + tr + 100 * Attack) * (Boost/100 + 1)
+            Skills.RoaringKnight.New.base.damage = RKDmg ;
+            Skills.RoaringKnight.New.specials[0].damage = RKDmg * 0.85;
+            updateSkill(Skills.RoaringKnight);
+        }
+    </script>
+
+    <!--Skill container-->
+    <div class="Box" id="SkillDPS" style="margin: 3% 0; overflow:auto; width:58%; float:left"></div>
+    <div class="Box" id="SkillStats" style="margin: 3% 0; overflow:auto; width:25%; float:left; position:sticky; top:10%"></div>
+
+    <script>
+        function UpdateSliders() {
+            if (DmgSlider.value >= 7) {
+                DmgSlider.value = 11;
+                Dmg.innerText = "Damage: 11";
+            } else {
+                Dmg.innerText = "Damage: " + DmgSlider.value;
+            }
+            Reload.innerText = "Reload: " + ReloadSlider.value;
+        }
+        
+        var s = document.getElementById("SkillStats");
+        var title = document.createElement("p"); title.style.position = "relative";
+        title.style.top = "-20%"; title.style.left = "0%"; title.style.textAlign = "left";
+        title.innerText = "Skill Stats:"; title.style.fontSize = "4vw";
+        title.style.marginTop = "1%"; title.style.marginBottom = "2%";
+        
+        var divDmg = document.createElement("div"); divDmg.style.width = "40%"; divDmg.style.marginBottom = "3%";
+        var divReload = document.createElement("div"); divReload.style.width = "40%";
+        
+        var Dmg = document.createElement("p"); Dmg.style.position = "relative"; 
+        Dmg.style.top = "-2%"; Dmg.style.textAlign = "left"; Dmg.style.width = "100%";
+        Dmg.innerText = "Damage: 1"; Dmg.style.fontSize = "2vw"; Dmg.style.marginLeft = "2%";
+        divDmg.appendChild(Dmg);
+        
+        var DmgSlider = document.createElement('input'); DmgSlider.style.marginBottom = "2%";
+        DmgSlider.id = "DmgSlider"; DmgSlider.type = 'range'; DmgSlider.className = "slider"
+        DmgSlider.min = 1; DmgSlider.max = 7; DmgSlider.value = 1; DmgSlider.style.position = "relative";
+        DmgSlider.style.top = "0%"; DmgSlider.style.left = "-7.5%";
+        DmgSlider.onChange = onchange = function() { UpdateSliders(); UpdateSkills(); };
+        divDmg.appendChild(DmgSlider); 
+        
+        var Reload = document.createElement("p"); Reload.style.position = "relative";
+        Reload.style.top = "-2%"; Reload.style.textAlign = "left"; Reload.style.width = "100%";
+        Reload.innerText = "Reload: 1"; Reload.style.fontSize = "2vw"; Reload.style.marginLeft = "2%";
+        divReload.appendChild(Reload);
+        
+        var ReloadSlider = document.createElement('input'); ReloadSlider.style.marginBottom = "2%";
+        ReloadSlider.id = "ReloadSlider"; ReloadSlider.type = 'range'; ReloadSlider.className = "slider"
+        ReloadSlider.min = 1; ReloadSlider.max = 6; ReloadSlider.value = 1;
+        ReloadSlider.style.position = "relative"; ReloadSlider.style.left = "-7.5%";
+        ReloadSlider.onChange = onchange = function() { UpdateSliders(); UpdateSkills(); };
+        divReload.appendChild(ReloadSlider);
+        
+        divDmg.overflow = "hidden";
+        divDmg.style.float = "left";
+        divReload.overflow = "hidden";
+        divReload.style.float = "left";
+        
+        s.appendChild(title);
+        s.appendChild(divDmg);
+        s.appendChild(divReload);
+        
+    </script>
+
+    <!--Update Skills-->
+    <script>
+        var SkillDPS = document.getElementById("SkillDPS");
+        SkillDPS.style.overflow = "hidden";
+
+        for (const [key, item] of Object.entries(Skills)) {
+            var b = document.createElement("div"); b.setAttribute("id",item.name);
+            b.style.width = "100%"; b.style.margin = "3% auto 3% 3%"
+            b.style.height = "auto"; b.style.position = "relative"; b.style.left = "-15%";
+            
+            b.addEventListener('mouseenter', () => {
+                var a = new Audio("Sounds/Hover.mp3");
+                a.volume = config.get("volume")/100;
+                a.play();
+            });
+            
+            var img = document.createElement("img");
+            img.src = "Images/" + item.name.replace(/\s/g, '') + ".png";
+            b.appendChild(img);
+            img.style.width = "15%";
+            img.style.left = "-20%"; img.style.position = "relative";
+            img.style.margin = "0 auto";
+            
+            //expanded view
+            var eS = document.createElement("div");
+            eS.className = "EDPSBox";
+            eS.style.position = "fixed";
+            eS.style.float = "left";
+            eS.style.visibility = "hidden";
+            eS.style.zIndex = 999;
+            eS.style.top = "15vh";
+            eS.setAttribute("id", "Expanded " + item.name);
+            
+            var eSTopBar = document.createElement("div");
+            eSTopBar.className = "ETitle";
+            eSTopBar.style.float = "left";
+            eS.appendChild(eSTopBar);
+            
+            var eSimg = document.createElement("img");
+            eSimg.src = "Images/" + item.name.replace(/\s/g, '') + ".png";
+            eSimg.style.width = "15%";
+            eSimg.style.position = "relative";
+            eSimg.style.marginRight = "1%"
+            eSimg.style.float = "left";
+            eSTopBar.appendChild(eSimg);
+            
+            ESTitle = document.createElement("p"); ESTitle.style.position = "relative";
+            ESTitle.style.textAlign = "left";
+            ESTitle.style.margin = "0 0 0 0";
+            ESTitle.innerText = item.name; ESTitle.style.fontSize = "3vw";
+            
+            ESDesc = document.createElement("p"); ESDesc.style.position = "relative";
+            ESDesc.style.textAlign = "left"; ESDesc.style.margin = "0 0 0 0";
+            ESDesc.innerText = item.description; ESDesc.style.fontSize = "1.4vw";
+            
+            STimesUsed = document.createElement("p"); STimesUsed.style.position = "relative";
+            STimesUsed.style.width = "14%";
+            STimesUsed.innerText = (item.stats.uses == 1) ? "Used 1 time": ("Used " + item.stats.uses + " Times"); 
+            STimesUsed.style.fontSize = "1.4vw"; STimesUsed.style.margin = "0 0 0 0";
+            
+            //DAMAGE
+            DamageDiv = document.createElement("div"); DamageDiv.style.float = "left";
+            DamageDiv.className = "EDivs";
+            
+            DPSDiv = document.createElement("div");
+            DPSDiv.className = "EDivs"; DPSDiv.style.float = "left";
+
+            var subtract = 1;
+            var multiplier = 1.1;
+            if (item.name == "Fallen One") {
+                subtract = 0;
+                multiplier = 1;
+            }
+            
+            item.New.base.damage = ((item.original.base.damage)*multiplier + generalDamageAddition);
+            item.New.base.cooldown = (item.original.base.cooldown-subtract);
+            for (var idx = 0; idx < item.New.specials.length; idx++) {
+                item.New.specials[idx].damage = (item.original.specials[idx].damage * multiplier);
+                item.New.specials[idx].cooldown = (item.original.specials[idx].cooldown-subtract);
+            }                    
+            item.calculateStats();
+            function addText(txt, Push, ID) {
+                Text = document.createElement("p"); Text.style.position = "relative";
+                Text.style.textAlign = "left";
+                Text.innerText = txt; Text.style.fontSize = "2vw";
+                if (ID != undefined) {
+                    Text.setAttribute("id", ID);
+                }
+                Push.appendChild(Text);
+            }
+            if (item.original.base.damage != undefined) {
+                if (!item.options.hideDamage) {
+                    addText("Base Damage: " + window.convert(item.original.base.damage*multiplier), DamageDiv);
+                }
+                addText("Hit Damage: " + item.stats.totalHits, DamageDiv);
+                addText("Total Damage: " + window.convert(item.stats.totalDamage), DamageDiv);
+                addText("Base DPS: " + window.convert(item.stats.DPS), DPSDiv, item.name);
+                addText("Hit DPS: " + window.convert(item.stats.hitDPS), DPSDiv);
+            }
+            if (!item.options.hideSpecial) {
+                for (var special of item.original.specials) {
+                    if (item.options.hideFirstSpecial) {
+                        if (special == item.original.specials[0]) continue; 
+                    }
+                    var ability = item.stats.specials[special.name];
+                    addText(special.name + " Total Damage: " + window.convert(ability.totalDamage), DamageDiv);
+                    addText(special.name + " Hit Damage: " + ability.hits, DamageDiv);
+                    addText(special.name + " DPS: " + window.convert(ability.DPS), DPSDiv);
+                    addText(special.name + " Hit DPS: " + window.convert(ability.hitDPS), DPSDiv);
+                }
+            }
+            
+            //divider
+            div = document.createElement("div"); div.style.float = "left";
+            div.style.margin = "2vw";
+            div.style.width = "94%"; div.style.border = "solid white";
+            
+            //Your Stats
+            var special = item.original.specials[0];
+            var totaldmg = (item.original.base.damage)*multiplier*item.original.base.hits + (special ? (item.stats.specials[special.name].damage * multiplier * item.stats.specials[special.name].hits) : 0);
+            DamageDiv2 = document.createElement("div"); DamageDiv2.style.float = "left";
+            DamageDiv2.className = "EDivs";
+
+            DPSDiv2 = document.createElement("div");
+            DPSDiv2.className = "EDivs"; DPSDiv2.style.float = "left";
+            if (item.original.base.damage != undefined) {
+                console.log(item.stats)
+                if (!item.options.hideDamage) {
+                    addText("Your Damage: " + window.convert(item.original.base.damage*multiplier), DamageDiv2, item.name + " Damage");
+                }
+                addText("Total Damage: " + window.convert(item.stats.totalDamage), DamageDiv2, item.name + " Total Damage");
+                addText("Your DPS: " + window.convert(item.stats.DPS), DPSDiv2, item.name + " DPS");
+            }
+            if (!item.options.hideSpecial) {
+                for (var special of item.original.specials) {
+                    if (item.options.hideFirstSpecial) {
+                        if (special == item.original.specials[0]) continue; 
+                    }
+                    var ability = item.stats.specials[special.name];
+                    addText(special.name + " Total Damage: " + window.convert(ability.totalDamage), DamageDiv2, item.name + " " + special.name + " Damage");
+                    addText(special.name + " DPS: " + window.convert(ability.DPS), DPSDiv2, item.name + " " + special.name + " DPS");
+                }
+            }
+            
+            //elements
+            eSTopBar.appendChild(ESTitle);
+            eSTopBar.appendChild(ESDesc);
+            eSTopBar.appendChild(STimesUsed);
+            eS.appendChild(DamageDiv);
+            eS.appendChild(DPSDiv);
+            eS.appendChild(div);
+            eS.appendChild(DamageDiv2);
+            eS.appendChild(DPSDiv2);
+            
+            b.onclick = function() {
+                if (!expandedOpen) {
+                    document.getElementById("Expanded " + this.id).style.visibility = "visible";
+                    openBox = document.getElementById("Expanded " + this.id); expandedOpen = true;
+                    darken.style.visibility = "visible";
+                    var a = new Audio("Sounds/Select.mp3");
+                    a.volume = config.get("volume")/100;
+                    a.play();
+                    
+                    var box = document.getElementById("Expanded " + this.id);
+                    
+                    const boxWidth = box.offsetWidth;
+                    const boxHeight = box.offsetHeight;
+                    const scaleX = (window.innerWidth * 0.8) / boxWidth;
+                    const scaleY = (window.innerHeight * 0.8) / boxHeight;
+                    const scale = Math.min(scaleX, scaleY, 1);
+                    box.style.transformOrigin = "top center";
+                    box.style.transform = `scale(${scale})`;
+                    box.style.top = "5%";
+                }
+            }
+            
+            var bDPS = document.createElement("p"); bDPS.style.position = "absolute";
+            bDPS.style.top = "-5%"; bDPS.style.left = "45%"; bDPS.style.textAlign = "left";
+            bDPS.innerText = "Base DPS: " + window.convert(item.stats.DPS); bDPS.style.fontSize = "2vw";
+            b.appendChild(bDPS);
+            
+            var yDPS = document.createElement("p"); yDPS.style.position = "absolute"; yDPS.setAttribute('id', item.name + " MiniDPS");
+            yDPS.style.top = "25%"; yDPS.style.left = "45%"; yDPS.style.textAlign = "left";
+            yDPS.innerText = "Your DPS: " + window.convert(item.stats.DPS); yDPS.style.fontSize = "2vw"; yDPS.style.width = "70%";
+            b.appendChild(yDPS);
+            
+            SkillDPS.appendChild(b);
+            SkillDPS.appendChild(eS);
+        }
+    </script>
+</html>

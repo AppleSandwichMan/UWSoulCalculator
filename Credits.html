@@ -1,0 +1,118 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+    
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw;
+      position:relative;
+      margin: 5% 0 5% 16.5%;
+      cursor: pointer;
+      border:solid white;
+      border-width:1vw;
+      text-align:center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    
+    .tab:hover {
+      transform: scale(1.08);
+      border-color:#fcf403;
+      border-width:1vw;
+    }
+    .TabText {
+        color:white;
+        position:absolute;
+        z-index:2;
+        font-size:4vw;
+        text-shadow:
+            -1px -1px 0 black,
+             1px -1px 0 black,
+            -1px  1px 0 black,
+             1px  1px 0 black,
+             0px -1px 0 black,
+             0px  1px 0 black,
+            -1px  0px 0 black,
+             1px  0px 0 black;
+    }
+    .tab:hover .TabText {
+        color:#fcf403;
+    }
+</style>
+
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+<html class="Box">
+    <script src="./Data/Settings.js"></script>
+    <script src="./Data/SiteFunctions.js"></script>
+    <p class="Text" id="title" style="margin-bottom: 5%; text-align:center;">Credits</p>
+    <p class="Text" style=" font-size:100%; position: absolute; top:0%; margin-top:0%;" onclick="window.goBack()">Go Back</p>
+
+    <body class="Text" style="text-align: center; font-size:2vw; margin-bottom:2rem;">
+        Programmer: AppleSWMan
+        <br>
+        <br>
+        Ideas:<br>
+        RyderTheSansEnjoyer: Future XP calculator features<br>
+        blockvinclam: Early DPS Calculator Formatting tips<br>
+        Denisdom10arthur: Search Feature & Rounding Precision<br>
+        pikachutrollman: Added admin weapons
+        <br>
+        <br>
+        Math People (found equations for items):<br>
+        AppleSWMan
+        <br>
+        <br>
+        Item Testers:<br>
+        AppleSWMan (stuff)<br>
+        wattsop (Fallen One & Head Throw testing)<br>
+        RyderTheSansEnjoyer (general testing)<br>
+        ClassicRober (roaring knight skill testing)<br>
+        djsjdhdh29 (roaring knight skill testing)<br>
+        nicedaytd (gerson skill testing)<br>
+    </body>
+
+</html>

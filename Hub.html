@@ -1,0 +1,183 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+    
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw;
+      position:relative;
+      margin: 5% 0 5% 16.5%;
+      cursor: pointer;
+      border:solid white;
+      border-width:1vw;
+      text-align:center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    
+    .tab:hover {
+      transform: scale(1.08);
+      border-color:#fcf403;
+      border-width:1vw;
+    }
+    .TabText {
+        color:white;
+        position:absolute;
+        z-index:2;
+        font-size:4vw;
+        text-shadow:
+            -1px -1px 0 black,
+             1px -1px 0 black,
+            -1px  1px 0 black,
+             1px  1px 0 black,
+             0px -1px 0 black,
+             0px  1px 0 black,
+            -1px  0px 0 black,
+             1px  0px 0 black;
+    }
+    .tab:hover .TabText {
+        color:#fcf403;
+    }
+</style>
+
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+
+<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none;">
+    <!--CLICKER-->
+    <img src="./Clickers/Jevil.png" id="ClickerElm" position="absolute" style="top:0;left:0;width:6%;"/>
+
+    <script src="./Data/Settings.js"></script>
+    
+    <script>
+        var config = window.Settings;
+        var sounds = {
+            "Jevil":3,
+            "Spamton":2,
+            "Eram":3,
+            "Gerson":2,
+            "King":2,
+            "Queen":7,
+            "Tenna":8,
+            "Titan":2,
+            "Roaring Knight":4,
+        }
+        document.getElementById("ClickerElm").src = "./Clickers/" + config.get("clicker") + ".png";
+        document.getElementById("ClickerElm").onclick = function() {
+            var audio;
+            var pick = Math.floor(Math.random() * sounds[config.get("clicker")] + 1);
+            audio = new Audio("./Sounds/" + (config.get("clicker")) + (pick) + ".mp3");
+            audio.volume = config.get("volume")/100;
+            audio.play();
+        }
+    </script>
+    <!--CLICKER-->
+    <p class="Text" id="title" style="margin: 2%; text-align:center">AppleSW's Unwavering Soul Calculators</p>
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>This site contains calculators I've made for Unwavering Soul. I update the website periodically and will ping people in my discord for updates, or at the bottom you can check out the changelog.</body>
+    <div style ="height:5%"></div>
+    <!--DPS Calculator-->
+    <div class="tab" onclick="clickTab('DpsCalc')">
+        <p class="TabText" >DPS Calculator</p>
+        <img src="./HubImages/DPSCalc.png" style="width:100%">
+    </div>
+    <!--XP Calculator-->
+    <div class="tab" onclick="clickTab('expCalc')">
+        <p class="TabText" >XP Calculator</p>
+        <img src="./HubImages/expCalc.png" style="width:100%">
+    </div>
+    <!--Amalgamate Calculator-->
+    <div class="tab" onclick="clickTab('AmalgamationMachineCalc')">
+        <p class="TabText" >Amalgamation Calculator</p>
+        <img src="./HubImages/AmalgamateCalc.png" style="width:100%">
+    </div>
+    <!--Loadout Calculator-->
+    <!--<div class="tab" onclick="clickTab('LoadoutCalc')">
+        <p class="TabText" >Loadout Calculator</p>
+        <img src="./HubImages/expCalc.png" style="width:100%">
+    </div>-->
+    <!--Boss Drop Calculator-->
+    <!-- <div class="tab" onclick="clickTab('BossDropCalc')">
+        <p class="TabText" >Boss Drop Calculator (old)</p>
+        <img src="./HubImages/BossDropCalc.png" style="width:100%">
+    </div> -->
+    <!--Credits-->
+    <div class="tab" onclick="clickTab('Credits')">
+        <p class="TabText" >Credits</p>
+        <img src="./HubImages/Credits.png" style="width:100%">
+    </div>
+    <div class="tab" onclick="clickTab('Settings')">
+        <p class="TabText" >Settings</p>
+        <img src="./HubImages/Credits.png" style="width:100%">
+    </div>
+    <div class="tab" onclick="clickTab('Changelog')">
+        <p class="TabText" >Changelog</p>
+        <img src="./HubImages/Credits.png" style="width:100%">
+    </div>
+    <script>
+        const hoverSound = new Audio('./Sounds/Hover.mp3');
+        const selectSound = new Audio('./Sounds/Select.mp3');
+        hoverSound.preload = 'auto';
+        selectSound.preload = 'auto';
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('mouseenter', () => {
+                const s = hoverSound.cloneNode();
+                s.volume = config.get("volume") / 100;
+                s.play();
+            });
+        });
+      
+        function clickTab(id) {
+            const s = selectSound.cloneNode();
+            s.volume = config.get("volume") / 100;
+            s.play();
+            setTimeout(() => {
+              window.location.href = "./" + id + ".html";
+            }, 250);
+        }
+    </script>
+    <p class="Text" style="margin:1rem; font-size:1vw;text-align:left">v1.2.6 -- Unwavering Soul 12.1</p>
+
+</html>

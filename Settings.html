@@ -1,0 +1,257 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+    
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw;
+      position:relative;
+      margin: 5% 0 5% 16.5%;
+      cursor: pointer;
+      border:solid white;
+      border-width:1vw;
+      text-align:center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    
+    .tab:hover {
+      transform: scale(1.08);
+      border-color:#fcf403;
+      border-width:1vw;
+    }
+    .TabText {
+        color:white;
+        position:absolute;
+        z-index:2;
+        font-size:4vw;
+        text-shadow:
+            -1px -1px 0 black,
+             1px -1px 0 black,
+            -1px  1px 0 black,
+             1px  1px 0 black,
+             0px -1px 0 black,
+             0px  1px 0 black,
+            -1px  0px 0 black,
+             1px  0px 0 black;
+    }
+    .tab:hover .TabText {
+        color:#fcf403;
+    }
+</style>
+
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+    .slider {
+      appearance: none;
+      width: 80%;
+      height: 2%;
+      background: #ffffff;
+      outline: none;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25;
+      height: 25;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .dpsInput {
+        font-size:calc(2vw - 2%);
+        border:solid white 0px;
+        background-color:black;
+        position:relative;
+        width:10%;
+        display:inline-block;
+        font-family:Determination;
+        color:white;
+    }
+    .dpsInput::-webkit-outer-spin-button,
+    .dpsInput::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        input[type=number] {
+            appearance: textfield;
+        }
+    }
+    select,
+    select::picker(select) {
+    appearance: base-select; 
+    border-radius: 0;
+    color: #ffffff;
+    background-color: #000000;
+    border: 0.25rem solid #ffffff;
+    padding: 0.5rem;
+    }
+
+    select::picker-icon {
+    display: none;
+    }
+</style>
+
+<html class="Box">
+
+    <!--just some sample text-->
+    <script src="./Data/SiteFunctions.js"></script>
+    <p class="Text" style=" font-size:2rem; position: absolute; margin:1; top:0;" onclick="window.goBack()">Go Back</p>
+
+    <p class="Text" id="title" style="margin: 5%; text-align:center;">Settings</p>
+    <div class="Box" style="position:relative; top:5%; left:10%; width:89%">
+        <!--Slider Template
+        <div style="display:flex; flex-direction: column;">
+            <p class="Text" style="font-size:2rem; margin:0 0 0.5 5rem">Test: active</p>
+            <p class="Text" style="font-size:1rem; margin:0.5 0 0 5rem;">Description </p>
+            <input style="height:1rem; width:25rem; margin: 0.5rem 0 1rem 5rem;" id="" type="range" class="slider" min="" value="" max="">
+        </div>
+        -->
+        <!--Dropdown Template-->
+        <!--Dropdown Template
+        <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <p class="Text" style="font-size:2rem; margin:0 0 0.5 5rem;">Test:</p>
+                <select id="">
+                    <option value="op1">op1</option>
+                    <option value="op2">op2</option>
+                    <option value="op3">op3</option>
+                </select>
+            </div>
+            <p class="Text" style="font-size:1rem; margin:0.5 0 0 5rem;">Description</p>
+        </div>
+        -->
+        <!--Volume-->
+        <div style="display:flex; flex-direction: column;">
+            <p class="Text" id="volumeText" style="font-size:2rem; margin:0 0 0.5 5rem">Volume: 50</p>
+            <p class="Text" style="font-size:1rem; margin:0.5 0 0 5rem;">Volume of all sounds on the website </p>
+            <input style="height:1rem; width:25rem; margin: 0.5rem 0 1rem 5rem;" id="volume" type="range" class="slider" min="0" value="50" max="100">
+        </div>
+        <!--Clicker-->
+        <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <p class="Text" style="font-size:2rem; margin:0 0 0.5 5rem;">Clicker:</p>
+                <select id="clicker" class="select">
+                    <option value="Jevil">Jevil</option>
+                    <option value="Spamton">Spamton</option>
+                    <option value="Eram">Eram</option>
+                    <option value="Gerson">Gerson</option>
+                    <option value="King">King</option>
+                    <option value="Queen">Queen</option>
+                    <option value="Tenna">Tenna</option>
+                    <option value="Titan">Titan</option>
+                    <option value="Roaring Knight">Roaring Knight</option>
+                </select>
+            </div>
+            <p class="Text" style="font-size:1rem; margin:0.5 0 1rem 5rem;">The icon at the top of the main menu</p>
+        </div>
+        <!--Precision-->
+        <div style="display:flex; flex-direction: column;">
+            <p class="Text" id="precisionText" style="font-size:2rem; margin:0 0 0.5 5rem">Precision: 3</p>
+            <p class="Text" style="font-size:1rem; margin:0.5 0 0 5rem;">The precise the rounding is. At 10 it will only round to the 10ths place </p>
+            <input style="height:1rem; width:25rem; margin: 0.5rem 0 1rem 5rem;" id="precision" type="range" class="slider" min="1" value="3" max="10">
+        </div>
+    </div>
+
+    <script src="./Data/Settings.js"></script>
+
+    <script> 
+        config = window.Settings;
+
+        var labels = [
+            "Jevil",
+            "Spamton",
+            "Eram",
+            "Gerson",
+            "King",
+            "Queen",
+            "Tenna",
+            "Titan",
+            "Roaring Knight",
+        ];
+
+        var changeValues = {
+            "volume": (key) => {return document.getElementById(key).value},
+            "clicker":(key) => {return document.getElementById('clicker').value},
+            "precision":(key) => {return (document.getElementById('precision').value < 10) ? document.getElementById('precision').value : 'Max'},
+        }
+
+        if (config.current) {
+            for (let key of Object.keys(config.default)) {
+                if (document.getElementById(key).type == "range") {
+                    document.getElementById(key + "Text").innerHTML = key.slice(0,1).toUpperCase() + key.slice(1,key.length) + ": " + config.get(key);
+                    document.getElementById(key).value = config.get(key);
+
+                    document.getElementById(key).addEventListener("input", function () {
+                        changeSetting(key, changeValues[key](key));
+                    });
+                } else if (document.getElementById(key).type == "select-one") {
+                    document.getElementById(key).value = config.get(key);
+
+                    document.getElementById(key).addEventListener("input", function () {
+                        changeSetting(key, changeValues[key](key));
+                    });
+                }
+
+                document.getElementById(key).addEventListener("change", function () {
+                    var a = new Audio("./Sounds/Switch.mp3");
+                    a.volume = config.get("volume")/100;
+                    a.play();
+                });
+            }
+        }
+        function changeSetting(key, val) {
+            var Txt = document.getElementById(key + "Text");
+            if (document.getElementById(key).type == "range") {
+                Txt.innerHTML = key.slice(0,1).toUpperCase() + key.slice(1,key.length) + ": " + val;
+                config.set(key, val);
+            } else if (document.getElementById(key).type == "select-one") {
+                config.set(key, val);
+            }
+        }
+        
+    </script>
+</html>

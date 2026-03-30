@@ -1,0 +1,215 @@
+<style>
+    .Box {
+        background-color:#000000;
+        border:solid white;
+        border-width: 1.125vh 1.125vh;
+        color:#ffffff;
+        overflow: auto;
+        font-family: Determination;
+        position:relative;
+    }
+    @font-face {
+        font-family: 'Determination';
+        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .Text {
+        color:#ffffff;
+        font-size:calc(5vw - 10%);
+        font-family: Determination;
+        position:relative;
+    }
+    
+    .tab {
+      transition: transform 0.2s ease;
+      width: 66vw;
+      position:relative;
+      margin: 5% 0 5% 16.5%;
+      cursor: pointer;
+      border:solid white;
+      border-width:1vw;
+      text-align:center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    
+    .tab:hover {
+      transform: scale(1.08);
+      border-color:#fcf403;
+      border-width:1vw;
+    }
+    .TabText {
+        color:white;
+        position:absolute;
+        z-index:2;
+        font-size:4vw;
+        text-shadow:
+            -1px -1px 0 black,
+             1px -1px 0 black,
+            -1px  1px 0 black,
+             1px  1px 0 black,
+             0px -1px 0 black,
+             0px  1px 0 black,
+            -1px  0px 0 black,
+             1px  0px 0 black;
+    }
+    .tab:hover .TabText {
+        color:#fcf403;
+    }
+</style>
+
+<style>
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+<html class="Box">
+    <script src="./Data/Settings.js"></script>
+    <script src="./Data/SiteFunctions.js"></script>
+    <p class="Text" id="title" style="margin-bottom: 5%; text-align:center;">Changelog:</p>
+    <p class="Text" style=" font-size:100%; position: absolute; top:0%; margin-top:0%;" onclick="window.goBack()">Go Back</p>
+    <!--1.2.6-->
+    <body class="Text" style="text-align: center; font-size:2vw; margin-bottom:2rem;">
+        <h1>Unwavering Soul Calculator v1.2.6</h1>
+        <h2>Items added:</h2>
+        <ul style="list-style: none;">
+          <li>Hammer of Justice</li>
+          <li>Death Beam</li>
+          <li>Bubble</li>
+          <li>Firecracker</li>
+          <li>Mokey Sword</li>
+          <li>Reindeer</li>
+          <li>Gerson Skill</li>
+        </ul>
+
+        <h2>General Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>Numbers are now formatted better with commas across the whole website.</li>
+          <li>New XP to Stats in the XP calculator.</li>
+          <li>Links will now scroll down to the section instead of moving the user to the exact items.</li>
+          <li>Amalgamation Station Calculator will automatically scroll up for you to allow users to easily put skills into the slots.</li>
+          <li>Removed Boss Drop Calculator from the main menu, as it was old and will need an entire overhaul to be functional.</li>
+        </ul>
+
+        <h2>Fixes:</h2>
+        <ul style="list-style: none;">
+          <li>Cutter damage nerf</li>
+          <li>Fallen One Skill Damage and DPS</li>
+          <li>Asgore Skill with and without 90% boost</li>
+          <li>Amalgamation Station in its entirety</li>
+          <li>Settings update without needing to refresh the page</li>
+          <li>Volume applies to everything (missed a few sounds before)</li>
+        </ul>
+
+        <h2>Amalgamation Machine Calculator Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>Gerson Skill Added</li>
+          <li>Fallen One Skill Added (cosmetic)</li>
+        </ul>
+
+        <h2>Settings Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>All of the Settings page has been revamped to give the user an eaier time to use the website.</li>
+          <li>Precision was moved to settings, as it now effects the whole website.</li>
+        </ul>
+
+        <h2>Credits:</h2>
+        <ul style="list-style: none;">
+          <li>nicedaytd (Gerson Skill testing)</li>
+        </ul>
+    </body>
+    <!--1.2.4-->
+    <body class="Text" style="text-align: center; font-size:2vw; margin-bottom:2rem;">
+        <h1>Unwavering Soul Calculator v1.2.4</h1>
+        <h2>Items added:</h2>
+        <ul style="list-style: none;">
+          <li>Black Shard</li>
+          <li>Horror Axe</li>
+          <li>C.O.D.E Killer Knife</li>
+          <li>C.O.D.E Rose</li>
+          <li>Bear Trap</li>
+          <li>Shock Band</li>
+          <li>Roaring Knight Skill</li>
+        </ul>
+
+        <h2>XP Calculator Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>XP calculation is a bit more accurate (true resets were slightly off — now fixed)</li>
+          <li>New XP to Stats in the XP calculator</li>
+        </ul>
+
+        <h2>Amalgamation Machine Calculator Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>Roaring Knight Skill Added</li>
+        </ul>
+
+        <h2>Settings Added:</h2>
+        <ul style="list-style: none;">
+          <li>Volume — for audio</li>
+          <li>Clicker — boss at the top of the hub page (customizable)</li>
+        </ul>
+
+        <p><b>Settings will save</b> (the ones in the Settings page)</p>
+
+        <h2>Credits:</h2>
+        <ul style="list-style: none;">
+          <li>ClassicRober (Roaring Knight Skill testing)</li>
+          <li>djsjdhdh29 (Roaring Knight Skill testing)</li>
+        </ul>
+    </body>
+    <!--1.2.1-->
+    <body class="Text" style="text-align: center; font-size:2vw; margin-bottom:2rem;">
+        <h1>Unwavering Soul Calculator v1.2.1</h1>
+        <h2>Changelog:</h2>
+
+        <h3>Items added:</h3>
+        <ul style ="list-style: none;">
+          <li>Legion Hammer</li>
+          <li>The Void</li>
+          <li>Cool Skull</li>
+          <li>Pocket Core</li>
+          <li>Hacking Phone</li>
+          <li>FOOL'S CONTENT</li>
+          <li>Gaster Skill</li>
+          <li>Fallen One Skill</li>
+        </ul>
+
+        <h3>Settings Added:</h3>
+        <ul style="list-style: none;">
+          <li>Attack: 100 damage per attack</li>
+          <li>Precision: amount of rounding the DPS calculator goes to</li>
+        </ul>
+
+        <h2>DPS Calculator Overhaul:</h2>
+        <p>
+        The calculator now will show the user their actual damage instead of just the total damage they deal for the dps calculation...
+        </p>
+
+        <h2>Credits:</h2>
+        <p>
+        I've added a place where any help towards the calculator goes mentioned...
+        </p>
+    </body>
+</html>

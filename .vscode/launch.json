@@ -1,0 +1,15 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Open Hub.html (Opera GX)",
+            "runtimeExecutable": "C:\\Users\\kraus\\AppData\\Local\\Programs\\Opera GX\\opera.exe",
+            "file": "c:\\Users\\kraus\\Downloads\\UnwaveringSoulSite\\Hub.html"
+        }
+    ]
+}
