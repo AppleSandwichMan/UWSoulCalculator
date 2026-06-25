@@ -1347,7 +1347,7 @@ window.Skills = {
         "Description: You rise above all and make the sky fall.",
         {
             damage: 500000,
-            cooldown:60,
+            cooldown:42,
             hits:14,
             uses:1
         }
