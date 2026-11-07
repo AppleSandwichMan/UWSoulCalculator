@@ -1,97 +1,102 @@
-<style>
-    .Box {
-        background-color:#000000;
-        border:solid white;
-        border-width: 1.125vh 1.125vh;
-        color:#ffffff;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-    }
-    @font-face {
-        font-family: 'Determination';
-        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
-    .Text {
-        color:#ffffff;
-        font-size:calc(5vw - 10%);
-        font-family: Determination;
-        position:relative;
-    }
-    
-    .tab {
-      transition: transform 0.2s ease;
-      width: 66vw;
-      position:relative;
-      margin: 5% 0 5% 16.5%;
-      cursor: pointer;
-      border:solid white;
-      border-width:1vw;
-      text-align:center;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-    }
-    
-    .tab:hover {
-      transform: scale(1.08);
-      border-color:#fcf403;
-      border-width:1vw;
-    }
-    .TabText {
-        color:white;
-        position:absolute;
-        z-index:2;
-        font-size:4vw;
-        text-shadow:
-            -1px -1px 0 black,
-             1px -1px 0 black,
-            -1px  1px 0 black,
-             1px  1px 0 black,
-             0px -1px 0 black,
-             0px  1px 0 black,
-            -1px  0px 0 black,
-             1px  0px 0 black;
-    }
-    .tab:hover .TabText {
-        color:#fcf403;
-    }
-</style>
+<link rel="stylesheet" href="./Themes/BaseTheme.css">
 
-<style>
-a:link {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
+<link id="themeCSS" rel="stylesheet">
 
-a:visited {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
+<script src="./Data/Settings.js"></script>
 
-a:hover {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
+<script>
+    var config = window.Settings;
+    let theme = "CastleTown"; document.getElementById("themeCSS").href = "./Themes/" + config.current.background + ".css";    
+</script>
 
-a:active {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-</style>
-<html class="Box">
-    <script src="./Data/Settings.js"></script>
+<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none; width: max(116rem, 100vw); box-sizing: border-box; margin: 0; padding: 0;">
     <script src="./Data/SiteFunctions.js"></script>
     <p class="Text" id="title" style="margin-bottom: 5%; text-align:center;">Changelog:</p>
-    <p class="Text" style=" font-size:100%; position: absolute; top:0%; margin-top:0%;" onclick="window.goBack()">Go Back</p>
+    <p class="Text" style="font-size:2rem; position: absolute; top:0%; margin-top:0%;" onclick="window.goBack()">Go Back</p>
+    <!--1.3-->
+    <div class="Text" style="text-align: center; font-size:2.4rem; margin-bottom:2rem;">
+        <h1>Unwavering Soul Calculator v1.3</h1>
+
+        <h2>Items added:</h2>
+        <ul style="list-style: none;">
+          <li>Hammer of Gratitude</li>
+          <li>Jack Pumpkin</li>
+          <li>Death Beam (Beam Mark)</li>
+          <li>Titan Fountain</li>
+          <li>Granite</li>
+          <li>Twisted Roots</li>
+          <li>UF Papyrus Bone</li>
+          <li>Twisted Roots (Extra Roots)</li>
+          <li>Dark Stick</li>
+          <li>Black Shard (Shard Black)</li>
+          <li>Heartsun</li>
+          <li>Deadly Pan</li>
+          <li>Temmie's Study</li>
+          <li>Anormal Broom</li>
+          <li>Flower skill</li>
+          <li>Flowery skill</li>
+          <li>Torching Stallion</li>
+        </ul>
+
+        <h2>Dps Calculator Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>Items now have individual settings (killer knife has a C.O.D.E setting instead of having a whole new weapon)</li>
+          <li>UI positioning changed (cleaner organization to add more items later)</li>
+        </ul>
+
+        <h2>General Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>Descriptions changed (hopefully sound better)</li>
+          <li>Themes added, currently just Castle Town. Let me know if I should add more</li>
+          <li>Other tiny wording changed</li>
+          <li>New users added to credits (thanks for the help)</li>
+          <li>Website now scales like you would expect (fixing my old mistakes)</li>
+        </ul>
+
+        <h2>Fixes:</h2>
+        <ul style="list-style: none;">
+          <li>Doombringer scaling</li>
+          <li>Beginner items rebalanced</li>
+          <li>Mask scaling</li>
+          <li>Killer Knife scaling</li>
+          <li>Page scaling (zooming in and out now does what you&#x27;d expect)</li>
+          <li>Death Beam cooldown</li>
+          <li>UF Asgore Trident stats</li>
+          <li>Real Knife stats</li>
+          <li>Head Throw scaling (finally)</li>
+          <li>Amalgamation Calculator mobile issues (hopefully)</li>
+        </ul>
+
+        <h2>Items that got variables:</h2>
+        <ul style="list-style: none;">
+          <li>Bravery Gauntlets</li>
+          <li>Killer Knife</li>
+          <li>Puppet Scarf</li>
+          <li>Rose</li>
+          <li>Endo Head</li>
+          <li>Black Shard</li>
+          <li>Hammer of Gratitude</li>
+          <li>Ancient/Dark Pumpblade (these variables change each other)</li>
+          <li>Twisted Roots</li>
+          <li>Counter Bone</li>
+          <li>Mask</li>
+          <li>Granite</li>
+          <li>Death Beam</li>
+          <li>Winter&#x27;s Curse</li>
+          <li>Heartsun</li>
+          <li>Deadly Pan</li>
+          <li>Temmie&#x27;s Study</li>
+          <li>Flower</li>
+          <li>Flowery</li>
+        </ul>
+
+        <h2>Settings Changelog:</h2>
+        <ul style="list-style: none;">
+          <li>new Background setting</li>
+        </ul>
+    </div>
     <!--1.2.6-->
-    <body class="Text" style="text-align: center; font-size:2vw; margin-bottom:2rem;">
+    <div class="Text" style="text-align: center; font-size:2.4rem; margin-bottom:2rem;">
         <h1>Unwavering Soul Calculator v1.2.6</h1>
         <h2>Items added:</h2>
         <ul style="list-style: none;">
@@ -139,9 +144,9 @@ a:active {
         <ul style="list-style: none;">
           <li>nicedaytd (Gerson Skill testing)</li>
         </ul>
-    </body>
+      </div>
     <!--1.2.4-->
-    <body class="Text" style="text-align: center; font-size:2vw; margin-bottom:2rem;">
+    <div class="Text" style="text-align: center; font-size:2.4rem; margin-bottom:2rem;">
         <h1>Unwavering Soul Calculator v1.2.4</h1>
         <h2>Items added:</h2>
         <ul style="list-style: none;">
@@ -178,9 +183,9 @@ a:active {
           <li>ClassicRober (Roaring Knight Skill testing)</li>
           <li>djsjdhdh29 (Roaring Knight Skill testing)</li>
         </ul>
-    </body>
+      </div>
     <!--1.2.1-->
-    <body class="Text" style="text-align: center; font-size:2vw; margin-bottom:2rem;">
+    <div class="Text" style="text-align: center; font-size:2.4rem; margin-bottom:2rem;">
         <h1>Unwavering Soul Calculator v1.2.1</h1>
         <h2>Changelog:</h2>
 
@@ -211,5 +216,5 @@ a:active {
         <p>
         I've added a place where any help towards the calculator goes mentioned...
         </p>
-    </body>
+      </dive>
 </html>

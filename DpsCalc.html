@@ -1,212 +1,22 @@
-<style>
-    .Box {
-        background-color:#000000;
-        border:solid white;
-        border-width: 1.125vh 1.125vh;
-        color:#ffffff;
-        overflow: hidden;
-        font-family: Determination;
-        position:relative;
-    }
-    @font-face {
-        font-family: 'Determination';
-        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
-    .Text {
-        color:#ffffff;
-        font-size:calc(5vw - 10%);
-        font-family: Determination;
-        position:relative;
-    }
-    .numinput::-webkit-outer-spin-button,
-    .numinput::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-        input[type=number] {
-            appearance: textfield;
-        }
-    }
-</style>
+<link rel="stylesheet" href="./Themes/BaseTheme.css">
 
-<style>
-.container {
-  position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+<link id="themeCSS" rel="stylesheet">
 
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
+<script src="./Data/Settings.js"></script>
 
-.checkmark {
-  position: relative;
-  display: inline-block;
-  vertical-align:middle;
-  width: 2vw;
-  height: 2vw;
-  border: solid white;
-  border-width: 0.5625vh;
-  background-color: black;
-}
+<script>
+    var config = window.Settings;
+    let theme = "CastleTown"; document.getElementById("themeCSS").href = "./Themes/" + config.current.background + ".css";    
+</script>
 
-.container:hover input ~ .checkmark {
-  background-color: #292929;
-}
-
-.container input:checked ~ .checkmark {
-  background-color: white;
-}
-
-</style>
-
-<!--WeaponDPS styles-->
-<style>
-    .DPSBox {
-        background-color:#000000;
-        border:solid white;
-        border-width: 0.5625vh 0.5625vh;
-        color:#ffffff;
-        overflow: none;
-        font-family: Determination;
-        position:relative;
-        width:9vw;
-        height:15vw;
-    }
-    .DPSText {
-        color:#ffffff;
-        font-size:0.973684211vw;
-        width:9vw;
-        height:2.5vw;
-        max-height: 80%;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-    }
-</style>
-
-<!--Expanded WeaponDPS styles-->
-<style>
-    .EDPSBox {
-        background-color:#000000;
-        border:solid white;
-        border-width: 0.5625vh 0.5625vh;
-        color:#ffffff;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-        margin: 2vw;
-        width:85vw;
-    }
-    .EDPSText {
-        color:#ffffff;
-        font-size:0.973684211vw;
-        width:9vw;
-        height:2.5vw;
-        max-height: 80%;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-    }
-    .EDivs {
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-        margin: 2vw;
-        width:40%;
-    }
-    .ETitle {
-        background-color:#000000;
-        color:#ffffff;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-        margin: 2vw;
-        width:95%;
-    }
-</style>
-
-<style>
-    .slider {
-      appearance: none;
-      width: 80%;
-      height: 2%;
-      background: #ffffff;
-      outline: none;
-    }
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 13%;
-      height: 175%;
-      background: #ffffff;
-      cursor: pointer;
-    }
-    .dpsInput {
-        font-size:calc(2vw - 2%);
-        border:solid white 0px;
-        background-color:black;
-        position:relative;
-        width:10%;
-        display:inline-block;
-        font-family:Determination;
-        color:white;
-    }
-    .dpsInput::-webkit-outer-spin-button,
-    .dpsInput::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-        input[type=number] {
-            appearance: textfield;
-        }
-    }
-</style>
-
-<!--Links-->
-<style>
-a:link {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-a:active {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-</style>
-
-<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none;">
+<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none; width: max(116rem, 100vw); box-sizing: border-box; margin: 0; padding: 0;">
     <script src="./Data/WeaponData.js"></script>
-    <script src="./Data/Settings.js"></script>
     <script src="./Data/SiteFunctions.js"></script>
     
-    <p class="Text" style=" font-size:100%; position: absolute; top:-0.2%" onclick="window.goBack()">Go Back</p>
-    <p class="Text" id="title" style="margin: 2%; text-align:center">Unwavering Soul Calculator</p>
+    <p class="Text" style=" font-size:2rem; position: absolute; top:-30" onclick="window.goBack()">Go Back</p>
+    <p class="Text" id="title" style="margin: 2%; text-align:center">DPS Calculator</p>
     <!--Info-->
-    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="" id="Weapons">Weapon</a>, <a href="" id="EventWeapons">Event Weapon</a> , <a href="" id="Misc">Miscellaneous</a>,  <a href="" id="EventMisc">Event Miscellaneous</a>, <a href="#" id="Other">Other</a>, and <a href="#" id="skillsLink">Skills</a>). Also note that some of the special items are purely calculated on very few points of damage. Meaning it won't be perfect. Boosts are additive (meaning 2x dmg is actually + 100%)<br></body>
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2.4rem;">Info: <br>To see your DPS, input your stats below. Everything is ordered by low reset to high reset, and the items type (<a href="" id="Weapons">Weapon</a>, <a href="" id="EventWeapons">Event Weapon</a> , <a href="" id="Misc">Miscellaneous</a>,  <a href="" id="EventMisc">Event Miscellaneous</a>, <a href="#" id="Other">Other</a>, and <a href="#" id="skillsLink">Skills</a>). Also note that some items will not be perfectly correct. Some items had to go through manual testing to get a close approximation. Last, Boosts are additive here, meaning 2x damage is instead 100%<br></body>
     
     <script>
         //Scroll Feature
@@ -254,26 +64,28 @@ a:active {
     
     <!--Stats-->
     <div class="Box" id="statChanger" style="margin-top:2%; position:sticky; top:0%; z-index:997">
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white; ">Boss HP:</h><input id="BossHp" onchange="clamp_ish(this, 5000000000)" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:14%; display:inline-block; font-family:Determination;color:white;"></input>
-        <!--<h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Boss Defense:</h><input id="BossDefense" onchange="clamp_ish(this,100)" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:7.5%; display:inline-block; font-family:Determination;color:white;"></input>--><br>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">True Reset:
+        <h style="font-size:2.3rem;font-family:Determination;color:white; ">Boss HP:</h><input id="BossHp" onchange="clamp_ish(this, 5000000000)" class="numinput" type="number" value="0" style="font-size:2.3rem; border:solid white 0px; background-color:black; position:relative; width:8rem; display:inline-block; font-family:Determination;color:white;"></input>
+        <!--<h style="font-size:2.3rem;font-family:Determination;color:white;">Boss Defense:</h><input id="BossDefense" onchange="clamp_ish(this,100)" class="numinput" type="number" value="0" style="font-size:2.3rem; border:solid white 0px; background-color:black; position:relative; width:7.5%; display:inline-block; font-family:Determination;color:white;"></input>--><br>
+        <h style="font-size:2.3rem;font-family:Determination;color:white;">True Reset:
             <label class="container">
                 <input type="checkbox" onchange="UpdateStuff()" id="TR">
                 <span class="checkmark"></span>
             </label>
         </h>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Resets:</h><input id="Resets" onchange="clamp_ish(this,1000000)" class="dpsInput" type="number" value="0"></input>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white; ">TP:</h><input id="TP" onchange="clamp_ish(this, 100000)" class="dpsInput" type="number" value="0"></input>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels" onchange="clamp_ish(this, 50000,1)" class="dpsInput" type="number" value="1"></input>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;"><br>Attack:</h><input id="Attack" onchange="clamp_ish(this, 50000)" class="dpsInput" type="number" value="0"></input>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Boosts:</h><input id="Boosts" onchange="clamp_ish(this, 300)" class="dpsInput" type="number" value="0">%</input>
+        <h style="font-size:2.3rem;font-family:Determination;color:white;">Resets:</h><input id="Resets" onchange="clamp_ish(this,1000000)" class="dpsInput" type="number" value="0"></input>
+        <h style="font-size:2.3rem;font-family:Determination;color:white; ">TP:</h><input id="TP" onchange="clamp_ish(this, 100000)" class="dpsInput" type="number" value="0"></input>
+        <h style="font-size:2.3rem;font-family:Determination;color:white;">Levels:</h><input id="Levels" onchange="clamp_ish(this, 50000,1)" class="dpsInput" type="number" value="1"></input>
+        <h style="font-size:2.3rem;font-family:Determination;color:white;"><br>Attack:</h><input id="Attack" onchange="clamp_ish(this, 50000)" class="dpsInput" type="number" value="0"></input>
+        <h style="font-size:2.3rem;font-family:Determination;color:white;">Boosts:<input id="Boosts" onchange="clamp_ish(this, 300)" class="dpsInput" type="number" value="0"></input>%</h>
     </div>
     
     <p style="margin-top:5%">
-    <input class="dpsInput" id="Search" oninput="filterDPS()" placeholder="Search" style="border:solid white 0.5vw; width:22%;"></input>
+    <div class="Box" style="width: 15%; margin: 0 auto; ">
+        <input class="dpsInput" id="Search" oninput="filterDPS()" placeholder="Search" style="width: 100%;"></input>
+    </div>
 
     <!--WeaponDPS-->
-    <div class="Box" id="WeaponDPS" style="margin: 3% 0; overflow:auto;  width:97%;"></div>
+    <div class="Box" id="WeaponDPS" style="margin: 3% auto; overflow:auto; width:97%; display:flex; flex-wrap:wrap; justify-content: center;"></div>
     <script>
         var WeaponDPS = document.getElementById("WeaponDPS");
         var Resets = parseInt(document.getElementById("Resets").value);
@@ -308,10 +120,13 @@ a:active {
         
         var expandedOpen = false;
         var openBox;
+        var activeVariableContainer = null;
         window.onload = function() {
             document.onclick = function(e){
                 if (e.target.id == "dark background" && openBox.style.visibility == "visible") {
                     openBox.style.visibility = "hidden";
+
+                    if (activeVariableContainer != null) activeVariableContainer.style.visibility = "hidden";
                     expandedOpen = false;
                     darken.style.visibility = "hidden";
                 }
@@ -330,7 +145,7 @@ a:active {
             var a = document.createElement("div");
             a.className = "DPSBox";
             a.style.position = "relative";
-            a.style.margin = "2%";
+            a.style.margin = "1.5rem 2rem";
             a.setAttribute("id", item.name);
             a.style.float = "left";
             
@@ -350,12 +165,21 @@ a:active {
             //expanded view
             var e = document.createElement("div");
             e.className = "EDPSBox";
-            e.style.position = "fixed";
             e.style.float = "left";
             e.style.visibility = "hidden";
             e.style.zIndex = 999;
             e.style.top = "15vh";
             e.setAttribute("id", "Expanded " + item.name);
+
+            
+            var variableContainer = document.createElement("div");
+            variableContainer.setAttribute("id", item.name + " variables");
+            variableContainer.className = "EDPSBox";
+            variableContainer.backgroundColor = "black";
+            variableContainer.style.float = "left";
+            variableContainer.style.margin = "0 0 0 0";
+            variableContainer.style.zIndex = 1000;
+            variableContainer.style.visibility = "hidden";
             
             var eTopBar = document.createElement("div");
             eTopBar.className = "ETitle";
@@ -420,8 +244,8 @@ a:active {
             }
             //divider
             div = document.createElement("div"); div.style.float = "left";
-            div.style.margin = "2vw";
-            div.style.width = "94%"; div.style.border = "solid white";
+            div.style.margin = "2%"; div.id = item.name + " Divider";
+            div.style.width = "94%"; div.style.backgroundColor = "white";
             
             //Your Stats
             DamageDiv2 = document.createElement("div"); DamageDiv2.style.float = "left";
@@ -455,6 +279,65 @@ a:active {
             e.appendChild(div);
             e.appendChild(DamageDiv2);
             e.appendChild(DPSDiv2);
+
+            // variables
+            for (let variable of item.variables) {
+                if (item[variable].type == "Bool") {
+                    const h = document.createElement("h");
+                    h.style.fontSize = "2.4rem";
+                    h.style.fontFamily = "Determination";
+                    h.style.color = "white";
+
+                    h.appendChild(document.createTextNode(variable + ":"));
+
+                    const label = document.createElement("label");
+                    label.className = "container";
+
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = "TR";
+                    checkbox.addEventListener("change", () => {
+                        item[variable].method(checkbox.checked);
+                    });
+
+                    const checkmark = document.createElement("span");
+                    checkmark.className = "checkmark";
+
+                    label.appendChild(checkbox);
+                    label.appendChild(checkmark);
+
+                    h.appendChild(label);
+                    
+                    variableContainer.appendChild(h);
+                } else if (item[variable].type == "Int" || item[variable].type == "Float") {
+                    const temp = item[variable].type == "Float";
+                    const h = document.createElement("h");
+                    h.style.fontSize = "2.4rem";
+                    h.style.fontFamily = "Determination";
+                    h.style.color = "white";
+
+                    h.appendChild(document.createTextNode(variable + ":"));
+
+                    const input = document.createElement("input");
+                    input.className = "dpsInput";
+                    input.type = "number";
+                    if (temp) input.step = "any";
+                    input.value = item[variable].value;
+
+                    input.addEventListener("change", () => {
+                        if(!temp) { clamp_ish(input, item[variable].max, item[variable].min); }
+                        else { clampFloat(input, item[variable].max, item[variable].min); }
+
+                        item[variable].method(input.value);
+                    });
+
+                    h.appendChild(input);
+
+                    variableContainer.appendChild(h);
+                } else if (item[variable].type == "Slider") {
+
+                }
+            }
             
             if (item.name == "Grilled Cheese Sandwich") {
                 EDesc.innerHTML = "Description: ";
@@ -500,27 +383,68 @@ a:active {
             }
             
             document.getElementById("HTML").appendChild(darken);
+
+            const baseDPR = window.devicePixelRatio;
+            
             a.onclick = function() {
                 if (!expandedOpen) {
-                    document.getElementById("Expanded " + this.id).style.visibility = "visible";
-                    openBox = document.getElementById("Expanded " + this.id); expandedOpen = true;
+                    openBox = document.getElementById("Expanded " + this.id);
+                    if (item.variables.length > 0) {
+                        activeVariableContainer = document.getElementById(this.id + " variables");
+                        activeVariableContainer.style.visibility = "visible";
+                        for (var i = 0; i < item.variables.length; i++) {
+                            if (item[item.variables[i]].type == "Bool") activeVariableContainer.children[i].querySelector('input[type="checkbox"]').checked = item[item.variables[i]].value;
+                            if (item[item.variables[i]].type == "Int") activeVariableContainer.children[i].children[0].value = item[item.variables[i]].value;
+                        }
+                    }
+                    else {activeVariableContainer = null;}
+
+                    openBox.style.visibility = "visible";
+                    expandedOpen = true;
                     darken.style.visibility = "visible";
+
                     var a = new Audio("./Sounds/Select.mp3");
-                    a.volume = config.get("volume")/100;
+                    a.volume = config.get("volume") / 100;
                     a.play();
-                    
-                    var box = document.getElementById("Expanded " + this.id);
-                    
-                    const boxWidth = box.offsetWidth;
-                    const boxHeight = box.offsetHeight;
-                    const scaleX = (window.innerWidth * 0.8) / boxWidth;
-                    const scaleY = (window.innerHeight * 0.8) / boxHeight;
-                    const scale = Math.min(scaleX, scaleY, 1);
-                    box.style.transformOrigin = "top center";
-                    box.style.transform = `scale(${scale})`;
-                    box.style.top = "5%";
+
+                    function updateBoxes() {
+                        // Calculate scale
+                        const boxWidth = openBox.offsetWidth;
+                        const boxHeight = openBox.offsetHeight;
+
+                        const scaleX = (window.innerWidth * 0.8) / boxWidth;
+                        const scaleY = (window.innerHeight * 0.8) / boxHeight;
+                        const scale = Math.min(scaleX, scaleY, 1);
+
+                        // Position and scale
+                        openBox.style.left = "50%";
+                        openBox.style.top = "1vh";
+                        openBox.style.transformOrigin = "top center";
+                        openBox.style.transform = `translateX(-50%) scale(${scale})`;
+
+                        // Position and scale
+                        const rect = openBox.getBoundingClientRect();
+                        if (item.variables.length > 0 && activeVariableContainer != null) { 
+                            activeVariableContainer.style.position = "fixed";
+                            activeVariableContainer.style.left = `${rect.left}px`;
+                            activeVariableContainer.style.top = `${rect.bottom}px`;
+                            activeVariableContainer.style.transformOrigin = "top left";
+                            activeVariableContainer.style.transform = `scale(${scale})`;
+                        }
+                    }
+
+                    updateBoxes();
+
+                    // duplicate
+                    if (window.updateBoxesListener) {
+                        window.removeEventListener("resize", window.updateBoxesListener);
+                    }
+
+                    window.updateBoxesListener = updateBoxes;
+                    window.addEventListener("resize", updateBoxes);
                 }
-            }
+            };
+
             var Base = document.createElement("p");
             if (item.original.base.damage != undefined) {
                 Base.innerText = "Base DPS: " + window.convert(item.stats.DPS);
@@ -544,6 +468,7 @@ a:active {
             
             WeaponDPS.appendChild(a);
             WeaponDPS.appendChild(e);
+            if (item.variables.length > 0) WeaponDPS.appendChild(variableContainer);
         }
     </script>
 
@@ -558,6 +483,22 @@ a:active {
                 text.value = 0;
             }
             text.value = parseInt(text.value);
+            if (max != NaN) {
+                if (text.value > max) {
+                    text.value = max;
+                } if (text.value < 0) {
+                    text.value = 0;
+                }
+                text.value = Math.max(min,text.value);
+            }
+            
+            UpdateStuff();
+        }
+        function clampFloat(text, max=NaN,min=0) {
+            if (text.value == "") {
+                text.value = 0;
+            }
+            text.value = parseFloat(text.value);
             if (max != NaN) {
                 if (text.value > max) {
                     text.value = max;
@@ -616,6 +557,13 @@ a:active {
                     0,
                     50000+ clamp(L,0,10000)*20 + tp*2 + R*500 + tr*2 + 100*Attack,
                 );
+                if (window.Items["BraveryGauntlets"]["Upgraded"].value) {
+                    UpdateSpecialItem("BraveryGauntlets",
+                        83000 + clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2 + 100*Attack,
+                        0,
+                        83000 + clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2 + 100*Attack,
+                    );
+                }
                 
                 UpdateSpecialItem("Chompy",
                     (325000+generalDamageAddition+tr*19)*1.125,
@@ -628,7 +576,12 @@ a:active {
                     0,
                     50000+(R*50)+(0.14*tp)+(tr/10) + 100*Attack
                 );
-                
+
+                window.Items["DeadlyPan"].New.base.cooldown = 1.9 + parseFloat(window.Items["DeadlyPan"]["Held Time"].value);
+                UpdateSpecialItem("DeadlyPan",1600000 * (0.25 + window.Items["DeadlyPan"]["Held Time"].value/2) + generalDamageAddition + 1);
+
+                UpdateSpecialItem("Temmie'sStudy",350000 + 25000*window.Items["Temmie'sStudy"]["Event items"].value + generalDamageAddition);
+
                 UpdateSpecialItem("KingsSword",
                     240000 + generalDamageAddition,
                     0,
@@ -644,38 +597,61 @@ a:active {
                 UpdateSpecialItem("KillerKnife",
                     115000+generalDamageAddition,
                     0,
-                    115000+generalDamageAddition,
-                );
-
-                UpdateSpecialItem("CODEKillerKnife",
-                    180000+generalDamageAddition,
-                    0,
-                    180000+generalDamageAddition,
-                );
+                    115000+0.5*tp + 125*R + tr/2,
+                )
+                if (window.Items["KillerKnife"]["C.O.D.E"].value) {
+                    UpdateSpecialItem("KillerKnife",
+                        180000+generalDamageAddition,
+                        0,
+                        180000+0.5*tp + 125*R + tr/2,
+                    )
+                }
                 
                 UpdateSpecialItem("LegionHammer",
                     150000+generalDamageAddition,
                     0,
                     150000+generalDamageAddition,
                 );
+
+                if (window.Items["PuppetScarf"]["Boosted"].value) {
+                    window.Items["PuppetScarf"].New.base.cooldown = 0.6;
+                    UpdateSpecialItem("PuppetScarf", 300000+generalDamageAddition);
+                } else {
+                    window.Items["PuppetScarf"].New.base.cooldown = 1.1;
+                    UpdateSpecialItem("PuppetScarf", 200000+generalDamageAddition);
+                }
                 
                 UpdateSpecialItem("Rose",
                     225000+generalDamageAddition,
                     0,
                     225000+generalDamageAddition,
                 );
-                UpdateSpecialItem("CODERose",
-                    390000+generalDamageAddition,
-                    0,
-                    390000+generalDamageAddition,
-                );
+                if (window.Items["Rose"]["C.O.D.E"].value) {
+                    UpdateSpecialItem("Rose",
+                        390000+generalDamageAddition,
+                        0,
+                        390000+generalDamageAddition,
+                    );
+                } 
                 
+                window.Items["EndoHead"].New.base.cooldown = 6 - window.Items["EndoHead"]["Pickup Time"].value;
                 UpdateSpecialItem("EndoHead",
                     525000 + (tp + tr*2.5 + 250*R) + 100*Attack,
                 );
                 UpdateSpecialItem("BlackShard", null,
                     0, (300000+generalDamageAddition) * (tr == 0? (5 + 1/3) : (10 + 1/3))
                 );
+                if (window.Items["BlackShard"]["Shard Black"].value) {
+                    UpdateSpecialItem("BlackShard", 350000 + generalDamageAddition,
+                        1,
+                        340000 + generalDamageAddition
+                    );
+                } else {
+                    UpdateSpecialItem("BlackShard", null,
+                        1,
+                        0, 
+                    );
+                }
                 
                 UpdateSpecialItem("EpicEye",
                     45000+(0.3*tp)+(200*R) + 100*Attack,
@@ -694,12 +670,6 @@ a:active {
                 UpdateSpecialItem("JusticeHammer", null,
                     1,
                     700000+tp*2+R*500+tr+(tr>0 ? Math.min(0.01*BossHP,700000) : 0)
-                );
-                
-                UpdateSpecialItem("BraveryGauntletsUpgraded",
-                    83000 + clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2 + 100*Attack,
-                    0,
-                    83000 + clamp(L,0,10000)*33.2 + tp*2 + R*500 + tr*2 + 100*Attack,
                 );
 
                 UpdateSpecialItem("HorrorAxe",
@@ -751,7 +721,7 @@ a:active {
                         baseDamage*12.9/18,
                     );
                 } else {
-                    var baseDamage = (L-6000)*50/4.5 + 500000+generalDamageAddition;
+                    var baseDamage = (L-6000)*50/4.5 + 500000+generalDamageAddition + 9*tr;
                     UpdateSpecialItem("Doombringer",
                         baseDamage,
                         0,
@@ -763,38 +733,45 @@ a:active {
                         baseDamage*12.9/18,
                     );
                 }
+
+                UpdateSpecialItem("HammerofGratitude",
+                    10000+50*Math.min(L,20000)+2*tp+800*R+5*tr+30000*window.Items["HammerofGratitude"]["Gifts"].value + 100*Attack,
+                );
+
+                UpdateSpecialItem("DarkStick", 77777 + 107*Math.min(L,9777)+250*R+tr);
                 
-                var damage = 15000+250*R+tp+L*14+tr  +  15000+250*R+tp*1.3+L*12.5+tr  +  15000+250*R+tp+L*12.5+tr*10 + 300*Attack;
+                var boost = (window.Items["AncientPumpblade"]["Pumpkin Union"].value) ? 1 + window.Items["AncientPumpblade"]["Blades"].value * 0.2 : 1;
+                var damage = (15000+250*R+tp+L*14+tr  +  15000+250*R+tp*1.3+L*12.5+tr  +  15000+250*R+tp+L*12.5+tr*10)*boost + 300*Attack;
                 UpdateSpecialItem("AncientPumpblade",
                     (damage)/3,
                     0,
-                    (damage+ (15000+ 29*L + tp + 250*R + tr) )/4
+                    (damage + (15000+ 29*L + tp + 250*R + tr) )/4
                 );
                 UpdateSpecialItem("AncientPumpblade",
                     null,
                     1,
-                    (damage+ (10000 + 19*L + tp + 250*R + 50*tr) )/4
+                    (damage + (10000 + 19*L + tp + 250*R + 50*tr) )/4
                 );
                 UpdateSpecialItem("AncientPumpblade",
                     null,
                     2,
-                    (damage+ (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
+                    (damage + (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
                 );
 
                 UpdateSpecialItem("DarkPumpblade",
                     (damage)/3,
                     0,
-                    (damage+ (15000+ 29*L + tp + 250*R + tr) )/4
+                    (damage + (15000+ 29*L + tp + 250*R + tr) )/4
                 );
                 UpdateSpecialItem("DarkPumpblade",
                     null,
                     1,
-                    (damage+ (10000 + 19*L + tp + 250*R + 50*tr) )/4
+                    (damage + (10000 + 19*L + tp + 250*R + 50*tr) )/4
                 );
                 UpdateSpecialItem("DarkPumpblade",
                     null,
                     2,
-                    (damage+ (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
+                    (damage + (15000 + 1.9*L + 0.2*tp + 25*R + tr/10)*8 )/11
                 );
                 
                 
@@ -813,6 +790,20 @@ a:active {
                     null, 0,
                     350000 + 0.0125*BossHP + 1.2*tp + 300*R + 50*tr
                 );
+                if (window.Items["TwistedRoots"]["Extra Roots"].value) {
+                    window.Items["TwistedRoots"].New.base.cooldown = 12;
+                    window.Items["TwistedRoots"].New.specials[0].cooldown = 12;
+                } else {
+                    window.Items["TwistedRoots"].New.base.cooldown = 24;
+                    window.Items["TwistedRoots"].New.specials[0].cooldown = 24;
+                }
+                let TwistedDamage = 17500 + 30*tr + 250*R + tp; let percent = 1 + 0.6*(window.Items["TwistedRoots"]["Distance"].value - 4)/46;
+                UpdateSpecialItem("TwistedRoots",
+                    TwistedDamage,
+                    0,
+                    (TwistedDamage/4 + TwistedDamage*percent)/2 
+                );
+                
 
                 UpdateSpecialItem("RiftEssence",
                     225000 + tp*0.33 + R*2500 + tr*22.5 + 100*Attack,
@@ -829,7 +820,12 @@ a:active {
                     2,
                     90000 + tr*9 + R * 1500 + tp * 0.25 + 100*Attack
                 );
+
+
+                if (window.Items["CounterBone"]["Upgraded"].value) { window.Items["CounterBone"].New.base.hits = 4; UpdateSpecialItem("CounterBone", 750000 + generalDamageAddition); }
+                else {window.Items["CounterBone"].New.base.hits = 3; UpdateSpecialItem("CounterBone", 500000 + generalDamageAddition);}
                 
+
                 UpdateSpecialItem("Bike",
                     43750 + tp*0.05 + R*150 + tr/2 + 100*Attack,
                 );
@@ -840,20 +836,44 @@ a:active {
                     250000 + tp*0.5 + R*50 + tr*10 + 100*Attack,
                 );
                 
-                UpdateSpecialItem("Maskv1",
-                    1400000 + R * (206503/590) + tp * (137/118) + tr*9.099984746 + 100*Attack,
+                if (window.Items["Mask"]["Upgraded"].value) {
+                    window.Items["Mask"].New.base = {"damage": 700000, "cooldown": 42, "uses": 1, "hits": 5},
+                    window.Items["Mask"].options.AddSpecial = true;
+
+                    console.log(window.Items["Mask"]);
+                    UpdateSpecialItem("Mask",
+                        (700000+(tr*15)+(R*250 + tp*0.625) + 100*Attack),
+                        0,
+                        (700000+(tr*15)+(R*250 + tp*0.625) + 100*Attack) * 1.05
+                    );
+                    UpdateSpecialItem("Mask",
+                        null,
+                        1,
+                        (700000+(tr*15)+(R*250 + tp*0.625) + 100*Attack) * 2
+                    );
+                } else {
+                    window.Items["Mask"].New.base = {"damage": 1400000, "cooldown": 15, "uses": 1, "hits": 1}
+                    window.Items["Mask"].options.AddSpecial = false;
+                    UpdateSpecialItem("Mask",
+                        1400000 + R * 350 + tp * 1.15 + tr*10 + 100*Attack,
+                    );
+                }
+
+                UpdateSpecialItem("AnormalBroom",
+                    43750 + tp*0.05 + R*150 + tr/2 + 100*Attack,
+                    0, 100000 + 0.9*tp + 2000*R + 0.4*tr + 100*Attack
                 );
-                
-                UpdateSpecialItem("Maskv2",
-                    (700000+(tr*15)+(R*250 + tp*0.625) + 100*Attack) * 10.15/9,
-                );
-                
+
                 UpdateSpecialItem("Banana",
                     1000000+generalDamageAddition + Math.min(2000000,BossHP*0.015),
                 );
             
                 UpdateSpecialItem("CoolSkull",
                     300000 + tr*20 + R*125 + tp*0.5 + 100*Attack,
+                );
+
+                UpdateSpecialItem("TitanFountain",
+                    500000 + generalDamageAddition + 9*tr + 100*Attack,
                 );
                 
                 //check all hits of pocket core
@@ -881,6 +901,9 @@ a:active {
                 UpdateSpecialItem("HackingPhone",
                     366666+R*375+tp + 100*Attack,
                 );
+                if (window.Items["DeathBeam"]["Beam Mark"].value) { window.Items["DeathBeam"].New.base.cooldown = 0.125; }
+                else { window.Items["DeathBeam"].New.base.cooldown = 0.25; }
+
                 UpdateSpecialItem("DeathBeam",
                     125000+6.25*tr+tp+250*R + 100*Attack,
                 );
@@ -891,11 +914,16 @@ a:active {
                 
                 // FIX THIS, IT IS WRONG DAMAGE
                 UpdateSpecialItem("HeadThrow",
-                    ((tr*50 + R*25000 + L*100 + tp*76.225 + 100)/10 * 3) + generalDamageAddition,
+                    (window.Items["HeadThrow"]["Health"].value/10 * 3) + 250*R + tr + 0.9*tp + 100*Attack,
                 );
                 
                 UpdateSpecialItem("FlamingStallion",
-                    100000 + tp*0.125 + R*175 + tr*4/3 + 100*Attack,
+                    100000 + tp*0.125 + R*175 + 0.75*tr + 100*Attack,
+                );
+
+                UpdateSpecialItem("TorchingStallion",
+                    75000 + 0.08*tp + R*175 + 0.7*tr + 100*Attack,
+                    0, 100000 + generalDamageAddition
                 );
                 
                 UpdateSpecialItem("SantasBag",
@@ -907,16 +935,29 @@ a:active {
                 );
 
                 UpdateSpecialItem("Firecracker",
-                    25000+0.9*tp+500*R+50*tr,
+                    25000+0.9*tp+500*R+50*tr + 100*Attack,
                     0,
-                    25000+0.18*tp+250*R+10*tr,
+                    25000+0.18*tp+250*R+10*tr + 100*Attack,
                 );
-                
+
+                var size = 13/48*window.Items["Granite"]["Charge Time"].value;
+                Items["Granite"].New.base.hits = Math.round(2.45 * window.Items["Granite"]["Charge Time"].value + 9.5);
+
+                UpdateSpecialItem("Granite",
+                    (125000 + 1500 * size + 10*tr + tp + 250*R) * (1 + size/900) + 100*Attack,
+                );
+
+                UpdateSpecialItem("Heartsun",
+                    25000 * window.Items["Heartsun"]["Level"].value + 150*Attack + 0.5*tp + 10000,
+                );
                 UpdateSpecialItem("WintersCurse",
                     (200000 + clamp(L*150,0,999900) + tp/2)*2 + 100*Attack,
                 );
                 UpdateSpecialItem("ShockBand",
                     500000 + tp*1.5 + R*250 + tr*50 + 100*Attack,
+                );
+                UpdateSpecialItem("JackPumpkin",
+                    20000 + 0.1*tp + 25*R + 2*tr + 100*Attack,
                 );
             }
             
@@ -965,6 +1006,31 @@ a:active {
             }
             
             //manual calculations
+            //Flower
+            var base = (300000 + 200000 * Skills.Flower["Upgrades"].value) * (1+Damage/10) + 250 * R + tr + tp + 100*Attack;
+            var aqua = (2500 + 2500 * Skills.Flower["Upgrades"].value) * (1+Damage/10) + 250 * R + tr + tp + 100*Attack;
+            var yellow = (75000 + 150000 * Skills.Flower["Upgrades"].value) * (1+Damage/10) + 250 * R + tr + tp + 100*Attack;
+            var orange = base + (100000 + 175000 * Skills.Flower["Upgrades"].value) * (1+Damage/10) + 3750 * R + 10*tr + tp + 100*Attack;
+            
+            if (Skills.Flower["Flowery Fused"].value) {
+                Skills.Flower.New.base.cooldown = 3.25*3;
+                Skills.Flower.New.specials[0].cooldown = 3.25*3;
+                Skills.Flower.New.specials[1].cooldown = 3.25*2;
+                Skills.Flower.New.specials[2].cooldown = 3.25*3;
+            } else {
+                Skills.Flower.New.base.cooldown = 4*3;
+                Skills.Flower.New.specials[0].cooldown = 4*3;
+                Skills.Flower.New.specials[1].cooldown = 4*2;
+                Skills.Flower.New.specials[2].cooldown = 4*3;
+            }
+
+            Skills.Flower.New.base.damage = base * (Boost/100 + 1);
+            Skills.Flower.New.specials[0].damage = aqua * (Boost/100 + 1);
+            Skills.Flower.New.specials[1].damage = orange * (Boost/100 + 1);
+            Skills.Flower.New.specials[2].damage = yellow * (Boost/100 + 1);
+
+            updateSkill(Skills.Flower);
+
             //gerson
             Skills.Gerson.New.base.damage = ( ( 250000 + ( (tr > 0) ? Math.min(BossHP*0.01,250000) : 0) ) * (1+Damage/10) + 500*R + 2*tp + tr + 100*Attack) * (Boost/100 + 1);
             Skills.Gerson.New.specials[0].damage = Skills.Gerson.New.base.damage + 125000 * (1+Damage/10) + (42 * 6250 * (1+Damage/10))/2;
@@ -974,7 +1040,7 @@ a:active {
             //asgore
             Skills.Asgore.New.specials[0].damage = ((100000 * (1 + Damage/10) + 0.2*tp + 50*R + tr/5 + 100*Attack))*(Boost/100 + 1);
             Skills.Asgore.New.specials[1].damage = (((100000 * (1 + Damage/10) + 0.2*tp + 50*R + tr/5 + 100*Attack) * 1.9)*(Boost/100 + 1))*6;
-            console.log(Skills.Asgore.New.specials[1].damage);
+
             Skills.Asgore.New.specials[1].damage += (500000 * (1 + Damage/10) + tp + tr + 250*R) * (Boost/100 + 1); Skills.Asgore.New.specials[1].damage /= 6;
             updateSkill(Skills.Asgore);
             
@@ -1000,15 +1066,53 @@ a:active {
 
             //Roaring Knight
             var RKDmg = (250000*(1 + Damage/10) + 375*R + tp/10 + tr + 100 * Attack) * (Boost/100 + 1)
-            Skills.RoaringKnight.New.base.damage = RKDmg ;
+            Skills.RoaringKnight.New.base.damage = RKDmg;
             Skills.RoaringKnight.New.specials[0].damage = RKDmg * 0.85;
             updateSkill(Skills.RoaringKnight);
+
+            //Flowery
+            var omega = (Skills.Flowery["Omega Form"].value) ? 1.22 : 1;
+            var jaromage = (1000000 * (1 + Damage/10) + 3750 * R + 10*tr + tp + 100*Attack) *(Boost/100 + 1);
+            var omegaWait;
+            //General attacks
+            if (Skills.Flowery["Flower Fused"].value) {
+                Skills.Flowery.New.base.cooldown = 3.25;
+                Skills.Flowery.New.specials[0].cooldown = 9.75;
+                Skills.Flowery.New.base.damage = jaromage;
+                Skills.Flowery.New.specials[0].damage = jaromage * 0.233;
+                omegaWait = 52;
+            } else {
+                Skills.Flowery.New.base.cooldown = 4;
+                Skills.Flowery.New.specials[0].cooldown = 12;
+                Skills.Flowery.New.base.damage = jaromage;
+                Skills.Flowery.New.specials[0].damage = jaromage * 0.233;
+                omegaWait = 64;
+            }
+
+            //Aerial attack
+            if (Skills.Flowery["Omega Form"].value) {
+                Skills.Flowery.New.specials[1].cooldown = 2.5 * 4 + omegaWait;
+                Skills.Flowery.New.specials[1].damage = 100000 + 1.07*tp + (1 + 2/3)*tr + 500*R + 100 * Attack;
+                Skills.Flowery.New.specials[1].hits = 80;
+                
+                //takes omegaWait time to get omega form back, and you can hit about every half second (kinda)
+                Skills.Flowery.New.base.cooldown = 0.58 * 15 + omegaWait;
+                Skills.Flowery.New.base.damage = jaromage * omega;
+                Skills.Flowery.New.base.hits = 15;
+
+            } else {
+                Skills.Flowery.New.specials[1].cooldown = Skills.Flowery["Aerial Hit Interval"].value;
+                Skills.Flowery.New.specials[1].damage = 800000 + 1.2*tp + 3*tr + 1000*R + 100 * Attack;
+                Skills.Flowery.New.specials[1].hits = 1;
+                Skills.Flowery.New.base.hits = 1;
+            }
+            updateSkill(Skills.Flowery);
         }
     </script>
 
     <!--Skill container-->
-    <div class="Box" id="SkillDPS" style="margin: 3% 0; overflow:auto; width:58%; float:left"></div>
-    <div class="Box" id="SkillStats" style="margin: 3% 0; overflow:auto; width:25%; float:left; position:sticky; top:10%"></div>
+    <div class="Box" id="SkillDPS" style="margin: 3% 0; overflow:auto; width:69.6rem; float:left"></div>
+    <div class="Box" id="SkillStats" style="margin: 3% 0; overflow:auto; width:30rem; float:left; position:sticky; top:9rem"></div>
 
     <script>
         function UpdateSliders() {
@@ -1024,7 +1128,7 @@ a:active {
         var s = document.getElementById("SkillStats");
         var title = document.createElement("p"); title.style.position = "relative";
         title.style.top = "-20%"; title.style.left = "0%"; title.style.textAlign = "left";
-        title.innerText = "Skill Stats:"; title.style.fontSize = "4vw";
+        title.innerText = "Skill Stats:"; title.style.fontSize = "4.3774rem";
         title.style.marginTop = "1%"; title.style.marginBottom = "2%";
         
         var divDmg = document.createElement("div"); divDmg.style.width = "40%"; divDmg.style.marginBottom = "3%";
@@ -1032,19 +1136,19 @@ a:active {
         
         var Dmg = document.createElement("p"); Dmg.style.position = "relative"; 
         Dmg.style.top = "-2%"; Dmg.style.textAlign = "left"; Dmg.style.width = "100%";
-        Dmg.innerText = "Damage: 1"; Dmg.style.fontSize = "2vw"; Dmg.style.marginLeft = "2%";
+        Dmg.innerText = "Damage: 1"; Dmg.style.fontSize = "2rem"; Dmg.style.marginLeft = "0.63rem";
         divDmg.appendChild(Dmg);
         
-        var DmgSlider = document.createElement('input'); DmgSlider.style.marginBottom = "2%";
+        var DmgSlider = document.createElement('input'); DmgSlider.style.marginBottom = "0.63rem";
         DmgSlider.id = "DmgSlider"; DmgSlider.type = 'range'; DmgSlider.className = "slider"
         DmgSlider.min = 1; DmgSlider.max = 7; DmgSlider.value = 1; DmgSlider.style.position = "relative";
         DmgSlider.style.top = "0%"; DmgSlider.style.left = "-7.5%";
-        DmgSlider.onChange = onchange = function() { UpdateSliders(); UpdateSkills(); };
+        DmgSlider.onchange = onchange = function() { UpdateSliders(); UpdateSkills(); };
         divDmg.appendChild(DmgSlider); 
         
         var Reload = document.createElement("p"); Reload.style.position = "relative";
         Reload.style.top = "-2%"; Reload.style.textAlign = "left"; Reload.style.width = "100%";
-        Reload.innerText = "Reload: 1"; Reload.style.fontSize = "2vw"; Reload.style.marginLeft = "2%";
+        Reload.innerText = "Reload: 1"; Reload.style.fontSize = "2rem"; Reload.style.marginLeft = "2%";
         divReload.appendChild(Reload);
         
         var ReloadSlider = document.createElement('input'); ReloadSlider.style.marginBottom = "2%";
@@ -1091,12 +1195,21 @@ a:active {
             //expanded view
             var eS = document.createElement("div");
             eS.className = "EDPSBox";
-            eS.style.position = "fixed";
             eS.style.float = "left";
             eS.style.visibility = "hidden";
             eS.style.zIndex = 999;
             eS.style.top = "15vh";
             eS.setAttribute("id", "Expanded " + item.name);
+
+            
+            var variableContainer = document.createElement("div");
+            variableContainer.setAttribute("id", item.name + " variables");
+            variableContainer.className = "EDPSBox";
+            variableContainer.backgroundColor = "black";
+            variableContainer.style.float = "left";
+            variableContainer.style.margin = "0 0 0 0";
+            variableContainer.style.zIndex = 1000;
+            variableContainer.style.visibility = "hidden";
             
             var eSTopBar = document.createElement("div");
             eSTopBar.className = "ETitle";
@@ -1125,7 +1238,6 @@ a:active {
             STimesUsed.innerText = (item.stats.uses == 1) ? "Used 1 time": ("Used " + item.stats.uses + " Times"); 
             STimesUsed.style.fontSize = "1.4vw"; STimesUsed.style.margin = "0 0 0 0";
             
-            //DAMAGE
             DamageDiv = document.createElement("div"); DamageDiv.style.float = "left";
             DamageDiv.className = "EDivs";
             
@@ -1191,7 +1303,7 @@ a:active {
             DPSDiv2 = document.createElement("div");
             DPSDiv2.className = "EDivs"; DPSDiv2.style.float = "left";
             if (item.original.base.damage != undefined) {
-                console.log(item.stats)
+
                 if (!item.options.hideDamage) {
                     addText("Your Damage: " + window.convert(item.original.base.damage*multiplier), DamageDiv2, item.name + " Damage");
                 }
@@ -1219,6 +1331,123 @@ a:active {
             eS.appendChild(DamageDiv2);
             eS.appendChild(DPSDiv2);
             
+            // variables
+            for (let variable of item.variables) {
+                if (item[variable].type == "Bool") {
+                    const h = document.createElement("h");
+                    h.style.fontSize = "2.4rem";
+                    h.style.fontFamily = "Determination";
+                    h.style.color = "white";
+
+                    h.appendChild(document.createTextNode(variable + ":"));
+
+                    const label = document.createElement("label");
+                    label.className = "container";
+
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = "TR";
+                    checkbox.addEventListener("change", () => {
+                        item[variable].method(checkbox.checked);
+                    });
+
+                    const checkmark = document.createElement("span");
+                    checkmark.className = "checkmark";
+
+                    label.appendChild(checkbox);
+                    label.appendChild(checkmark);
+
+                    h.appendChild(label);
+                    
+                    variableContainer.appendChild(h);
+                } else if (item[variable].type == "Int" || item[variable].type == "Float") {
+                    const temp = item[variable].type == "Float";
+                    const h = document.createElement("h");
+                    h.style.fontSize = "2.4rem";
+                    h.style.fontFamily = "Determination";
+                    h.style.color = "white";
+
+                    h.appendChild(document.createTextNode(variable + ":"));
+
+                    const input = document.createElement("input");
+                    input.className = "dpsInput";
+                    input.type = "number";
+                    if (temp) input.step = "any";
+                    input.value = item[variable].value;
+
+                    input.addEventListener("change", () => {
+                        if(!temp) { clamp_ish(input, item[variable].max, item[variable].min); }
+                        else { clampFloat(input, item[variable].max, item[variable].min); }
+
+                        item[variable].method(input.value);
+                    });
+
+                    h.appendChild(input);
+
+                    variableContainer.appendChild(h);
+                } else if (item[variable].type == "Slider") {
+
+                }
+            }
+            b.onclick = function() {
+                if (!expandedOpen) {
+                    openBox = document.getElementById("Expanded " + this.id);
+                    if (item.variables.length > 0) {
+                        activeVariableContainer = document.getElementById(this.id + " variables");
+                        activeVariableContainer.style.visibility = "visible";
+                        for (var i = 0; i < item.variables.length; i++) {
+                            if (item[item.variables[i]].type == "Bool") activeVariableContainer.children[i].querySelector('input[type="checkbox"]').checked = item[item.variables[i]].value;
+                            if (item[item.variables[i]].type == "Int") activeVariableContainer.children[i].children[0].value = item[item.variables[i]].value;
+                        }
+                    }
+                    else {activeVariableContainer = null;}
+
+                    openBox.style.visibility = "visible";
+                    expandedOpen = true;
+                    darken.style.visibility = "visible";
+
+                    var a = new Audio("./Sounds/Select.mp3");
+                    a.volume = config.get("volume") / 100;
+                    a.play();
+
+                    function updateBoxes() {
+                        // Calculate scale
+                        const boxWidth = openBox.offsetWidth;
+                        const boxHeight = openBox.offsetHeight;
+
+                        const scaleX = (window.innerWidth * 0.8) / boxWidth;
+                        const scaleY = (window.innerHeight * 0.8) / boxHeight;
+                        const scale = Math.min(scaleX, scaleY, 1);
+
+                        // Position and scale
+                        openBox.style.left = "50%";
+                        openBox.style.top = "1vh";
+                        openBox.style.transformOrigin = "top center";
+                        openBox.style.transform = `translateX(-50%) scale(${scale})`;
+
+                        // Position and scale
+                        const rect = openBox.getBoundingClientRect();
+                        if (item.variables.length > 0 && activeVariableContainer != null) { 
+                            activeVariableContainer.style.position = "fixed";
+                            activeVariableContainer.style.left = `${rect.left}px`;
+                            activeVariableContainer.style.top = `${rect.bottom}px`;
+                            activeVariableContainer.style.transformOrigin = "top left";
+                            activeVariableContainer.style.transform = `scale(${scale})`;
+                        }
+                    }
+
+                    updateBoxes();
+
+                    // duplicate
+                    if (window.updateBoxesListener) {
+                        window.removeEventListener("resize", window.updateBoxesListener);
+                    }
+
+                    window.updateBoxesListener = updateBoxes;
+                    window.addEventListener("resize", updateBoxes);
+                }
+            };
+            /*
             b.onclick = function() {
                 if (!expandedOpen) {
                     document.getElementById("Expanded " + this.id).style.visibility = "visible";
@@ -1240,19 +1469,20 @@ a:active {
                     box.style.top = "5%";
                 }
             }
-            
+            */
             var bDPS = document.createElement("p"); bDPS.style.position = "absolute";
             bDPS.style.top = "-5%"; bDPS.style.left = "45%"; bDPS.style.textAlign = "left";
-            bDPS.innerText = "Base DPS: " + window.convert(item.stats.DPS); bDPS.style.fontSize = "2vw";
+            bDPS.innerText = "Base DPS: " + window.convert(item.stats.DPS); bDPS.style.fontSize = "2.4rem";
             b.appendChild(bDPS);
             
             var yDPS = document.createElement("p"); yDPS.style.position = "absolute"; yDPS.setAttribute('id', item.name + " MiniDPS");
             yDPS.style.top = "25%"; yDPS.style.left = "45%"; yDPS.style.textAlign = "left";
-            yDPS.innerText = "Your DPS: " + window.convert(item.stats.DPS); yDPS.style.fontSize = "2vw"; yDPS.style.width = "70%";
+            yDPS.innerText = "Your DPS: " + window.convert(item.stats.DPS); yDPS.style.fontSize = "2.4rem"; yDPS.style.width = "70%";
             b.appendChild(yDPS);
             
             SkillDPS.appendChild(b);
             SkillDPS.appendChild(eS);
+            if (item.variables.length > 0) SkillDPS.appendChild(variableContainer);
         }
     </script>
 </html>

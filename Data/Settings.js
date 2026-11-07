@@ -3,6 +3,7 @@ window.Settings = {
         clicker:"Jevil",
         volume:50,
         precision:3,
+        background:"Undertale",
     },
 
     current: {},

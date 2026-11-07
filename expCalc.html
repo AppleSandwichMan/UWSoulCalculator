@@ -1,181 +1,60 @@
-<style>
-    .Box {
-        background-color:#000000;
-        border:solid white;
-        border-width: 1.125vh 1.125vh;
-        color:#ffffff;
-        overflow: auto;
-        font-family: Determination;
-        position:relative;
-    }
-    @font-face {
-        font-family: 'Determination';
-        src: url('./Fonts/DeterminationMono.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
-    .Text {
-        color:#ffffff;
-        font-size:calc(5vw - 10%);
-        font-family: Determination;
-        position:relative;
-    }
-   
-    .tab {
-      transition: transform 0.2s ease;
-      width: 66vw; /* or whatever fits your layout */
-      cursor: pointer;
-      image-rendering: pixelated; /* makes pixel art stay crisp */
-    }
-   
-    .tab:hover {
-      transform: scale(1.08);
-    }
-    .dpsInput::-webkit-outer-spin-button,
-    .dpsInput::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
-    }
-</style>
+<link rel="stylesheet" href="./Themes/BaseTheme.css">
 
-<style>
-    .slider {
-      appearance: none;
-      width: 80%;
-      height: 2%;
-      background: #ffffff;
-      outline: none;
-    }
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 13%;
-      height: 175%;
-      background: #ffffff;
-      cursor: pointer;
-    }
+<link id="themeCSS" rel="stylesheet">
 
-</style>
+<script src="./Data/Settings.js"></script>
 
-<style>
-a:link {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
+<script>
+    var config = window.Settings;
+    let theme = "CastleTown"; document.getElementById("themeCSS").href = "./Themes/" + config.current.background + ".css";    
+</script>
 
-a:visited {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-a:active {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-</style>
-
-<style>
-/* The container */
-.container {
-  position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-  position: relative;
-  display: inline-block;
-  vertical-align:middle;
-  width: 2vw;
-  height: 2vw;
-  border: solid white;
-  border-width: 0.5625vh;
-  background-color: black;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #292929;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: white;
-}
-
-</style>
-
-<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none;">
-
+<html class="Box" id="HTML" style="overflow-y: scroll; overflow:visible; -ms-overflow-style: none; scrollbar-width: none; width: max(116rem, 100vw); box-sizing: border-box; margin: 0; padding: 0;  align-items: center; text-align: center;">
     <script src="./Data/SiteFunctions.js"></script>
-    <p class="Text" style=" font-size:100%; position: absolute; top:-2%;" onclick="window.goBack()">Go Back</p>
 
-    <p class="Text" id="title" style="margin: 2%; text-align:center">XP Calculators</p>
-    <body class="Text" style="text-align: center; display:inline-block; font-size:2vw;">Info:
-        <br>This page holds XP Calculators for XP until reaching __ Stats, how much XP with __ Stats,
-        and with __ XP, what stats would we get.
-        This calculator only considers up to level 6000 per reset.
+    <p class="Text" style=" font-size:2rem; position: absolute; top:-30" onclick="window.goBack()">Go Back</p>
+
+    <p class="Text" id="title" style="margin: 2%; text-align:center">XP Calculator</p>
+    <body class="Text" style="text-align: center; display:inline-block; font-size:2.4rem;">Info:
+        <br>This page lets you find the total XP between two stats and convert raw XP into resets and levels.
+        This calculator assumes each reset is done at level 6000.
     </body>
-    <div style ="height:1%"></div>
    
-    <p class="Text" style=" font-size:3vw;">Your Stats</p>
-    <div class="Box" id="statChanger" style="margin-top:-3%; position:sticky; top:0%; z-index:997">
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">True Reset:
+    <p class="Text" style=" font-size:3.6rem; margin:1rem;">Your Stats</p>
+    <div class="Box" id="statChanger" style="position:sticky; top:0%; z-index:997">
+        <h style="font-size:2rem;font-family:Determination;color:white;">True Reset:
             <label class="container">
                 <input type="checkbox" onchange="UpdateXP()" id="TR_old">
                 <span class="checkmark"></span>
             </label>
         </h>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Resets:</h><input id="Resets_old" onchange="UpdateXP()" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels_old" onchange="UpdateXP()" class="numinput" type="number" value="1" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
+        <h style="font-size:2rem;font-family:Determination;color:white;">Resets:</h><input id="Resets_old" onchange="UpdateXP()" class="numinput" type="number" value="0" style="font-size:2rem; border:solid white 0px; background-color:black; position:relative; width:10rem; display:inline-block; font-family:Determination;color:white;"></input>
+        <h style="font-size:2rem;font-family:Determination;color:white;">Levels:</h><input id="Levels_old" onchange="UpdateXP()" class="numinput" type="number" value="1" style="font-size:2rem; border:solid white 0px; background-color:black; position:relative; width:6rem; display:inline-block; font-family:Determination;color:white;"></input>
     </div>
    
-    <p class="Text" style=" font-size:3vw;">New Stats</p>
-    <div class="Box" id="statChanger" style="margin-top:-3%; position:sticky; top:0%; z-index:997">
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">True Reset:
+    <p class="Text" style=" font-size:3.6rem; margin:1rem;">New Stats</p>
+    <div class="Box" id="statChanger" style="position:sticky; top:0%; z-index:997">
+        <h style="font-size:2rem;font-family:Determination;color:white;">True Reset:
             <label class="container">
                 <input type="checkbox" onchange="UpdateXP()" id="TR_new">
                 <span class="checkmark"></span>
             </label>
         </h>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Resets:</h><input id="Resets_new" onchange="UpdateXP()" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">Levels:</h><input id="Levels_new" onchange="UpdateXP()" class="numinput" type="number" value="1" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:10%; display:inline-block; font-family:Determination;color:white;"></input>
+        <h style="font-size:2rem;font-family:Determination;color:white;">Resets:</h><input id="Resets_new" onchange="UpdateXP()" class="numinput" type="number" value="0" style="font-size:2rem; border:solid white 0px; background-color:black; position:relative; width:10rem; display:inline-block; font-family:Determination;color:white;"></input>
+        <h style="font-size:2rem;font-family:Determination;color:white;">Levels:</h><input id="Levels_new" onchange="UpdateXP()" class="numinput" type="number" value="1" style="font-size:2rem; border:solid white 0px; background-color:black; position:relative; width:6rem; display:inline-block; font-family:Determination;color:white;"></input>
     </div>
     <!--exp stuff-->
-    <div class="Box" style="margin-top:5%">
+    <div class="Box" style="margin:5rem 0;">
         <p id="XPNew">XP until Level 1, Reset 0: 0 xp</p>
         <p id="CurrentXP">Current XP: 0 xp</p>
     </div>
 
-    <p class="Text" style=" font-size:3vw;">XP to Resets:</p>
-    <div class="Box" id="statChanger" style="margin-top:-3%; position:sticky; top:0%; z-index:997">
-        <h style="font-size:calc(2vw - 2%);font-family:Determination;color:white;">XP:</h><input id="XP_current" onchange="updateXPtoResets()" class="numinput" type="number" value="0" style="font-size:calc(2vw - 2%); border:solid white 0px; background-color:black; position:relative; width:50%; display:inline-block; font-family:Determination;color:white;"></input>
+    <p class="Text" style="font-size:3.6rem; margin:1rem;">XP to Resets:</p>
+    <div class="Box" id="statChanger" style="position:sticky; top:0%; z-index:997">
+        <h style="font-size:2rem;font-family:Determination;color:white;">XP:</h><input id="XP_current" onchange="updateXPtoResets()" class="numinput" type="number" value="0" style="font-size:2rem; border:solid white 0px; background-color:black; position:relative; width:50%; display:inline-block; font-family:Determination;color:white;"></input>
     </div>
 
-    <div class="Box" style="margin-top:5%">
+    <div class="Box" style="margin-top:3.375rem">
         <p id="NewStats">With 0 XP, a player would have:<br>0 Resets and 1 Level. Without True Reset </p>
     </div>
 

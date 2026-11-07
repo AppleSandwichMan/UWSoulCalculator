@@ -16,6 +16,7 @@ class Item {
             addHits:options.addHits ?? true,
             showBase:options.showBase ?? true,
             statsEffectAll:options.statsEffectAll ?? false,
+            addAllSpecials:options.addAllSpecials ?? false,
         };
 
         this.stats = {
@@ -26,6 +27,9 @@ class Item {
             uses: 0,
             specials: {} // Named special stats only
         };
+        // {"varName:{"type":"int,slider,bool", "value":,"method":,"min":,"max":}}
+        Object.assign(this, options.variables);
+        this.variables = (options.variables != undefined) ? Object.keys(options.variables) : [];
 
         this.calculateStats();
     }
@@ -62,16 +66,23 @@ class Item {
         } else {
             cycleTime = base.cooldown;
         }
+
         const baseHits = base.hits * base.uses;
         const baseDamage = base.damage * (this.options.addHits ? baseHits : 1);
         
-        const specialDamage = firstSpecial ? firstSpecial.damage * firstSpecial.hits : 0;
-        const specialHits = firstSpecial ? firstSpecial.hits : 0;
+        var specialDamage = firstSpecial ? [firstSpecial.damage * firstSpecial.hits] : [0];
+        var specialHits = firstSpecial ? [firstSpecial.hits] : [0];
+        if (this.options.addAllSpecials) {
+            specialDamage = specials.map(item => item.damage * item.hits);
+            specialHits = specials.map(item => item.hits);
+        }
+        specialDamage = specialDamage.reduce((a, b) => a + b, 0);
+        specialHits = specialHits.reduce((a, b) => a + b, 0);
         this.stats.totalHits = baseHits;
         this.stats.totalDamage = baseDamage;
         this.stats.uses = base.uses;
         
-        if (this.options.AddSpecial && firstSpecial != null) {
+        if ((this.options.AddSpecial || this.options.addAllSpecials) && firstSpecial != null) {
             this.stats.totalDamage += specialDamage;
             this.stats.totalHits += specialHits;
             this.stats.uses += firstSpecial.uses;
@@ -144,82 +155,82 @@ window.Items = {
         {"damage": 60, "cooldown": 1, "uses": 1, "hits": 1},
         []
     ),
-    "FasterBlaster": new Item(
-        "Faster Blaster",
-        "Description: ",
-        {"damage": 125, "cooldown": 0.85, "uses": 1, "hits": 1},
-        []
-    ),
     "PhotoshopSword": new Item(
         "Photoshop Sword",
         "Description: ",
-        {"damage": 300, "cooldown": 0.9, "uses": 1, "hits": 1},
-        []
-    ),
-    "UFAsgoreTrident": new Item(
-        "UF Asgore Trident",
-        "Description: ",
-        {"damage": 360, "cooldown": 1, "uses": 1, "hits": 1},
+        {"damage": 200, "cooldown": 0.9, "uses": 1, "hits": 1},
         []
     ),
     "RealKnife": new Item(
         "Real Knife",
         "Description: Here we are!",
-        {"damage": 440, "cooldown": 0.8, "uses": 1, "hits": 1},
+        {"damage": 300, "cooldown": 0.8, "uses": 1, "hits": 1},
+        []
+    ),
+    "UFPapyrusBone": new Item(
+        "UF Papyrus Bone",
+        "Description: ",
+        {"damage": 360, "cooldown": 0.9, "uses": 1, "hits": 1},
+        []
+    ),
+    "UFAsgoreTrident": new Item(
+        "UF Asgore Trident",
+        "Description: ",
+        {"damage": 1000, "cooldown": 1, "uses": 1, "hits": 1},
         []
     ),
     "FreshSansEye": new Item(
         "Fresh Sans Eye",
         "Description: Fresh.",
-        {"damage": 475, "cooldown": 1.5, "uses": 1, "hits": 1},
+        {"damage": 1400, "cooldown": 1.5, "uses": 1, "hits": 1},
         []
     ),
     "NightmareTentacle": new Item(
         "Nightmare Tentacle",
         "Description: ",
-        {"damage": 1000, "cooldown": 0.9, "uses": 1, "hits": 1},
+        {"damage": 2400, "cooldown": 0.9, "uses": 1, "hits": 1},
         []
     ),
     "CrossSansWeapon": new Item(
         "Cross Sans Weapon",
         "Description: ",
-        {"damage": 1650, "cooldown": 0.9, "uses": 1, "hits": 1},
+        {"damage": 3000, "cooldown": 0.9, "uses": 1, "hits": 1},
         []
     ),
     "NegataleSansBlaster": new Item(
         "Negatale Sans Blaster",
         "Description: ",
-        {"damage": 1850, "cooldown": 1.5, "uses": 1, "hits": 1},
+        {"damage": 3200, "cooldown": 1.5, "uses": 1, "hits": 1},
         []
     ),
     "InkBrush": new Item(
         "Ink Brush",
         "Description: ",
-        {"damage": 2500, "cooldown": 0.9, "uses": 1, "hits": 1},
+        {"damage": 3750, "cooldown": 0.9, "uses": 1, "hits": 1},
         []
     ),
     "HopeSword": new Item(
         "Hope Sword",
         "Description: ",
-        {"damage": 3600, "cooldown": 0.9, "uses": 1, "hits": 1},
+        {"damage": 4700, "cooldown": 0.9, "uses": 1, "hits": 1},
         []
     ),
     "GasterHand": new Item(
         "Gaster Hand",
         "Description: ",
-        {"damage": 5000, "cooldown": 1.5, "uses": 1, "hits": 1},
+        {"damage": 5175, "cooldown": 1.5, "uses": 1, "hits": 1},
         []
     ),
     "PapyrusBone": new Item(
         "Papyrus Bone",
         "Description: ",
-        {"damage": 5250, "cooldown": 0.9, "uses": 1, "hits": 1},
+        {"damage": 5550, "cooldown": 0.9, "uses": 1, "hits": 1},
         []
     ),
     "BettyScythe": new Item(
         "Betty Scythe",
         "Description: Fear prowess",
-        {"damage": 5500, "cooldown": 1, "uses": 1, "hits": 1},
+        {"damage": 6000, "cooldown": 1, "uses": 1, "hits": 1},
         []
     ),
     "InkSansEye": new Item(
@@ -276,6 +287,18 @@ window.Items = {
         {"damage": 21500, "cooldown": 0.8, "uses": 1, "hits": 1},
         []
     ),
+    "XGasterHand": new Item(
+        "X Gaster Hand",
+        "Description: ",
+        {"damage": 22500, "cooldown": 3, "uses": 1, "hits": 1},
+        []
+    ),
+    "GameMasterBlock": new Item(
+        "Game Master Block",
+        "Description: ",
+        {"damage": 17000, "cooldown": 1, "uses": 1, "hits": 1},
+        []
+    ),
     "Temmie": new Item(
         "Temmie",
         "Description: ",
@@ -298,18 +321,6 @@ window.Items = {
         "Hardcore Knife",
         "Description: ",
         {"damage": 69000, "cooldown": 0.8, "uses": 1, "hits": 1},
-        []
-    ),
-    "GameMasterBlock": new Item(
-        "Game Master Block",
-        "Description: ",
-        {"damage": 40000, "cooldown": 1, "uses": 1, "hits": 1},
-        []
-    ),
-    "XGasterHand": new Item(
-        "X Gaster Hand",
-        "Description: ",
-        {"damage": 50000, "cooldown": 3, "uses": 1, "hits": 1},
         []
     ),
     "SwitchBone": new Item(
@@ -372,6 +383,12 @@ window.Items = {
         {"damage": 100000, "cooldown": 0.8, "uses": 1, "hits": 1},
         []
     ),
+    "FasterBlaster": new Item(
+        "Faster Blaster",
+        "Description:",
+        {"damage": 20000, "cooldown": 0.85, "uses": 1, "hits": 1},
+        []
+    ),
     "BraveryGauntlets": new Item(
         "Bravery Gauntlets",
         "Description:  Landing 10 Hits will enable Frenzy Mode: x2 Hit Speed.",
@@ -385,7 +402,17 @@ window.Items = {
                 cooldown:14
             }
         ],
-        {AddSpecial:false}
+        {AddSpecial:false, variables:{Upgraded:{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                var eTitle = document.getElementById("Expanded Bravery Gauntlets").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "Bravery Gauntlets (upgraded)" : "Bravery Gauntlets");
+                this.value = checked;
+
+                UpdateStuff();
+            }
+        }}}
     ),
     "Chompy": new Item(
         "Chompy",
@@ -402,16 +429,16 @@ window.Items = {
         ],
         {hideDamage:true,AddSpecial:false}
     ),
-    "ErrorBlaster": new Item(
-        "Error Blaster",
-        "Description: ",
-        {"damage": 80000, "cooldown": 1.5, "uses": 1, "hits": 1},
-        []
-    ),
     "UPDCODEWornDagger": new Item(
         "UPD C.O.D.E Worn Dagger",
         "Description: ",
         {"damage": 120000, "cooldown": 0.8, "uses": 1, "hits": 1},
+        []
+    ),
+    "ErrorBlaster": new Item(
+        "Error Blaster",
+        "Description: ",
+        {"damage": 150000, "cooldown": 1.5, "uses": 1, "hits": 1},
         []
     ),
     "RealRealKnife": new Item(
@@ -445,6 +472,44 @@ window.Items = {
                 cooldown: 20
             }
         ]
+    ),
+    "CODESaber": new Item(
+        "C.O.D.E Saber",
+        "Description: ",
+        {"damage": 230000, "cooldown": 0.9, "uses": 1, "hits": 1},
+        []
+    ),
+    "DeadlyPan": new Item(
+        "Deadly Pan",
+        "Description: Damage is rather Deadly. Deadlier if held (2m Max).",
+        {"damage": 400000, "cooldown": 1.9, "uses": 1, "hits": 1},
+        [],
+        {variables:{"Held Time":{
+            type:"Float",
+            min:0,
+            max:1.5,
+            value:0,
+            method(val) {
+                this.value = val;
+                UpdateStuff();
+            }
+        }}}
+    ),
+    "Temmie'sStudy": new Item(
+        "Temmie's Study",
+        "Description: Temmie studies Rare Items. Event Items increase Damage by 25k and Range by 0.5.",
+        {"damage": 350000, "cooldown": 2, "uses": 1, "hits": 1},
+        [],
+        {variables:{"Event items":{
+            type:"Int",
+            min:0,
+            max:58,
+            value:0,
+            method(val) {
+                this.value = val;
+                UpdateStuff();
+            }
+        }}}
     ),
     "CODESaber": new Item(
         "C.O.D.E Saber",
@@ -506,21 +571,18 @@ window.Items = {
                 uses: 0,
                 cooldown: 1
             }
-        ]
-    ),
-    "CODEKillerKnife": new Item(
-        "C.O.D.E Killer Knife",
-        "Description: Perfect for it's job...",
-        {"damage": 180000, "cooldown": 1, "uses": 1, "hits": 1},
-        [
-            {
-                name: "Laser",
-                damage: 180000,
-                hits: 1,
-                uses: 0,
-                cooldown: 1
+        ],
+        {variables:{"C.O.D.E":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                var eTitle = document.getElementById("Expanded Killer Knife").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "C.O.D.E Killer Knife" : "Killer Knife");
+                this.value = checked;
+
+                UpdateStuff();
             }
-        ]
+        }}}
     ),
     "LegionHammer": new Item(
         "Legion Hammer",
@@ -530,7 +592,7 @@ window.Items = {
             {
                 name: "Special",
                 damage: 150000,
-                hits: 15,
+                hits: 18,
                 uses: 1,
                 cooldown: 14
             }
@@ -544,9 +606,17 @@ window.Items = {
     ),
     "PuppetScarf": new Item(
         "Puppet Scarf",
-        "Description: Each consecutive hit reduces Cooldown by 0.1 seconds. Stacks up to 6 times, grants 100000 bonus Damage when fully stacked. Missing or waiting 3 seconds resets the stacks.   (stats based on boost)",
-        {"damage": 300000, "cooldown": 0.6, "uses": 1, "hits": 1},
-        []
+        "Description: Each consecutive hit reduces Cooldown by 0.1 seconds. Stacks up to 6 times, grants 100000 bonus Damage when fully stacked. Missing or waiting 3 seconds resets the stacks.",
+        {"damage": 200000, "cooldown": 1.1, "uses": 1, "hits": 1},
+        [],
+        {variables:{"Boosted":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                this.value = checked;
+                UpdateStuff();
+            }
+        }}}
     ),
     "Rose": new Item(
         "Rose",
@@ -561,29 +631,33 @@ window.Items = {
                 cooldown: 15
             }    
         ],
-        {hideSpecial:false}
-    ),
-    "CODERose": new Item(
-        "C.O.D.E Rose",
-        "Description: Creates a Zone that damages Enemies inside of it.",
-        {"damage": 390000, "cooldown": 1, "uses": 15, "hits": 1},
-        [
-            {
-                name: "Special",
-                damage: 390000,
-                hits: 5,
-                uses: 1,
-                cooldown: 15
-            }    
-        ],
-        {hideSpecial:false}
+        {hideSpecial:false,variables:{"C.O.D.E":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                var eTitle = document.getElementById("Expanded Rose").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "C.O.D.E Rose" : "Rose");
+                this.value = checked;
+
+                UpdateStuff();
+            }
+        }}}
     ),
     "EndoHead": new Item(
         "Endo Head",
-        "Description: Gives speed boost and Invincibility on hit, picking up the head will shorten it's Cooldown.\n(based on 5 second cooldown due to cooldown decrease when picking it up)",
+        "Description: Gives speed boost and Invincibility on hit, picking up the head will shorten it's Cooldown. \n(By 3 seconds)",
         {"damage": 525000, "cooldown": 5, "uses": 1, "hits": 3},
         [],
-        {addHits:false}
+        {addHits:false,variables:{"Pickup Time":{
+            type:"Int",
+            value:3,
+            min:0,
+            max:3,
+            method(val) {
+                this.value = val;
+                UpdateStuff();
+            }
+        }}}
     ),
     "MultiverseScythe": new Item(
         "Multiverse Scythe",
@@ -602,8 +676,26 @@ window.Items = {
                 hits:1,
                 uses:1,
                 cooldown:20,
+            },
+            {
+                name:"Dagger",
+                damage:0,
+                hits:0.5,
+                uses:1,
+                cooldown:0.9,
             }
-        ]
+        ],
+        {addAllSpecials:true,variables:{"Shard Black":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                var eTitle = document.getElementById("Expanded Black Shard").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "Black Shard (Shard Black)" : "Black Shard");
+                this.value = checked;
+
+                UpdateStuff();
+            }
+        }}}
     ),
     "EpicEye": new Item(
         "Epic Eye",
@@ -644,7 +736,7 @@ window.Items = {
                 cooldown: 15
             },
         ],
-        {hideFirstSpecial:true,}
+        {hideFirstSpecial:true}
     ),
     "SnansBlade": new Item(
         "SnansBlade",
@@ -657,21 +749,6 @@ window.Items = {
         "Description: ",
         {"damage": 355000, "cooldown": 1, "uses": 1, "hits": 1},
         []
-    ),
-    "BraveryGauntletsUpgraded": new Item(
-        "Bravery Gauntlets (Upgraded)",
-        "Description:  Landing 12 Hits will enable Frenzy Mode: x2 Hit Speed.",
-        {"damage": 83000, "cooldown": 0.75, "uses": 1, "hits": 1},
-        [
-            {
-                name:"Frenzy Mode",
-                damage:83000,
-                hits:40,
-                uses:1,
-                cooldown:17+(5/6),
-            }
-        ],
-        {AddSpecial:false}
     ),
     "SnatSansMinion": new Item(
         "SnatSansMinion",
@@ -787,23 +864,45 @@ window.Items = {
     "Doombringer": new Item(
         "Doombringer",
         "Description: Brings despair equal in power to it's user.",
-        {"damage": 200000, "cooldown": 1.1, "uses": 12, "hits": 1},
+        {"damage": 200000, "cooldown": 1.1, "uses": 13, "hits": 1},
         [
             {
                 name: "Melee Special",
                 damage: 240000,
                 hits: 3,
                 uses: 1,
-                cooldown: 14.3
+                cooldown: 15
             },
             {
                 name: "Ranged",
                 damage: 660000/18,
                 hits: 18,
                 uses: 13,
-                cooldown: 14.3
+                cooldown: 15
             }
         ],
+    ), 
+    "HammerofGratitude": new Item(
+        "Hammer of Gratitude",
+        "Description: Smash the ground, shocking caught Enemies. The Hammer grows bigger with every Gift.",
+        {"damage": 25000, "cooldown": 2.5, "uses": 1, "hits": 1},
+        [],
+        {variables:{"Gifts":{
+            type:"Int",
+            value:1,
+            min:1,
+            max:1000000,
+            method(val) {
+                this.value = val;
+                UpdateStuff();
+            }
+        }}}
+    ),
+    "DarkStick": new Item(
+        "Dark Stick",
+        "Description: Its dark is worse than its bite.",
+        {"damage": 77777, "cooldown": 0.9, "uses": 1, "hits": 1},
+        []
     ),
     "Snowball": new Item(
         "Snowball",
@@ -862,7 +961,24 @@ window.Items = {
                 cooldown: 3.6
             }
         ],
-        {AddSpecial:false}
+        {hideDamage:true,AddSpecial:false,variables:{"Pumpkin Union":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                this.value = checked;
+                window.Items["DarkPumpblade"]["Pumpkin Union"].value = checked;
+                UpdateStuff();
+            }}, "Blades":{
+            type:"Int",
+            value:1,
+            min:1,
+            max:2,
+            method(val) {
+                this.value = val;
+                window.Items["DarkPumpblade"]["Blades"].value = val;
+                UpdateStuff();
+            }}
+        }}
     ),
     "DarkPumpblade": new Item(
         "Dark Pumpblade",
@@ -891,7 +1007,24 @@ window.Items = {
                 cooldown: 3.6
             }
         ],
-        {AddSpecial:false}
+        {hideDamage:true,AddSpecial:false,variables:{"Pumpkin Union":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                this.value = checked;
+                window.Items["AncientPumpblade"]["Pumpkin Union"].value = checked;
+                UpdateStuff();
+            }}, "Blades":{
+            type:"Int",
+            value:1,
+            min:1,
+            max:2,
+            method(val) {
+                this.value = val;
+                window.Items["AncientPumpblade"]["Blades"].value = val;
+                UpdateStuff();
+            }}
+        }}
     ),
     "SteelFrost": new Item(
         "Steel Frost",
@@ -937,6 +1070,39 @@ window.Items = {
         ],
         {AddSpecial:false}
     ),
+    "TwistedRoots": new Item(
+        "Twisted Roots",
+        "Description: Launch vines forward, stunning and damaging reached Enemies for 1.5 seconds. Jumping: Launch yourself at the nearest Enemy, hitting them if near enough. (Distance is just a estimate, likely not accurate)",
+        {"damage": 17500, "cooldown": 24, "uses": 1, "hits": 1},
+        [
+            {
+                name:"Air grapple",
+                "damage": (17500/4 + 17500*1.6)/2, 
+                "cooldown": 24, 
+                "uses": 1, 
+                "hits": 2
+            },
+            
+        ],
+        {AddSpecial:false, variables:{ "Distance":{
+            type:"Float",
+            value:50,
+            min:4,
+            max: 50,
+            method(val) {
+                this.value = val;
+                UpdateStuff();
+            }}, "Extra Roots":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                this.value = checked;
+                var eTitle = document.getElementById("Expanded Twisted Roots").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "Twisted Roots with extra roots" : "Twisted Roots");
+                UpdateStuff();
+            }
+        }}}
+    ),
     "RiftEssence": new Item(
         "Rift Essence",
         "Description: Getting the right patterns will trigger events. When Resetting, your extra TP is turned into LV's.",
@@ -970,7 +1136,17 @@ window.Items = {
         "Counter Bone",
         "Description: For 1.5 seconds, you will ignore the damage received and create a blast that deals 500k DMG up to 3 times.",
         {"damage": 500000, "cooldown": 10, "uses": 1, "hits": 3},
-        []
+        [],
+        {variables:{"Upgraded":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                var eTitle = document.getElementById("Expanded Counter Bone").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "Upgraded Counter Bone" : "Counter Bone");
+                this.value = checked;
+                UpdateStuff();
+            }
+        }}}
     ),
     "Kill": new Item(
         "Kill",
@@ -1002,24 +1178,61 @@ window.Items = {
         {"damage": 4000000, "cooldown": 60, "uses": 1, "hits": 1},
         []
     ),
-    "CounterBoneupgraded": new Item(
-        "Counter Bone (upgraded)",
-        "Description: For 1.5 seconds, you will ignore the damage received and create a blast that deals 500k DMG up to 3 times.",
-        {"damage": 750000, "cooldown": 10, "uses": 1, "hits": 4},
-        []
-    ),
-    "Maskv1": new Item(
-        "Mask (v1)",
+    "Mask": new Item(
+        "Mask",
         "Description: Hauriunt omnia",
-        {"damage": 1400000, "cooldown": 30, "uses": 1, "hits": 1},
-        []
+        {"damage": 1400000, "cooldown": 15, "uses": 1, "hits": 1},
+        [
+            {
+                name:"Hit2",
+                "damage": 735000, 
+                "cooldown": 42, 
+                "uses": 0, 
+                "hits": 3
+            },
+            {
+                name:"Slam",
+                "damage": 1400000, 
+                "cooldown": 42, 
+                "uses": 0, 
+                "hits": 1
+            }
+        ],
+        {hideSpecial:true,AddSpecial:false,addAllSpecials:true,variables:{"Upgraded":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                //change title and uses
+                var eTitle = document.getElementById("Expanded Mask").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "Mask V2" : "Mask V1");
+                eTitle.children[3].innerText = (checked ? "Used 4 times" : "Used 1 time");
+                //change base damage, hit damage, and total damage
+                var eDivs = document.getElementById("Expanded Mask").querySelectorAll(".EDivs");
+                eDivs[0].children[0].innerText = (checked ? "Base Damage: " + window.convert(700000) : "Base Damage: " + window.convert(1400000));
+                eDivs[0].children[1].innerText = (checked ? "Hit Damage: 9" : "Hit Damage: 1");
+                eDivs[0].children[2].innerText = (checked ? "Total Damage: " + window.convert(7105000) : "Total Damage: " + window.convert(1400000));
+                //change DPS
+                eDivs[1].children[0].innerText = (checked ? "Base DPS: " + window.convert(7105000/42) : "Base DPS: " + window.convert(1400000/15));
+                eDivs[1].children[1].innerText = (checked ? "Hit DPS: " + window.convert(9/42) : "Hit DPS: " + window.convert(1/15));
+                this.value = checked;
+
+                UpdateStuff();
+            }
+        }}}
     ),
-    "Maskv2": new Item(
-        "Mask (v2)",
-        "Description: Hauriunt omnia",
-        {"damage": 7105000/9, "cooldown": 36, "uses": 4, "hits": 9/4},
-        [],
-        {hideDamage:true}
+    "AnormalBroom": new Item(
+        "Anormal Broom",
+        "Description: +10 Speed boost and damages nearby enemies while it's equipped. Activating it doubles Range and works while unequipped for 5 seconds.",
+        {"damage": 43750, "cooldown": 10, "uses": 1, "hits": 10},
+        [ 
+            {
+                name:"Shockwave",
+                "damage": 100000, 
+                "cooldown": 10, 
+                "uses": 1, 
+                "hits": 10
+            }
+        ], {AddSpecial:false,addAllSpecials:true}
     ),
     "Banana": new Item(
         "Banana",
@@ -1031,6 +1244,12 @@ window.Items = {
         "Cool Skull",
         "You summon your Cool Friend, chomping Enemies on his path, increasing your Luck by 10%, and Attack by 2000 while it's active(Hitting at least one Enemy will increase the duration from 5 to 6.5)",
         {"damage": 300000, "cooldown": 42, "uses": 1, "hits": 6},
+        []
+    ),
+    "TitanFountain": new Item(
+        "Titan Fountain",
+        "Description: Out of combat: Opens a Dark Fountain. In Combat: Opens a Titan Fountain, which can be activated. Spawns dark summons that target enemies. Jumping: Summons wings that increase your Damage Resistance while in range.",
+        {"damage": 500000, "cooldown": 40, "uses": 1, "hits": 6},
         []
     ),
     "PocketCore": new Item(
@@ -1049,8 +1268,18 @@ window.Items = {
     "DeathBeam": new Item(
         "Death Beam",
         "Description: Shoot a beam that takes your HP as long as it's active.",
-        {"damage": 125000, "cooldown": 16/60, "uses": 1, "hits": 1},
-        []
+        {"damage": 125000, "cooldown": 0.25, "uses": 1, "hits": 1},
+        [],
+        {variables:{"Beam Mark":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                var eTitle = document.getElementById("Expanded Death Beam").querySelector(".ETitle");
+                eTitle.children[1].innerText = (checked ? "Death Beam (Beam Mark)" : "Death Beam");
+                this.value = checked;
+                UpdateStuff();
+            }
+        }}}
     ),
     "SanssHat": new Item(
         "Sans's Hat",
@@ -1062,13 +1291,38 @@ window.Items = {
         "Head Throw",
         "Description: You throw your head away as a bomb which periodically increases size for 1 second and making it roll in the floor, taking 10% of your current HP. The base damage will depend on the HP that is taken away x3.",
         {"damage": 18, "cooldown": 10, "uses": 1, "hits": 1},
-        []
+        [],
+        {variables:{"Health":{
+            type:"Int",
+            min:100,
+            max:Number.MAX_VALUE,
+            value:100,
+            method(val) {
+                this.value = val;
+                UpdateStuff(); 
+            }
+        }}}
     ),
     "FlamingStallion": new Item(
         "Flaming Stallion",
         "Description: +11 Speed boost and Jump Power while it's equipped and extra 75 Speed boost and Jump Power when activated, it can hit multiple times and stun enemies.",
         {"damage": 100000, "cooldown": 5, "uses": 1, "hits": 12},
         []
+    ),
+    "TorchingStallion": new Item(
+        "Torching Stallion",
+        "Description: +11 Speed boost and Jump Power while it's equipped spawns Flames when activated. (Assumes flames stay on enemy)",
+        {"damage": 75000, "cooldown": 10.4, "uses": 1, "hits": 10},
+        [
+            {
+                name: "Flames",
+                "damage": 100000,
+                "cooldown":10,
+                "uses":0,
+                "hits":22
+            }
+        ],
+        {AddSpecial:false}
     ),
     "FOOLSCONTENT": new Item(
         "FOOL'S CONTENT",
@@ -1103,6 +1357,41 @@ window.Items = {
         ],
         {hideSpecial:true}
     ),
+    "Granite": new Item(
+        "Granitè",
+        "Description: Charge a beam, burning enemies hit by it. You're unable to die during the beam. First second of charge gives Invulnerability, afterwards you get 50% Damage Resistance instead.",
+        {"damage": 125000, "cooldown": 22, "uses": 1, "hits": 10},
+        [],
+        {variables:{"Charge Time":{
+            type:"Float",
+            value:0,
+            min:0,
+            max: 4.5,
+            method(val) {
+                this.value = val;
+                var eDivs = document.getElementById("Expanded Granitè").querySelectorAll(".EDivs");
+                eDivs[0].children[1].innerText = ("Hit Damage: " + Math.round(2.45 * val + 9.5));
+                eDivs[1].children[1].innerText = ("Hit DPS: " + window.convert(Math.round(2.45 * val + 9.5)/22));
+                UpdateStuff();
+            }
+        }}}
+    ),
+    "Heartsun": new Item(
+        "Heartsun",
+        "Description: While in combat, Damage a nearby Enemy (15 Studs Range) every second. Armor's LV upgrades the Damage.",
+        {"damage": 25000, "cooldown": 1, "uses": 1, "hits": 1},
+        [],
+        {variables:{"Level":{
+            type:"Int",
+            value:1,
+            min:1,
+            max:3,
+            method(val) {
+                this.value = val;
+                UpdateStuff();
+            }
+        }}}
+    ),
     "WintersCurse": new Item(
         "Winter's Curse",
         "Description: Cold.. so cold.. no one can survive, not even the light... Every 10 seconds, a hand will grip the nearest enemy.",
@@ -1115,6 +1404,13 @@ window.Items = {
         {"damage": 500000, "cooldown": 10, "uses": 1, "hits": 1},
         []
     ),
+    "JackPumpkin": new Item(
+        "Jack Pumpkin",
+        "Description: Spawns a Yummy pimpkin, but if you take too long to eat it, it will start to chase you instead, biting on the first thing it catches.",
+        {"damage": 20000, "cooldown": 60, "uses": 1, "hits": 10},
+        []
+    ),
+
     "GrilledCheeseSandwich": new Item(
         "Grilled Cheese Sandwich",
         "Description: {grilled sandwich link} from {grilled sandwich trello link}",
@@ -1167,6 +1463,57 @@ window.Skills = {
 
         ],
         {AddSpecial:true,hideSpecial:true}
+    ),
+    Flower: new Item(
+        "Flower",
+        "Description: The more Flowers you have, the more abilities you gain. (Add up the dps, really depends on what you do)",
+        {
+            damage: 300000/1.1,
+            cooldown:13,
+            hits:1,
+            uses:1
+        },
+        [
+            {
+                name:"Aqua",
+                damage:2500/1.1,
+                cooldown:12,
+                hits:10,
+                uses:0,
+            },
+            {
+                name:"Orange",
+                damage:100000/1.1,
+                cooldown:8,
+                hits:1,
+                uses:0,
+            },
+            {
+                name:"Yellow",
+                damage:75000/1.1,
+                cooldown:4,
+                hits:1,
+                uses:0,
+            },
+
+        ],
+        {variables:{"Flowery Fused":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                this.value = checked;
+                UpdateSkills();
+            }
+        },"Upgrades":{
+            type:"Int",
+            min:0,
+            max:6,
+            value:0,
+            method(val) {
+                this.value = val;
+                UpdateSkills();
+            }
+        }}}
     ),
     Papyrus: new Item(
         "Papyrus",
@@ -1342,12 +1689,66 @@ window.Skills = {
         ],
         {AddSpecial:false}
     ),
+    Flowery: new Item(
+        "Flowery",
+        "Description: While in the air, Create a path of Flowers depending on your WalkSpeed. During Combat: Jarona. If far from the Enemy, combo. (Omega form assumes you attempt to get it as fast as possible using flowery and do not get hit. To determine your own DPS, take the total damage and divide by the time it takes you to get omega form.)",
+        {
+            damage: 1000000/1.1,
+            cooldown:5,
+            hits:1,
+            uses:1
+        },
+        [
+            {
+                name:"Combo",
+                damage:1000000/1.1*0.233,
+                cooldown:12,
+                hits:10,
+                uses:1,
+            },
+            {
+                name:"Aerial",
+                damage:800000/1.1,
+                cooldown:13,
+                hits:1,
+                uses:1,
+            }
+        ],
+        {AddSpecial:false, variables:{"Flower Fused":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                this.value = checked;
+                UpdateSkills();
+            }
+        },"Omega Form":{
+            type:"Bool",
+            value:false,
+            method(checked) {
+                this.value = checked;
+                var eDivs = document.getElementById("Expanded Flowery").querySelectorAll(".EDivs");
+                (Skills.Flowery["Omega Form"].value) ? eDivs[1].children[5].innerText = "Aerial Hit DPS: " + window.convert(20/2.5) : eDivs[1].children[5].innerText = "Aerial Hit DPS: " + window.convert(1/Skills.Flowery["Aerial time between hits"].value);
+                UpdateSkills();
+            }
+        },"Aerial Hit Interval":{
+            type:"Int",
+            min:1,
+            max:12,
+            value:12,
+            method(val) {
+                this.value = val;
+                var eDivs = document.getElementById("Expanded Flowery").querySelectorAll(".EDivs");
+                if (!Skills.Flowery["Omega Form"].value) eDivs[1].children[5].innerText = "Aerial Hit DPS: " + window.convert(1/this.value);
+                UpdateSkills();
+            }
+        }}}
+    ),
     FallenOne: new Item(
         "Fallen One",
         "Description: You rise above all and make the sky fall.",
         {
             damage: 500000,
-            cooldown:42,
+            cooldown:60,
             hits:14,
             uses:1
         }
